@@ -24,7 +24,7 @@ return [
     "are_you_sure_you_want_to_delete_member" => " Are you sure you want to remove this team member?",
     "team_settings" => "Team settings",
     "team_profile" => " Team Profile",
-    "view_all_teams" => "View all teams",
+    "view_all_teams" => "View All Teams",
     "team_billing" => "Team Billing",
     "you_have_x_invitations_remaining" => " You currently have :count invitation(s) remaining.",
     "teams" => " Teams",
