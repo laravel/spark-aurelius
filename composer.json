@@ -1,5 +1,5 @@
 {
-    "name": "laravel/spark",
+    "name": "laravel/spark-aurelius",
     "description": "Laravel Spark provides scaffolding for Laravel SaaS applications.",
     "keywords": ["laravel", "stripe", "billing", "scaffolding", "saas"],
     "license": "MIT",
@@ -29,7 +29,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "4.0-dev"
+            "dev-master": "7.0-dev"
         }
     },
     "minimum-stability": "dev"
