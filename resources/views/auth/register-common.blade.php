@@ -106,7 +106,7 @@
 
                             <!-- Trial Days -->
                             <td class="table-plan-price table-plane-text text-right">
-                                <span v-if="plan.trialDays && ! hasSubscribed(plan)">
+                                <span v-if="plan.trialDays">
                                     <?php echo __(':trialDays Day Trial', ['trialDays' => '{{ plan.trialDays }}']); ?>
                                 </span>
                             </td>
