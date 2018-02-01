@@ -9,7 +9,7 @@
     <div class="dropdown-divider"></div>
 @endif
 
-@if (Spark::usesTeams() && Auth::user()->currentTeamOnTrial())
+@if (Spark::usesTeams() && Auth::user()->currentTeam()->owner_id == Auth::user()->id && Auth::user()->currentTeamOnTrial())
     <!-- Team Trial Reminder -->
     <h6 class="dropdown-header">{{__('teams.team_trial')}}</h6>
 
