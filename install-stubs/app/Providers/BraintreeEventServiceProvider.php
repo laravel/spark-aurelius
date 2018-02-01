@@ -13,10 +13,6 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         // User Related Events...
-        'Laravel\Spark\Events\Auth\UserRegistered' => [
-            'Laravel\Spark\Listeners\Subscription\CreateTrialEndingNotification',
-        ],
-
         'Laravel\Spark\Events\Subscription\UserSubscribed' => [
             'Laravel\Spark\Listeners\Subscription\UpdateActiveSubscription',
             'Laravel\Spark\Listeners\Subscription\UpdateTrialEndingDate',
@@ -36,7 +32,19 @@ class EventServiceProvider extends ServiceProvider
 
         // Team Related Events...
         'Laravel\Spark\Events\Teams\TeamCreated' => [
-            'Laravel\Spark\Listeners\Teams\Subscription\CreateTrialEndingNotification',
+            'Laravel\Spark\Listeners\Teams\UpdateOwnerSubscriptionQuantity',
+        ],
+
+        'Laravel\Spark\Events\Teams\TeamDeleted' => [
+            'Laravel\Spark\Listeners\Teams\UpdateOwnerSubscriptionQuantity',
+        ],
+
+        'Laravel\Spark\Events\Teams\TeamMemberAdded' => [
+            'Laravel\Spark\Listeners\Teams\UpdateTeamSubscriptionQuantity',
+        ],
+
+        'Laravel\Spark\Events\Teams\TeamMemberRemoved' => [
+            'Laravel\Spark\Listeners\Teams\UpdateTeamSubscriptionQuantity',
         ],
 
         'Laravel\Spark\Events\Teams\Subscription\TeamSubscribed' => [
