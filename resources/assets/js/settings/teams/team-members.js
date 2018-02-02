@@ -1,5 +1,5 @@
 module.exports = {
-    props: ['user', 'team'],
+    props: ['user', 'team', 'billableType'],
 
 
     /**
@@ -127,6 +127,24 @@ module.exports = {
 
     computed: {
         /**
+         * Get the active subscription instance.
+         */
+        activeSubscription() {
+            if ( ! this.billable) {
+                return;
+            }
+
+            const subscription = _.find(
+                this.billable.subscriptions,
+                subscription => subscription.name == 'default'
+            );
+
+            if (typeof subscription !== 'undefined') {
+                return subscription;
+            }
+        },
+
+        /**
          * Get the URL for updating a team member.
          */
         urlForUpdating: function () {
@@ -139,6 +157,17 @@ module.exports = {
          */
         urlForDeleting() {
             return `/settings/${Spark.teamsPrefix}/${this.team.id}/members/${this.deletingTeamMember.id}`;
-        }
+        },
+
+
+        /**
+         * Determine if the current subscription is active.
+         */
+        subscriptionIsOnGracePeriod() {
+            return this.activeSubscription &&
+                this.activeSubscription.ends_at &&
+                moment.utc().isBefore(moment.utc(this.activeSubscription.ends_at));
+        },
+
     }
 };

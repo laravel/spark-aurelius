@@ -51,6 +51,16 @@ module.exports = {
 
 
         /**
+         * Determine if the current subscription is active.
+         */
+        subscriptionIsOnGracePeriod() {
+            return this.activeSubscription &&
+                this.activeSubscription.ends_at &&
+                moment.utc().isBefore(moment.utc(this.activeSubscription.ends_at));
+        },
+
+
+        /**
          * Check if there's a limit for the number of team members.
          */
         hasTeamMembersLimit() {
@@ -77,7 +87,7 @@ module.exports = {
          * Check if the user can invite more team members.
          */
         canInviteMoreTeamMembers() {
-            if (Spark.chargesTeamsPerMember && !this.activePlan) {
+            if (Spark.chargesTeamsPerMember && (!this.activePlan || this.subscriptionIsOnGracePeriod)) {
                 return false;
             }
 

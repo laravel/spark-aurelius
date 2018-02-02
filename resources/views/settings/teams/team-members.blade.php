@@ -1,4 +1,4 @@
-<spark-team-members :user="user" :team="team" inline-template>
+<spark-team-members :user="user" :team="team" :billable-type="billableType" inline-template>
     <div>
         <div class="card card-default">
             <div class="card-header">
@@ -107,12 +107,20 @@
                         </h5>
                     </div>
 
-                    <div class="modal-body">
+                    <div class="modal-body" v-if="spark.chargesTeamsPerMember && subscriptionIsOnGracePeriod">
+                        {{__('teams.resume_to_delete_members')}}
+                    </div>
+
+                    <div class="modal-body" v-else>
                         {{__('teams.are_you_sure_you_want_to_delete_member')}}
                     </div>
 
                     <!-- Modal Actions -->
-                    <div class="modal-footer">
+                    <div class="modal-footer" v-if="spark.chargesTeamsPerMember && subscriptionIsOnGracePeriod">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{__('Cancel')}}</button>
+                    </div>
+
+                    <div class="modal-footer" v-else>
                         <button type="button" class="btn btn-default" data-dismiss="modal">{{__('No, Go Back')}}</button>
 
                         <button type="button" class="btn btn-danger" @click="deleteMember" :disabled="deleteTeamMemberForm.busy">
