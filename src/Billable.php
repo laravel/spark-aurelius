@@ -2,6 +2,7 @@
 
 namespace Laravel\Spark;
 
+use LogicException;
 use Mpociot\VatCalculator\VatCalculator;
 use Laravel\Cashier\Billable as CashierBillable;
 
@@ -79,6 +80,10 @@ trait Billable
     {
         $subscription = $this->subscription($subscription);
 
+        if ($subscription->onGracePeriod()) {
+            throw new LogicException('Unable to update quantity, subscription was cancelled.');
+        }
+
         if (Spark::prorates()) {
             $subscription->incrementQuantity($count);
         } else {
@@ -97,6 +102,10 @@ trait Billable
     {
         $subscription = $this->subscription($subscription);
 
+        if ($subscription->onGracePeriod()) {
+            throw new LogicException('Unable to update quantity, subscription was cancelled.');
+        }
+
         if (Spark::prorates()) {
             $subscription->decrementQuantity($count);
         } else {
@@ -114,6 +123,10 @@ trait Billable
     public function updateSeats($count, $subscription = 'default')
     {
         $subscription = $this->subscription($subscription);
+
+        if ($subscription->onGracePeriod()) {
+            throw new LogicException('Unable to update quantity, subscription was cancelled.');
+        }
 
         if (Spark::prorates()) {
             $subscription->updateQuantity($count);
