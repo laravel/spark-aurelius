@@ -31,10 +31,20 @@ module.exports = {
                 this.billable.subscriptions,
                 subscription => subscription.name == 'default'
             );
-
+            
             if (typeof subscription !== 'undefined') {
                 return subscription;
             }
+        },
+
+
+        /**
+         * Determine if the billable entity has no active subscription.
+         */
+        needsSubscription() {
+            return ! this.activeSubscription ||
+                (this.activeSubscription.ends_at &&
+                moment.utc().isAfter(moment.utc(this.activeSubscription.ends_at)));
         },
 
 
@@ -47,16 +57,6 @@ module.exports = {
                     return plan.id == this.activeSubscription.provider_plan;
                 });
             }
-        },
-
-
-        /**
-         * Determine if the current subscription is active.
-         */
-        subscriptionIsOnGracePeriod() {
-            return this.activeSubscription &&
-                this.activeSubscription.ends_at &&
-                moment.utc().isBefore(moment.utc(this.activeSubscription.ends_at));
         },
 
 
@@ -87,7 +87,7 @@ module.exports = {
          * Check if the user can invite more team members.
          */
         canInviteMoreTeamMembers() {
-            if (Spark.chargesTeamsPerMember && (!this.activePlan || this.subscriptionIsOnGracePeriod)) {
+            if (Spark.chargesTeamsPerMember && this.needsSubscription) {
                 return false;
             }
 

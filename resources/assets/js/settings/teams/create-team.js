@@ -35,6 +35,16 @@ module.exports = {
 
 
         /**
+         * Determine if the billable entity has no active subscription.
+         */
+        needsSubscription() {
+            return ! this.activeSubscription ||
+                (this.activeSubscription.ends_at &&
+                moment.utc().isAfter(moment.utc(this.activeSubscription.ends_at)));
+        },
+
+
+        /**
          * Get the active plan instance.
          */
         activePlan() {
@@ -43,16 +53,6 @@ module.exports = {
                     return plan.id == this.activeSubscription.provider_plan;
                 });
             }
-        },
-
-
-        /**
-         * Determine if the current subscription is active.
-         */
-        subscriptionIsOnGracePeriod() {
-            return this.activeSubscription &&
-                this.activeSubscription.ends_at &&
-                moment.utc().isBefore(moment.utc(this.activeSubscription.ends_at));
         },
 
 
@@ -85,7 +85,7 @@ module.exports = {
          * Check if the user can create more teams.
          */
         canCreateMoreTeams() {
-            if (Spark.chargesUsersPerTeam && (!this.activePlan || this.subscriptionIsOnGracePeriod)) {
+            if (Spark.chargesUsersPerTeam && this.needsSubscription) {
                 return false;
             }
 

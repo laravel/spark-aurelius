@@ -81,7 +81,11 @@ trait Billable
         $subscription = $this->subscription($subscription);
 
         if ($subscription->onGracePeriod()) {
-            throw new LogicException('Unable to update quantity, subscription was cancelled.');
+            $subscription->update([
+                'quantity' => $subscription->quantity + $count
+            ]);
+
+            return;
         }
 
         if (Spark::prorates()) {
@@ -129,15 +133,11 @@ trait Billable
         $subscription = $this->subscription($subscription);
 
         if ($subscription->onGracePeriod()) {
-            if ($subscription->quantity > $subscription->quantity) {
-                $subscription->update([
-                    'quantity' => max(1, $subscription->quantity - $count)
-                ]);
+            $subscription->update([
+                'quantity' => $count
+            ]);
 
-                return;
-            }
-
-            throw new LogicException('Unable to update quantity, subscription was cancelled.');
+            return;
         }
 
         if (Spark::prorates()) {

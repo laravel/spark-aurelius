@@ -53,16 +53,10 @@
                 </div>
             </form>
 
-            <div v-if="! canCreateMoreTeams && ! subscriptionIsOnGracePeriod">
+            <div v-else>
                 <span class="text-danger">
                     {{__('teams.plan_allows_no_more_teams')}},
                     <a href="{{ url('/settings#/subscription') }}">{{__('please upgrade your subscription')}}</a>.
-                </span>
-            </div>
-
-            <div v-if="! canCreateMoreTeams && subscriptionIsOnGracePeriod">
-                <span class="text-danger">
-                    {{__('teams.resume_to_create_more_teams')}}.
                 </span>
             </div>
         </div>

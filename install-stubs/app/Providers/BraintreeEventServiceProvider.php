@@ -16,6 +16,7 @@ class EventServiceProvider extends ServiceProvider
         'Laravel\Spark\Events\Subscription\UserSubscribed' => [
             'Laravel\Spark\Listeners\Subscription\UpdateActiveSubscription',
             'Laravel\Spark\Listeners\Subscription\UpdateTrialEndingDate',
+            'Laravel\Spark\Listeners\Subscription\UpdateSubscriptionQuantity',
         ],
 
         'Laravel\Spark\Events\Profile\ContactInformationUpdated' => [
@@ -50,6 +51,7 @@ class EventServiceProvider extends ServiceProvider
         'Laravel\Spark\Events\Teams\Subscription\TeamSubscribed' => [
             'Laravel\Spark\Listeners\Teams\Subscription\UpdateActiveSubscription',
             'Laravel\Spark\Listeners\Teams\Subscription\UpdateTrialEndingDate',
+            'Laravel\Spark\Listeners\Teams\Subscription\UpdateSubscriptionQuantity',
         ],
 
         'Laravel\Spark\Events\Teams\Subscription\SubscriptionUpdated' => [
