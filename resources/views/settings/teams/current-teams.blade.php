@@ -101,21 +101,13 @@
                         </h5>
                     </div>
 
-                    <div class="modal-body" v-if="spark.chargesUsersPerTeam && subscriptionIsOnGracePeriod">
-                        {{__('teams.resume_to_delete_teams')}}
-                    </div>
-
-                    <div class="modal-body" v-else>
+                    <div class="modal-body">
                         {{__('teams.are_you_sure_you_want_to_delete_team')}}
                         {{__('teams.if_you_delete_team_all_data_will_be_deleted')}}
                     </div>
 
                     <!-- Modal Actions -->
-                    <div class="modal-footer" v-if="spark.chargesUsersPerTeam && subscriptionIsOnGracePeriod">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">{{__('Cancel')}}</button>
-                    </div>
-
-                    <div class="modal-footer" v-else>
+                    <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">{{__('No, Go Back')}}</button>
 
                         <button type="button" class="btn btn-danger" @click="deleteTeam" :disabled="deleteTeamForm.busy">

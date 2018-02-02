@@ -26,35 +26,6 @@ module.exports = {
 
     computed: {
         /**
-         * Get the active subscription instance.
-         */
-        activeSubscription() {
-            if ( ! this.$parent.billable) {
-                return;
-            }
-
-            const subscription = _.find(
-                this.$parent.billable.subscriptions,
-                subscription => subscription.name == 'default'
-            );
-
-            if (typeof subscription !== 'undefined') {
-                return subscription;
-            }
-        },
-
-
-        /**
-         * Determine if the current subscription is active.
-         */
-        subscriptionIsOnGracePeriod() {
-            return this.activeSubscription &&
-                this.activeSubscription.ends_at &&
-                moment.utc().isBefore(moment.utc(this.activeSubscription.ends_at));
-        },
-
-
-        /**
          * Get the URL for leaving a team.
          */
         urlForLeaving() {
