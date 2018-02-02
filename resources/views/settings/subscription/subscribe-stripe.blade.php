@@ -56,6 +56,15 @@
                         </div>
                     </div>
 
+                    <!-- ZIP Code -->
+                    <div class="form-group row" v-if=" ! spark.collectsBillingAddress">
+                        <label for="number" class="col-md-4 col-form-label text-md-right">ZIP / Postal Code</label>
+
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" name="zip" v-model="form.zip">
+                        </div>
+                    </div>
+
                     <!-- Coupon -->
                     <div class="form-group row">
                         <label class="col-md-4 col-form-label text-md-right">{{__('Coupon')}}</label>
