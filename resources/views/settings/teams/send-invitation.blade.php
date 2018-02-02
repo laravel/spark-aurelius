@@ -57,9 +57,15 @@
                 </div>
             </form>
 
-            <div v-else>
+            <div v-if="! canInviteMoreTeamMembers && ! subscriptionIsOnGracePeriod">
                 <span class="text-danger">
                     {{__('Your current plan doesn\'t allow you to invite more members, please upgrade your subscription.')}}
+                </span>
+            </div>
+
+            <div v-if="! canInviteMoreTeamMembers && subscriptionIsOnGracePeriod">
+                <span class="text-danger">
+                    {{__('Please resume your subscription to invite more members.')}}
                 </span>
             </div>
         </div>
