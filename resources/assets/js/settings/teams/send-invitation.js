@@ -39,16 +39,6 @@ module.exports = {
 
 
         /**
-         * Determine if the billable entity has no active subscription.
-         */
-        needsSubscription() {
-            return ! this.activeSubscription ||
-                (this.activeSubscription.ends_at &&
-                moment.utc().isAfter(moment.utc(this.activeSubscription.ends_at)));
-        },
-
-
-        /**
          * Get the active plan instance.
          */
         activePlan() {
@@ -87,10 +77,6 @@ module.exports = {
          * Check if the user can invite more team members.
          */
         canInviteMoreTeamMembers() {
-            if (Spark.chargesTeamsPerMember && this.needsSubscription) {
-                return false;
-            }
-
             if (! this.hasTeamMembersLimit) {
                 return true;
             }
