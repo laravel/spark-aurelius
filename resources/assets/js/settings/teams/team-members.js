@@ -1,5 +1,5 @@
 module.exports = {
-    props: ['user', 'team', 'billableType'],
+    props: ['user', 'team'],
 
 
     /**
@@ -26,6 +26,24 @@ module.exports = {
      */
     created() {
         this.getRoles();
+    },
+
+
+    computed: {
+        /**
+         * Get the URL for updating a team member.
+         */
+        urlForUpdating: function () {
+            return `/settings/${Spark.teamsPrefix}/${this.team.id}/members/${this.updatingTeamMember.id}`;
+        },
+
+
+        /**
+         * Get the URL for deleting a team member.
+         */
+        urlForDeleting() {
+            return `/settings/${Spark.teamsPrefix}/${this.team.id}/members/${this.deletingTeamMember.id}`;
+        },
     },
 
 
@@ -122,52 +140,5 @@ module.exports = {
                 return role.text;
             }
         }
-    },
-
-
-    computed: {
-        /**
-         * Get the active subscription instance.
-         */
-        activeSubscription() {
-            if ( ! this.billable) {
-                return;
-            }
-
-            const subscription = _.find(
-                this.billable.subscriptions,
-                subscription => subscription.name == 'default'
-            );
-
-            if (typeof subscription !== 'undefined') {
-                return subscription;
-            }
-        },
-
-        /**
-         * Get the URL for updating a team member.
-         */
-        urlForUpdating: function () {
-            return `/settings/${Spark.teamsPrefix}/${this.team.id}/members/${this.updatingTeamMember.id}`;
-        },
-
-
-        /**
-         * Get the URL for deleting a team member.
-         */
-        urlForDeleting() {
-            return `/settings/${Spark.teamsPrefix}/${this.team.id}/members/${this.deletingTeamMember.id}`;
-        },
-
-
-        /**
-         * Determine if the current subscription is active.
-         */
-        subscriptionIsOnGracePeriod() {
-            return this.activeSubscription &&
-                this.activeSubscription.ends_at &&
-                moment.utc().isBefore(moment.utc(this.activeSubscription.ends_at));
-        },
-
     }
 };

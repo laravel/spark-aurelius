@@ -11,8 +11,6 @@ return [
     "slug_input_explanation" => "This slug is used to identify your team in URLs.",
     "plan_allows_no_more_teams" => "Your current plan doesn't allow you to create more teams.",
     "resume_to_create_more_teams" => "Please resume your subscription to create more teams.",
-    "resume_to_delete_teams" => "Please resume your subscription to delete teams.",
-    "resume_to_delete_members" => "Please resume your subscription to delete members.",
     "team" => " Team",
     "update_team_name" => "Update Team Name",
     "team_name_was_updated" => " Your team name has been updated!",
