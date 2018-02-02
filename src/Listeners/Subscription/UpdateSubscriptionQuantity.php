@@ -19,7 +19,7 @@ class UpdateSubscriptionQuantity
         }
 
         $event->user->subscription()->updateQuantity(
-            max(1, $event->user->teams->count())
+            max(1, $event->user->ownedTeams()->count())
         );
     }
 }
