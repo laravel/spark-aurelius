@@ -47,6 +47,16 @@ module.exports = {
 
 
         /**
+         * Determine if the current subscription is active.
+         */
+        subscriptionIsOnGracePeriod() {
+            return this.activeSubscription &&
+                this.activeSubscription.ends_at &&
+                moment.utc().isBefore(moment.utc(this.activeSubscription.ends_at));
+        },
+
+
+        /**
          * Check if there's a limit for the number of teams.
          */
         hasTeamLimit() {
@@ -75,7 +85,7 @@ module.exports = {
          * Check if the user can create more teams.
          */
         canCreateMoreTeams() {
-            if (Spark.chargesUsersPerTeam && !this.activePlan) {
+            if (Spark.chargesUsersPerTeam && (!this.activePlan || this.subscriptionIsOnGracePeriod)) {
                 return false;
             }
 
@@ -84,7 +94,7 @@ module.exports = {
             }
 
             return this.remainingTeams > 0;
-        }
+        },
     },
 
 
