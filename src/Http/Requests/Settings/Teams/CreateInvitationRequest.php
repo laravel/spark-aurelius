@@ -47,10 +47,6 @@ class CreateInvitationRequest extends FormRequest
      */
     protected function validateMaxTeamMembersNotExceeded($validator)
     {
-        if (Spark::chargesTeamsPerMember() && ! $this->team->sparkPlan()) {
-            $validator->errors()->add('email', __('teams.please_upgrade_to_add_more_members'));
-        }
-
         if ($plan = $this->user()->sparkPlan()) {
             $this->validateMaxTeamMembersNotExceededForPlan($validator, $plan);
         }
