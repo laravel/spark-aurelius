@@ -51,12 +51,13 @@ class UpdateProfilePhoto implements Contract
         // grab the URL for the image to store with this user in the database row.
         $disk = Storage::disk('public');
 
-        $disk->put(
-            $path, $this->formatImage($file)
-        );
+        $disk->put($path, $this->formatImage($file));
 
         $oldPhotoUrl = $user->photo_url;
-        
+
+        // Next, we'll update this URL on the local user instance and save it to the DB
+        // so we can access it later. Then we will delete the old photo from storage
+        // since we'll no longer need to access it for this specific user profile.
         $user->forceFill([
             'photo_url' => $disk->url($path),
         ])->save();
