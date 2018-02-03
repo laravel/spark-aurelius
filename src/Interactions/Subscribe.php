@@ -49,7 +49,7 @@ class Subscribe implements Contract
             );
         }
 
-        if (Spark::chargesUsersPerTeam()) {
+        if (Spark::chargesUsersPerTeam() || Spark::chargesUsersPerSeat()) {
             $subscription->quantity(Spark::seatsCount($user));
         }
 
