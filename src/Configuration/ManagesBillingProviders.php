@@ -2,6 +2,7 @@
 
 namespace Laravel\Spark\Configuration;
 
+use Closure;
 use Exception;
 
 trait ManagesBillingProviders
@@ -47,6 +48,20 @@ trait ManagesBillingProviders
      * @var bool
      */
     public static $chargesTeamsPerMember = false;
+
+    /**
+     * The callback used to count the number of seats for a user subscription.
+     *
+     * @var Closure
+     */
+    public static $seatsCountCallback;
+
+    /**
+     * The callback used to count the number of seats for a team subscription.
+     *
+     * @var Closure
+     */
+    public static $teamSeatsCountCallback;
 
     /**
      * Indicates if the application requires a credit card up-front.
@@ -96,12 +111,14 @@ trait ManagesBillingProviders
      * Indicate that the application should charge users per seat.
      *
      * @param  string  $name
+     * @param  Closure  $callback
      * @return void
      */
-    public static function chargePerSeat($name)
+    public static function chargePerSeat($name, $callback)
     {
         static::$chargesPerSeat = true;
         static::$seatName = $name;
+        static::$seatsCountCallback = $callback;
     }
 
     /**
@@ -128,12 +145,14 @@ trait ManagesBillingProviders
      * Indicate that the application should charge teams per seat.
      *
      * @param  string  $name
+     * @param  Closure  $callback
      * @return void
      */
-    public static function chargeTeamsPerSeat($name)
+    public static function chargeTeamsPerSeat($name, $callback)
     {
         static::$chargesTeamsPerSeat = true;
         static::$teamSeatName = $name;
+        static::$teamSeatsCountCallback = $callback;
     }
 
     /**
@@ -164,6 +183,10 @@ trait ManagesBillingProviders
     public static function chargePerTeam()
     {
         static::$chargesPerTeam = true;
+
+        static::$seatsCountCallback = function ($user) {
+            return max(1, $user->ownedTeams()->count());
+        };
     }
 
     /**
@@ -184,6 +207,10 @@ trait ManagesBillingProviders
     public static function chargeTeamsPerMember()
     {
         static::$chargesTeamsPerMember = true;
+
+        static::$teamSeatsCountCallback = function ($team) {
+            return $team->users->count();
+        };
     }
 
     /**
@@ -194,6 +221,27 @@ trait ManagesBillingProviders
     public static function chargesTeamsPerMember()
     {
         return static::$chargesTeamsPerMember;
+    }
+
+
+    /**
+     * The number of seats the user occupies.
+     *
+     * @param  \Laravel\Spark\User  $user
+     */
+    public static function seatsCount($user)
+    {
+        return call_user_func(static::$seatsCountCallback, $user);
+    }
+
+    /**
+     * The number of seats the team occupies.
+     *
+     * @param  \Laravel\Spark\Team  $team
+     */
+    public static function teamSeatsCount($team)
+    {
+        return call_user_func(static::$teamSeatsCountCallback, $team);
     }
 
     /**
