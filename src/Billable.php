@@ -78,7 +78,9 @@ trait Billable
      */
     public function addSeat($count = 1, $subscription = 'default')
     {
-        $subscription = $this->subscription($subscription);
+        if (! $subscription = $this->subscription($subscription)) {
+            return;
+        }
 
         if ($subscription->onGracePeriod()) {
             $subscription->update([
@@ -104,7 +106,9 @@ trait Billable
      */
     public function removeSeat($count = 1, $subscription = 'default')
     {
-        $subscription = $this->subscription($subscription);
+        if (! $subscription = $this->subscription($subscription)) {
+            return;
+        }
 
         if ($subscription->onGracePeriod()) {
             $subscription->update([
@@ -130,7 +134,9 @@ trait Billable
      */
     public function updateSeats($count, $subscription = 'default')
     {
-        $subscription = $this->subscription($subscription);
+        if (! $subscription = $this->subscription($subscription)) {
+            return;
+        }
 
         if ($subscription->onGracePeriod()) {
             $subscription->update([
