@@ -40,8 +40,8 @@ class UpdateCommand extends Command
      */
     public function handle()
     {
-        $this->targetMajorVersion = $this->option('major') ?
-                        null : explode('.', Spark::$version)[0];
+        $this->targetMajorVersion = $this->option('major')
+                    ? null : explode('.', Spark::$version)[0];
 
         if ($this->onLatestRelease()) {
             return $this->info('You are already running the latest release of Spark.');
@@ -71,6 +71,8 @@ class UpdateCommand extends Command
      */
     protected function onLatestRelease()
     {
-        return version_compare(Spark::$version, $this->latestSparkRelease($this->targetMajorVersion), '>=');
+        return version_compare(
+            Spark::$version, $this->latestSparkRelease($this->targetMajorVersion), '>='
+        );
     }
 }

@@ -117,6 +117,7 @@ trait ManagesBillingProviders
     public static function chargePerSeat($name, $callback)
     {
         static::$chargesPerSeat = true;
+
         static::$seatName = $name;
         static::$seatsCountCallback = $callback;
     }
@@ -151,6 +152,7 @@ trait ManagesBillingProviders
     public static function chargeTeamsPerSeat($name, $callback)
     {
         static::$chargesTeamsPerSeat = true;
+
         static::$teamSeatName = $name;
         static::$teamSeatsCountCallback = $callback;
     }
