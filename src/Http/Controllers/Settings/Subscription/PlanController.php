@@ -56,6 +56,12 @@ class PlanController extends Controller
         } else {
             $subscription = $request->user()->subscription();
 
+            if (Spark::chargesUsersPerTeam() || Spark::chargesUsersPerSeat()) {
+                $subscription->forceFill([
+                    'quantity' => Spark::seatsCount($request->user())
+                ])->save();
+            }
+
             if (Spark::prorates()) {
                 $subscription->swap($request->plan);
             } else {
