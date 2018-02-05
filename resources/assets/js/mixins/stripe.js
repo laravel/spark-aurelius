@@ -22,7 +22,9 @@ module.exports = {
                         '::placeholder': {
                             color: '#aab7c4'
                         },
-                        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+                        fontFamily: 'Whitney, Lato, -apple-system, BlinkMacSystemFont,"Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji","Segoe UI Emoji", "Segoe UI Symbol"',
+                        color: '#495057',
+                        fontSize: '1.07rem'
                     }
                 }
             });
