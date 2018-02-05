@@ -21,7 +21,8 @@ module.exports = {
                     base: {
                         '::placeholder': {
                             color: '#aab7c4'
-                        }
+                        },
+                        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
                     }
                 }
             });
