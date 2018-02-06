@@ -38,7 +38,7 @@ class InstallResources
     {
         $this->installFrontEndDirectories();
 
-        if (! file_exists(resource_path('lang/ar'))) {
+        if (! is_dir(resource_path('lang/ar'))) {
             mkdir(resource_path('lang/ar'));
         }
 
