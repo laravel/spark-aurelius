@@ -38,7 +38,9 @@ class InstallResources
     {
         $this->installFrontEndDirectories();
 
-        mkdir(resource_path('lang/ar'));
+        if (! is_dir(resource_path('lang/ar'))) {
+            mkdir(resource_path('lang/ar'));
+        }
 
         $files = [
             SPARK_STUB_PATH.'/terms.md' => base_path('terms.md'),
