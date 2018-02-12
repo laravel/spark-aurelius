@@ -5,7 +5,7 @@
         <div class="card-body">
             <!-- Information Message -->
             <div class="alert alert-info">
-                {{__('In order to use two-factor authentication, you must install the :authyLink application on your smartphone. Authy is available for iOS and Android.', ['authyLink' => '<strong><a href="https://authy.com" target="_blank">Authy</a></strong>'])}}
+                {!! __('In order to use two-factor authentication, you must install the :authyLink application on your smartphone. Authy is available for iOS and Android.', ['authyLink' => '<strong><a href="https://authy.com" target="_blank">Authy</a></strong>']) !!}
             </div>
 
             <form role="form">
