@@ -35,7 +35,9 @@
         @endif
 
         <!-- Main Content -->
-        @yield('content')
+        <main class="py-4">
+            @yield('content')
+        </main>
 
         <!-- JavaScript -->
         <script src="/js/app.js"></script>
