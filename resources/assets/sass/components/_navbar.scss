@@ -31,17 +31,17 @@
 
   &:hover {
     font-weight: 600;
-    color: #4aa2e2;
+    color: $primary;
     svg {
-      fill: #4aa2e2;
+      fill: $primary;
     }
   }
 
   &.active {
     font-weight: 600;
-    color: #4aa2e2;
+    color: $primary;
     svg {
-      fill: #4aa2e2;
+      fill: $primary;
     }
   }
 }
