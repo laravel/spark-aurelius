@@ -1,5 +1,5 @@
 <div class="row justify-content-center">
-    <div class="col-md-8">
+    <div class="col-lg-8">
         <!-- Coupon -->
         <div class="alert alert-success" v-if="coupon">
             <?php echo __('The coupon :value discount will be applied to your subscription!', ['value' => '{{ discount }}']); ?>
@@ -24,7 +24,7 @@
 
 <!-- Plan Selection -->
 <div class="row justify-content-center" v-if="paidPlans.length > 0">
-    <div class="col-md-8">
+    <div class="col-lg-8">
         <div class="card card-default">
             <div class="card-header">
                 <div class="float-left" :class="{'btn-table-align': hasMonthlyAndYearlyPlans}">
@@ -120,7 +120,7 @@
 
 <!-- Basic Profile -->
 <div class="row justify-content-center">
-    <div class="col-md-8">
+    <div class="col-lg-8">
         <div class="card card-default">
             <div class="card-header">
                 <span v-if="paidPlans.length > 0">
