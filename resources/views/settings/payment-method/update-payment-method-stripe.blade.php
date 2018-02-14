@@ -28,11 +28,6 @@
             </div>
 
             <form role="form">
-                <!-- Billing Address Fields -->
-                @if (Spark::collectsBillingAddress())
-                    @include('spark::settings.payment-method.update-payment-method-address')
-                @endif
-
                 <!-- Cardholder's Name -->
                 <div class="form-group row">
                     <label for="name" class="col-md-4 col-form-label text-md-right">{{__('Cardholder\'s Name')}}</label>
@@ -53,6 +48,11 @@
                         </span>
                     </div>
                 </div>
+
+                <!-- Billing Address Fields -->
+                @if (Spark::collectsBillingAddress())
+                    @include('spark::settings.payment-method.update-payment-method-address')
+                @endif
 
                 <!-- Zip Code -->
                 <div class="form-group row" v-if=" ! spark.collectsBillingAddress">
