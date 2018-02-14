@@ -24,7 +24,7 @@ module.exports = {
                         },
                         fontFamily: 'Whitney, Lato, -apple-system, BlinkMacSystemFont,"Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji","Segoe UI Emoji", "Segoe UI Symbol"',
                         color: '#495057',
-                        fontSize: '1.07rem'
+                        fontSize: '15px'
                     }
                 }
             });

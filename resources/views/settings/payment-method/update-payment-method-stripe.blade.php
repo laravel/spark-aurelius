@@ -47,7 +47,7 @@
                     <label for="name" class="col-md-4 col-form-label text-md-right">{{__('Card')}}</label>
 
                     <div class="col-md-6">
-                        <div id="card-element"></div>
+                        <div id="payment-card-element"></div>
                         <span class="invalid-feedback" v-show="cardForm.errors.has('card')">
                             @{{ cardForm.errors.get('card') }}
                         </span>

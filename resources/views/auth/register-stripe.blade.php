@@ -24,11 +24,6 @@
                             </div>
 
                             <form role="form">
-                                <!-- Billing Address Fields -->
-                                @if (Spark::collectsBillingAddress())
-                                    @include('spark::auth.register-address')
-                                @endif
-
                                 <!-- Cardholder's Name -->
                                 <div class="form-group row">
                                     <label for="name" class="col-md-4 col-form-label text-md-right">{{__('Cardholder\'s Name')}}</label>
@@ -49,6 +44,11 @@
                                         </span>
                                     </div>
                                 </div>
+
+                                <!-- Billing Address Fields -->
+                                @if (Spark::collectsBillingAddress())
+                                    @include('spark::auth.register-address')
+                                @endif
 
                                 <!-- ZIP Code -->
                                 <div class="form-group row" v-if=" ! spark.collectsBillingAddress">

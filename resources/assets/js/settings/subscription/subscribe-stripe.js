@@ -60,7 +60,7 @@ module.exports = {
      * Prepare the component.
      */
     mounted() {
-        this.cardElement = this.createCardElement('#card-element');
+        this.cardElement = this.createCardElement('#subscription-card-element');
 
         this.initializeBillingAddress();
 
