@@ -23,10 +23,10 @@
                             </h2>
                             <p class="metric-stat mb-0">
                                 @{{ monthlyRecurringRevenue | currency }}
-                                <span class="metric-unit">/ mo</span>
+                                <span class="metric-unit">/ {{__('mo')}}</span>
                             </p>
                             <p class="metric-stat-sm mb-0">
-                                @{{ yearlyRecurringRevenue | currency }} / yr
+                                @{{ yearlyRecurringRevenue | currency }} / {{__('mo')}}
                             </p>
                         </div>
                     </div>
