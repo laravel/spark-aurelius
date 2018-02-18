@@ -34,8 +34,8 @@
                         <!-- Remember Me -->
                         <div class="form-group row">
                             <div class="col-md-6 offset-md-4">
-                                <div class="form-check-label">
-                                    <label>
+                                <div class="form-check">
+                                    <label class="form-check-label">
                                         <input type="checkbox" name="remember" class="form-check-input"> {{__('Remember Me')}}
                                     </label>
                                 </div>
