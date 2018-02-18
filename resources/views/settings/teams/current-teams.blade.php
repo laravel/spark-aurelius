@@ -48,7 +48,7 @@
                                 </a>
 
                                 <button class="btn btn-outline-warning" @click="approveLeavingTeam(team)"
-                                        data-toggle="tooltip" title="Leave Team"
+                                        data-toggle="tooltip" title="{{__('teams.leave_team')}}"
                                         v-if="user.id !== team.owner_id">
                                     <i class="fa fa-sign-out"></i>
                                 </button>
