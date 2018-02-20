@@ -42,7 +42,7 @@ class PlanController extends Controller
      * Update the subscription for the user.
      *
      * @param  \Laravel\Spark\Http\Requests\Settings\Subscription\UpdateSubscriptionRequest  $request
-     * @return void
+     * @return Response
      */
     public function update(UpdateSubscriptionRequest $request)
     {
@@ -52,7 +52,7 @@ class PlanController extends Controller
         // subscriptions that are still within their grace periods as this swap method
         // will be used for either of these situations without causing any problems.
         if ($plan->price === 0) {
-            $this->destroy($request);
+            return $this->destroy($request);
         } else {
             $subscription = $request->user()->subscription();
 
@@ -78,7 +78,7 @@ class PlanController extends Controller
      * Cancel the user's subscription.
      *
      * @param  Request  $request
-     * @return void
+     * @return Response
      */
     public function destroy(Request $request)
     {
