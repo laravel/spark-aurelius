@@ -55,7 +55,7 @@
                     @endif
 
                     <!-- ZIP Code -->
-                    <div class="form-group row" v-show="form.use_existing_payment_method != '1'" v-if=" ! spark.collectsBillingAddress">
+                    <div class="form-group row" v-if=" ! spark.collectsBillingAddress">
                         <label for="number" class="col-md-4 col-form-label text-md-right">{{__('ZIP / Postal Code')}}</label>
 
                         <div class="col-md-6">
