@@ -17,7 +17,7 @@ module.exports = {
     data() {
         return {
             form: new SparkForm({
-                use_exiting_payment_method: this.hasPaymentMethod() ? '1' : '0',
+                use_existing_payment_method: this.hasPaymentMethod() ? '1' : '0',
                 braintree_type: '',
                 braintree_token: '',
                 plan: '',
