@@ -89,7 +89,7 @@
 
                             <!-- Token Abilities -->
                             <div class="form-group row" v-if="availableAbilities.length > 0">
-                                <label class="col-md-4 col-form-label">{{__('Token Can')}}</label>
+                                <label class="col-md-4 col-form-label text-md-right">{{__('Token Can')}}</label>
 
                                 <div class="col-md-6">
                                     <div v-for="ability in availableAbilities">
