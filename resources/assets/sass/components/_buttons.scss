@@ -36,6 +36,8 @@
 }
 
 .btn-outline-dark {
+  border-color: $gray-300;
   color: $gray-700;
   font-weight: 300;
+  box-shadow: none;
 }
