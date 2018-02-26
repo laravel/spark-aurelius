@@ -30,7 +30,7 @@ $card-cap-bg: $white !default;
 $card-border-width: 0 !default;
 
 // Modals
-$modal-header-bg:               $card-bg !default;
+$modal-header-bg:               $card-cap-bg !default;
 $modal-content-bg:              $gray-100 !default;
 $modal-header-border-color:     $gray-200 !default;
 $modal-footer-border-color:     $modal-header-border-color !default;
