@@ -27,6 +27,7 @@ class User extends SparkUser
         'authy_id',
         'country_code',
         'phone',
+        'two_factor_reset_code',
         'card_brand',
         'card_last_four',
         'card_country',
