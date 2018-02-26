@@ -9,7 +9,7 @@
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
 
-  border-bottom: 1px solid #cddadf;
+  border-bottom: 1px solid $gray-300;
 
   &:last-child {
     border-bottom: none;
@@ -26,13 +26,13 @@
 
 .metric-title {
   font-size: 0.9375rem;
-  color: #95a2ae;
+  color: $gray-500;
 }
 
 .metric-stat {
   font-weight: 100;
   font-size: 1.875rem;
-  color: #424c55;
+  color: $black;
 }
 
 .metric-unit {
@@ -42,7 +42,7 @@
 
 .metric-stat-sm {
   font-size: 0.9375rem;
-  color: #424c55;
+  color: $black;
 }
 
 .metric-icon {
