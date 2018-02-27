@@ -150,7 +150,7 @@ trait CallsInteractions
      * @param  \Closure  $callback
      * @return void
      */
-    public static function checkTeamPlanEligibilityUsing(Closure $callback)
+    public static function checkTeamPlanEligibilityUsing($callback)
     {
         static::swap('CheckTeamPlanEligibility@handle', $callback);
     }
