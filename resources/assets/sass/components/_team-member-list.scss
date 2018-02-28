@@ -5,8 +5,8 @@
   padding-bottom: 1rem;
   height: 3.8125rem;
   border: 1px solid transparent;
-  border-top: 1px solid #cddadf;
-  border-bottom: 1px solid #cddadf;
+  border-top: 1px solid $gray-400;
+  border-bottom: 1px solid $gray-400;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -17,16 +17,16 @@
   background-color: $white;
   border-radius: 6px;
   border: transparent;
-  border: 1px solid #cddadf;
-  box-shadow: 0 1px 2px #dde4e7;
+  border: 1px solid $gray-400;
+  box-shadow: 0 1px 2px $gray-400;
 }
 
 .team-member-title {
   font-size: 1rem;
-  color: #374450;
+  color: $black;
 }
 
 .team-member-subtitle {
   font-size: 0.875rem;
-  color: #6f808e;
+  color: $gray-700;
 }

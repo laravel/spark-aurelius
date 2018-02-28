@@ -1,5 +1,4 @@
 .modal-content {
-  background-color: #f5f8f9;
 }
 
 .modal-title {
@@ -7,9 +6,8 @@
 }
 
 .modal-header {
-  background-color: $white;
+  background-color: $modal-header-bg;
 }
 
 .modal-footer {
-  border-top: 1px solid #cddadf;
 }

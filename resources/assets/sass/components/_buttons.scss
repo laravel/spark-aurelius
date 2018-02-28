@@ -1,10 +1,13 @@
 // Buttons
 // -------------------------------------------------------------------------- */
 .btn {
-  box-shadow: 0 1px 2px #dde4e7;
+  box-shadow: 0 1px 2px $gray-200;
   font-size: 0.9375rem;
+}
+
+.btn-sm {
   font-weight: 500;
-  padding: 0.35rem 0.75rem;
+  font-size: 0.8125rem;
 }
 
 .btn-link {
@@ -22,16 +25,19 @@
 
 .btn-default {
   background-color: $white;
-  border-color: #ccc;
-  color: #4a5b6b;
+  border-color: $gray-300;
+  color: $gray-800;
   font-weight: 300;
   font-size: 1rem;
+
+  &:hover {
+    border-color: $gray-400;
+  }
 }
 
 .btn-outline-dark {
-  border: 1px solid #cddadf;
-  color: #4a5b6b;
-  font-size: 1rem;
+  border-color: $gray-300;
+  color: $gray-700;
   font-weight: 300;
   box-shadow: none;
 }
