@@ -26,7 +26,7 @@
                                 <span class="metric-unit">/ {{__('mo')}}</span>
                             </p>
                             <p class="metric-stat-sm mb-0">
-                                @{{ yearlyRecurringRevenue | currency }} / {{__('mo')}}
+                                @{{ yearlyRecurringRevenue | currency }} / {{__('yr')}}
                             </p>
                         </div>
                     </div>
