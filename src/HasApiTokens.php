@@ -52,4 +52,17 @@ trait HasApiTokens
 
         return $this;
     }
+    
+    /**
+     * Set the current access token for the user.
+     *
+     * @param  \Laravel\Spark\Token  $accessToken
+     * @return $this
+     */
+    public function withAccessToken($accessToken)
+    {
+        $this->currentToken = $accessToken;
+
+        return $this;
+    }
 }
