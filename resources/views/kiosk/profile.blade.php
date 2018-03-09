@@ -86,9 +86,9 @@
                         </div>
 
                         <div class="card-body">
-                            <table class="table table-borderless m-b-none">
+                            <table class="table table-valign-middle table-borderless m-b-none">
                                 <thead>
-                                    <th></th>
+                                    <th class="th-fit"></th>
                                     <th>{{__('Name')}}</th>
                                     <th>{{__('Subscription')}}</th>
                                 </thead>
@@ -97,7 +97,7 @@
                                     <tr v-for="team in profile.owned_teams">
                                         <!-- Photo -->
                                         <td>
-                                            <img :src="team.photo_url" class="spark-team-photo">
+                                            <img :src="team.photo_url" class="spark-profile-photo">
                                         </td>
 
                                         <!-- Team Name -->
