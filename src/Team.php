@@ -94,7 +94,7 @@ class Team extends Model
      */
     public function invitations()
     {
-        return $this->hasMany(Invitation::class);
+        return $this->hasMany(Invitation::class, 'team_id');
     }
 
     /**
