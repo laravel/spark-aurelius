@@ -2,7 +2,6 @@
 
 namespace Laravel\Spark;
 
-use LogicException;
 use Mpociot\VatCalculator\VatCalculator;
 use Laravel\Cashier\Billable as CashierBillable;
 
