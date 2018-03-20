@@ -70,9 +70,11 @@ module.exports = {
         activateFirstTab() {
             const tab = $(`${this.pushStateSelector} a[data-toggle="tab"]`).first();
 
-            tab.tab('show');
+            if (tab.length) {
+                tab.tab('show');
 
-            this.broadcastTabChange(tab.attr('href').substring(1));
+                this.broadcastTabChange(tab.attr('href').substring(1));
+            }
         },
 
 
