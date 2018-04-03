@@ -79,6 +79,8 @@ class TeamController extends Controller
     {
         abort_unless($request->user()->onTeam($team), 404);
 
+        $team = Spark::interact(TeamRepository::class.'@find', [$team]);        
+
         $request->user()->switchToTeam($team);
 
         return back();
