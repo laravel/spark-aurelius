@@ -232,6 +232,7 @@
     "You": "You",
     "You are currently subscribed to the :planName plan.": "You are currently subscribed to the :planName plan.",
     "You are currently within your free trial period. Your trial will expire on :date.": "You are currently within your free trial period. Your trial will expire on :date.",
+    "You are not eligible for this plan.": "You are not eligible for this plan.",
     "You currently have :count invitation(s) remaining.": "You currently have :count invitation(s) remaining.",
     "You currently receive a discount of :discountAmount for a single invoice.": "You currently receive a discount of :discountAmount for a single invoice.",
     "You currently receive a discount of :discountAmount for all invoices during the next :months billing cycles.": "You currently receive a discount of :discountAmount for all invoices during the next :months billing cycles.",
