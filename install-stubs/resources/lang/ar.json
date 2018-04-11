@@ -232,6 +232,7 @@
     "You": "أنت",
     "You are currently subscribed to the :planName plan.": "أنت مشترك حاليا في :planName.",
     "You are currently within your free trial period. Your trial will expire on :date.": "أنت حاليا ضمن الفترة التجريبية المجانية. ستنتهي صلاحية النسخة التجريبية :date.",
+    "You are not eligible for this plan.": "لست مؤهلاً لهذه الخطة.",
     "You currently have :count invitation(s) remaining.": "لديم :count دعوة متبقية.",
     "You currently receive a discount of :discountAmount for a single invoice.": "انت الان تحصل علي خصم بقيمة :discountAmount.",
     "You currently receive a discount of :discountAmount for all invoices during the next :months billing cycles.": "انت الان تحصل علي خصم بقيمة :discountAmount.",
