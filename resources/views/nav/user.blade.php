@@ -55,7 +55,7 @@
                                 <h6 class="dropdown-header">{{__('Impersonation')}}</h6>
 
                                 <!-- Stop Impersonating -->
-                                <a class="dropdown-item" href="/spark/kiosk/users/stop-impersonating">
+                                <a class="dropdown-item" href="{{ url('/spark/kiosk/users/stop-impersonating') }}">
                                     <i class="fa fa-fw text-left fa-btn fa-user-secret"></i> {{__('Back To My Account')}}
                                 </a>
 
@@ -74,7 +74,7 @@
                             <h6 class="dropdown-header">{{__('Settings')}}</h6>
 
                             <!-- Your Settings -->
-                            <a class="dropdown-item" href="/settings">
+                            <a class="dropdown-item" href="{{ url('/settings') }}">
                                 <i class="fa fa-fw text-left fa-btn fa-cog"></i> {{__('Your Settings')}}
                             </a>
 
@@ -91,7 +91,7 @@
                             @endif
 
                             <!-- Logout -->
-                            <a class="dropdown-item" href="/logout">
+                            <a class="dropdown-item" href="{{ url('/logout') }}">
                                 <i class="fa fa-fw text-left fa-btn fa-sign-out"></i> {{__('Logout')}}
                             </a>
                         </div>

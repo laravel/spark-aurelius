@@ -10,7 +10,7 @@
                 <div class="card-body">
                     @include('spark::shared.errors')
 
-                    <form role="form" method="POST" action="/login">
+                    <form role="form" method="POST" action="{{ url('/login') }}">
                         {{ csrf_field() }}
 
                         <!-- E-Mail Address -->
