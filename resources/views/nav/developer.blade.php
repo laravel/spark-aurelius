@@ -1,7 +1,7 @@
 <h6 class="dropdown-header">{{__('Developer')}}</h6>
 
 <!-- Kiosk -->
-<a class="dropdown-item" href="/spark/kiosk">
+<a class="dropdown-item" href="{{ url('/spark/kiosk') }}">
     <i class="fa fa-fw text-left fa-btn fa-fort-awesome"></i> {{__('Kiosk')}}
 </a>
 
