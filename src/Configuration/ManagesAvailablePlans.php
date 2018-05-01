@@ -87,7 +87,7 @@ trait ManagesAvailablePlans
     }
 
     /**
-     * Determine if the application bills customers.
+     * Determine if the application bills teams.
      *
      * @return bool
      */
