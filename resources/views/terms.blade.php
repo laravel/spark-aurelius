@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <!-- Application Dashboard -->
+    <!-- Terms of Service -->
     <div class="row justify-content-center">
         <div class="col-lg-8">
             <div class="card card-default">
