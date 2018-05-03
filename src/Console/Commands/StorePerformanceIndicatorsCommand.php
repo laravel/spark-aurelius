@@ -5,7 +5,6 @@ namespace Laravel\Spark\Console\Commands;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
-use Laravel\Spark\Console\Installation;
 use Laravel\Spark\Contracts\Repositories\PerformanceIndicatorsRepository;
 
 class StorePerformanceIndicatorsCommand extends Command
