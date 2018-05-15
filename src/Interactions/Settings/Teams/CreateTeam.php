@@ -18,7 +18,7 @@ class CreateTeam implements Contract
     {
         $validator = Validator::make($data, Spark::call(static::class.'@rules'));
 
-        $validator->sometimes('slug', 'required|alpha_dash|unique:teams,slug', function () {
+        $validator->sometimes('slug', 'required|alpha_dash|max:255|unique:teams,slug', function () {
             return Spark::teamsIdentifiedByPath();
         });
 
@@ -61,7 +61,7 @@ class CreateTeam implements Contract
     public function rules()
     {
         return [
-            'name' => 'required',
+            'name' => 'required|max:255',
         ];
     }
 
