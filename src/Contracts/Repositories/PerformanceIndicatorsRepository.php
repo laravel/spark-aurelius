@@ -32,6 +32,14 @@ interface PerformanceIndicatorsRepository
     public function totalRevenueForUser($user);
 
     /**
+     * Get the total lifetime revenue for a given team.
+     *
+     * @param  \Laravel\Spark\Team  $team
+     * @return float
+     */
+    public function totalRevenueForTeam($team);
+
+    /**
      * Get the total volume of the application.
      *
      * @return float

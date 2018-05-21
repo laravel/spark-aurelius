@@ -21,6 +21,26 @@ class TeamRepository implements TeamRepositoryContract
     /**
      * {@inheritdoc}
      */
+    public function search($query, $excludeTeam = null)
+    {
+        $search = Spark::team()->with('subscriptions')
+                                ->with('owner');
+
+        // If a team to exclude was passed to the repository, we will exclude their Team
+        // ID from the list. Typically we don't want to show the current team in the
+        // search results and only want to display the other teams from the query.
+        if ($excludeTeam) {
+            $search->where('id', '<>', $excludeTeam->id);
+        }
+
+        return $search->where(function ($search) use ($query) {
+            $search->Where('name', 'like', $query);
+        })->get();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function forUser($user)
     {
         return $user->teams()->with('owner')->get();

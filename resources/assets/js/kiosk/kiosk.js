@@ -1,5 +1,5 @@
 module.exports = {
-    props: ['user'],
+    props: ['user', 'team'],
 
 
     /**
@@ -24,6 +24,10 @@ module.exports = {
             if (hash == 'users') {
                 setTimeout(() => {
                     $('#kiosk-users-search').focus();
+                }, 150);
+            } else if (hash == Spark.teamsPrefix) {
+                setTimeout(() => {
+                    $('#kiosk-teams-search').focus();
                 }, 150);
             }
 

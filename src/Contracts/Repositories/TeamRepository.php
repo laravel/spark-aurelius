@@ -15,6 +15,15 @@ interface TeamRepository
     public function find($id);
 
     /**
+     * Perform a basic team search by name.
+     *
+     * @param  string  $query
+     * @param  \Laravel\Spark\Team|null  $excludeTeam
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function search($query, $excludeTeam = null);
+
+    /**
      * Get all of the teams for a given user.
      *
      * @param  \Illuminate\Contracts\Auth\Authenticatable  $user

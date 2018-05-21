@@ -134,6 +134,7 @@ $router->group(['middleware' => 'web'], function ($router) {
 
     // Kiosk Search...
     $router->post('/spark/kiosk/users/search', 'Kiosk\SearchController@performBasicSearch');
+    $router->post('/spark/kiosk/teams/search', 'Kiosk\SearchController@performBasicTeamSearch');
 
     // Kiosk Announcements...
     $router->get('/spark/kiosk/announcements', 'Kiosk\AnnouncementController@all');
@@ -149,6 +150,9 @@ $router->group(['middleware' => 'web'], function ($router) {
 
     // Kiosk User Profiles...
     $router->get('/spark/kiosk/users/{id}/profile', 'Kiosk\ProfileController@show');
+
+    // Kiosk Team Profiles...
+    $router->get('/spark/kiosk/teams/{id}/profile', 'Kiosk\ProfileController@showTeam');
 
     // Kiosk Discounts...
     $router->post('/spark/kiosk/users/discount/{id}', 'Kiosk\DiscountController@store');

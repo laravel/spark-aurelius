@@ -89,4 +89,6 @@ require('./kiosk/announcements');
 require('./kiosk/metrics');
 require('./kiosk/users');
 require('./kiosk/profile');
+require('./kiosk/teams');
+require('./kiosk/team-profile');
 require('./kiosk/add-discount');
