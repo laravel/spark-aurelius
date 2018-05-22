@@ -9,9 +9,9 @@
   "dependencies": {
     "bootstrap": "^4.1.1",
     "popper.js": "^1.12",
-    "jquery": "^2.1.4",
+    "jquery": "^3.2",
     "js-cookie": "^2.1.0",
-    "cross-env": "^3.2.3",
+    "cross-env": "^5.1",
     "laravel-mix": "^2.0",
     "moment": "^2.10.6",
     "promise": "^7.1.1",
@@ -20,6 +20,6 @@
     "lodash": "^4.17.4",
     "urijs": "^1.17.0",
     "vue": "2.*",
-    "axios": "^0.15.2"
+    "axios": "^0.18",
   }
 }
