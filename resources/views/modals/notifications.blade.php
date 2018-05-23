@@ -55,7 +55,7 @@
                                             </span>
 
                                             <span v-else>
-                                                {{ Spark::product() }}
+                                                {{ Spark::vendor() }}
                                             </span>
                                         </p>
 
