@@ -32,6 +32,16 @@ trait ManagesAppDetails
     }
 
     /**
+     * Get the vendor name from the application information.
+     *
+     * @return string
+     */
+    public static function vendor()
+    {
+        return static::$details['vendor'];
+    }
+
+    /**
      * Get the product name from the application information.
      *
      * @return string
