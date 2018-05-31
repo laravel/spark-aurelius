@@ -18,7 +18,7 @@ trait ProvidesScriptVariables
     public static function scriptVariables()
     {
         return [
-            'translations' => (array) json_decode(file_get_contents(is_readable(resource_path('lang/'.app()->getLocale().'.json')) ? resource_path('lang/'.app()->getLocale().'.json') : resource_path('lang/'.app('translator')->getFallback().'.json'))) + ['teams.team' => trans('teams.team'), 'teams.member' => trans('teams.member')],
+            'translations' => static::getTranslations() + ['teams.team' => trans('teams.team'), 'teams.member' => trans('teams.member')],
             'braintreeMerchantId' => config('services.braintree.merchant_id'),
             'braintreeToken' => Spark::billsUsingBraintree() ? BraintreeClientToken::generate() : null,
             'cardUpFront' => Spark::needsCardUpFront(),
@@ -44,5 +44,21 @@ trait ProvidesScriptVariables
             'chargesUsersPerTeam' => Spark::chargesUsersPerTeam(),
             'chargesTeamsPerMember' => Spark::chargesTeamsPerMember(),
         ];
+    }
+
+    /**
+     * Get the translation keys from file.
+     *
+     * @return array
+     */
+    private static function getTranslations()
+    {
+        $currentTranslationFile = resource_path('lang/'.app()->getLocale().'.json');
+
+        if (is_readable($currentTranslationFile)) {
+            return (array) file_get_contents($currentTranslationFile);
+        }
+
+        return (array) resource_path('lang/'.app('translator')->getFallback().'.json');
     }
 }
