@@ -11,6 +11,7 @@
                         <th class="th-fit"></th>
                         <th>{{__('Name')}}</th>
                         <th v-if="roles.length > 1">{{__('Role')}}</th>
+                        <th v-if="spark.uses2FA">2FA</th>
                         <th>&nbsp;</th>
                     </thead>
 
@@ -35,6 +36,11 @@
                             <!-- Role -->
                             <td v-if="roles.length > 0">
                                 @{{ teamMemberRole(member) }}
+                            </td>
+
+                            <!-- 2FA -->
+                            <td v-if="spark.uses2FA">
+                                @{{ member.uses_two_factor_auth ? 'Yes' : 'No' }}
                             </td>
 
                             <td class="td-fit">
