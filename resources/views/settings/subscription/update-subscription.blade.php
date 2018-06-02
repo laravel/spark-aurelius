@@ -60,9 +60,9 @@
                     <tbody>
                         <tr v-for="plan in plansForActiveInterval">
                             <!-- Plan Name -->
-                            <td>
+                            <td @click="!isActivePlan(plan) ? confirmPlanUpdate(plan) : 0">
                                 <div class="d-flex align-items-center">
-                                    <i class="radio-select mr-2" @click="!isActivePlan(plan) ? confirmPlanUpdate(plan) : 0"
+                                    <i class="radio-select mr-2"
                                     :class="{'radio-select-selected': isActivePlan(plan), invisible: selectingPlan}"></i>
                                     @{{ plan.name }}
                                 </div>

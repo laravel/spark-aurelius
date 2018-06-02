@@ -46,9 +46,9 @@
             <tbody>
                 <tr v-for="plan in paidPlansForActiveInterval">
                     <!-- Plan Name -->
-                    <td>
+                    <td @click="selectPlan(plan)">
                         <div class="d-flex align-items-center">
-                            <i class="radio-select mr-2" @click="selectPlan(plan)"
+                            <i class="radio-select mr-2"
                                :class="{'radio-select-selected': selectedPlan == plan, invisible: form.busy}"></i>
                             @{{ plan.name }}
                         </div>
