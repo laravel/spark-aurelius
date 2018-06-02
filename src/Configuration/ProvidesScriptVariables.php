@@ -34,6 +34,7 @@ trait ProvidesScriptVariables
             'teamsPrefix' => Spark::teamsPrefix(),
             'userId' => Auth::id(),
             'usesApi' => Spark::usesApi(),
+            'uses2FA' => Spark::usesTwoFactorAuth(),
             'usesBraintree' => Spark::billsUsingBraintree(),
             'usesTeams' => Spark::usesTeams(),
             'usesStripe' => Spark::billsUsingStripe(),
