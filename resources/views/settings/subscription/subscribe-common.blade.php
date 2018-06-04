@@ -50,7 +50,7 @@
                         <div class="d-flex align-items-center">
                             <i class="radio-select mr-2" @click="selectPlan(plan)"
                                :class="{'radio-select-selected': selectedPlan == plan, invisible: form.busy}"></i>
-                            @{{ plan.name }}
+                            @{{ __(plan.name) }}
                         </div>
                     </td>
 
