@@ -4,7 +4,7 @@
             <!-- Modal Header -->
             <div class="modal-header">
                 <h5 class="modal-title">
-                    @{{ detailingPlan.name }}
+                    @{{ __(detailingPlan.name) }}
                 </h5>
             </div>
 
@@ -12,7 +12,7 @@
             <div class="modal-body">
                 <ul class="plan-feature-list p-0 m-0">
                     <li v-for="feature in detailingPlan.features">
-                        @{{ feature }}
+                        @{{ __(feature) }}
                     </li>
                 </ul>
             </div>
