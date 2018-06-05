@@ -57,7 +57,7 @@
                     <!-- Plan Features Button -->
                     <td>
                         <button class="btn btn-default" @click="showPlanDetails(plan)">
-                            {{__('Features')}}
+                            <i class="fa fa-btn fa-star-o"></i> {{__('Features')}}
                         </button>
                     </td>
 
