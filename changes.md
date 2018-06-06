@@ -1,5 +1,9 @@
 # Change Log
 
+### Version 6.0.9
+
+- Various bug fixes.
+
 ### Version 6.0.8
 
 - Various bug fixes.
