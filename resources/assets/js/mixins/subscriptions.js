@@ -139,11 +139,11 @@ module.exports = {
 
             if (this.onGenericTrial) {
                 return moment.utc(this.billable.trial_ends_at)
-                                        .local().format('MMMM Do, YYYY');
+                                        .local().format('LL');
             }
 
             return moment.utc(this.activeSubscription.trial_ends_at)
-                            .local().format('MMMM Do, YYYY');
+                            .local().format('LL');
         },
 
 
