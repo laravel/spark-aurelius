@@ -3,7 +3,6 @@
 namespace Laravel\Spark\Repositories;
 
 use Carbon\Carbon;
-use Ramsey\Uuid\Uuid;
 use Laravel\Spark\JWT;
 use Laravel\Spark\Token;
 use Laravel\Passport\Passport;
