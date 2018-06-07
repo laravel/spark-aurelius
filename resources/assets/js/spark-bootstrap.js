@@ -38,7 +38,7 @@ window.moment.defineLocale('en-short', {
         yy: "%dy"
     }
 });
-window.moment.locale('en');
+window.moment.locale(window.navigator.language);
 
 /*
  * Load jQuery and Bootstrap jQuery, used for front-end interaction.
