@@ -65,9 +65,9 @@
                     <td>
                         <span class="table-plan-text">
                             <strong class="table-plan-price">@{{ plan.price | currency }}</strong>
-                            @{{ plan.type == 'user' && spark.chargesUsersPerSeat ? '/ '+ spark.seatName : '' }}
+                            @{{ plan.type == 'user' && spark.chargesUsersPerSeat ? '/ '+ __(spark.seatName) : '' }}
                             @{{ plan.type == 'user' && spark.chargesUsersPerTeam ? '/ '+ __('teams.team') : '' }}
-                            @{{ plan.type == 'team' && spark.chargesTeamsPerSeat ? '/ '+ spark.teamSeatName : '' }}
+                            @{{ plan.type == 'team' && spark.chargesTeamsPerSeat ? '/ '+ __(spark.teamSeatName) : '' }}
                             @{{ plan.type == 'team' && spark.chargesTeamsPerMember ? '/ '+ __('teams.member') : '' }}
                             / @{{ __(plan.interval) | capitalize }}
                         </div>
