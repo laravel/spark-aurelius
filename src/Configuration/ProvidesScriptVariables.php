@@ -53,12 +53,12 @@ trait ProvidesScriptVariables
      */
     private static function getTranslations()
     {
-        $currentTranslationFile = resource_path('lang/'.app()->getLocale().'.json');
+        $translationFile = resource_path('lang/'.app()->getLocale().'.json');
 
-        if (is_readable($currentTranslationFile)) {
-            return (array) file_get_contents($currentTranslationFile);
+        if (!is_readable($translationFile)) {
+            $translationFile = resource_path('lang/'.app('translator')->getFallback().'.json');
         }
 
-        return (array) resource_path('lang/'.app('translator')->getFallback().'.json');
+        return (array) json_decode(file_get_contents($translationFile));
     }
 }
