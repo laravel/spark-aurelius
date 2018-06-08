@@ -86,9 +86,9 @@
                                 <br><br>
                                 <strong>{{__('Total Price Including Tax')}}:</strong>
                                 @{{ priceWithTax(selectedPlan) | currency }}
-                                @{{ selectedPlan.type == 'user' && spark.chargesUsersPerSeat ? '/ '+ spark.seatName : '' }}
+                                @{{ selectedPlan.type == 'user' && spark.chargesUsersPerSeat ? '/ '+ __(spark.seatName) : '' }}
                                 @{{ selectedPlan.type == 'user' && spark.chargesUsersPerTeam ? '/ '+ __('teams.team') : '' }}
-                                @{{ selectedPlan.type == 'team' && spark.chargesTeamsPerSeat ? '/ '+ spark.teamSeatName : '' }}
+                                @{{ selectedPlan.type == 'team' && spark.chargesTeamsPerSeat ? '/ '+ __(spark.teamSeatName) : '' }}
                                 @{{ selectedPlan.type == 'team' && spark.chargesTeamsPerMember ? '/ '+ __('teams.member') : '' }}
                                 / @{{ __(selectedPlan.interval) | capitalize }}
                             </div>
