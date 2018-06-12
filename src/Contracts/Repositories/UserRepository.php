@@ -9,7 +9,7 @@ interface UserRepository
      *
      * @return \Illuminate\Contracts\Auth\Authenticatable|null
      */
-    public function current();
+    public function current($user);
 
     /**
      * Get the user with the given ID.
