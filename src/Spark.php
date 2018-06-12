@@ -19,5 +19,5 @@ class Spark
     /**
      * The Spark version.
      */
-    public static $version = '6.0.6';
+    public static $version = '6.0.10';
 }
