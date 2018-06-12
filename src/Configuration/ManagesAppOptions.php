@@ -59,6 +59,7 @@ trait ManagesAppOptions
     /**
      * Set the path to redirect to after authentication.
      *
+     * @param  string $path
      * @return void
      */
     public static function afterLoginRedirectTo($path)
