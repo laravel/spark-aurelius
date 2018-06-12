@@ -54,7 +54,7 @@ class Authy
      * Disable two-factor authentication for the user.
      *
      * @param  string  $authyId
-     * @return string
+     * @return void
      */
     public function disable($authyId)
     {
