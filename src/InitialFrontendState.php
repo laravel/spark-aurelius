@@ -14,20 +14,10 @@ class InitialFrontendState implements Contract
     public function forUser($user)
     {
         return [
-            'user' => $this->currentUser($user),
+            'user' => $user,
             'teams' => $user ? $this->teams($user) : [],
             'currentTeam' => $user ? $this->currentTeam($user) : null,
         ];
-    }
-
-    /**
-     * Get the currently authenticated user.
-     *
-     * @return \Illuminate\Contracts\Auth\Authenticatable|null
-     */
-    protected function currentUser($user)
-    {
-        return Spark::interact(UserRepository::class.'@current', [$user]);
     }
 
     /**
