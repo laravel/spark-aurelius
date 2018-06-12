@@ -160,7 +160,7 @@ trait ManagesAvailablePlans
      * Create a new free team plan instance.
      *
      * @param  string  $name
-     * @return \Laravel\Spark\Plan
+     * @return \Laravel\Spark\TeamPlan
      */
     public static function freeTeamPlan($name = 'Free')
     {
@@ -186,7 +186,7 @@ trait ManagesAvailablePlans
      *
      * @param  string  $name
      * @param  string  $id
-     * @return \Laravel\Spark\Plan
+     * @return \Laravel\Spark\TeamPlan
      */
     public static function teamPlan($name, $id)
     {
