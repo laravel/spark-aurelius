@@ -2,6 +2,7 @@
 
 namespace Laravel\Spark\Http\Controllers;
 
+use Auth;
 use Carbon\Carbon;
 use Laravel\Spark\Spark;
 use Illuminate\Http\Request;
@@ -28,7 +29,7 @@ class UserController extends Controller
      */
     public function current()
     {
-        return Spark::interact(UserRepository::class.'@current');
+        return Spark::interact(UserRepository::class.'@current', [Auth::user()]);
     }
 
     /**

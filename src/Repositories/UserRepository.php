@@ -14,10 +14,10 @@ class UserRepository implements UserRepositoryContract
     /**
      * {@inheritdoc}
      */
-    public function current()
+    public function current($user)
     {
         if (Auth::check()) {
-            return $this->find(Auth::id())->shouldHaveSelfVisibility();
+            return $user->shouldHaveSelfVisibility();
         }
     }
 
