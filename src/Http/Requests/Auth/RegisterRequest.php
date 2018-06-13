@@ -61,7 +61,7 @@ class RegisterRequest extends FormRequest
     }
 
     /**
-     * Setup the "after" callabck for the validator.
+     * Setup the "after" callback for the validator.
      *
      * @param  \Illuminate\Validation\Validator  $validator
      * @return \Illuminate\Validation\Validator
