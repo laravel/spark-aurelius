@@ -31,7 +31,7 @@ class TokenRequest extends FormRequest
     }
 
     /**
-     * Configure the valdiator to validate the token abilities.
+     * Configure the validator to validate the token abilities.
      *
      * @param  \Illuminate\Validation\Validator  $validator
      * @return \Illuminate\Validation\Validator
