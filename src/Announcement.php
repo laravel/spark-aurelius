@@ -44,6 +44,8 @@ class Announcement extends Model
 
     /**
      * Get the user that created the announcement.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function creator()
     {
