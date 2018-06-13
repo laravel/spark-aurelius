@@ -186,6 +186,8 @@
     "This is the only time the token will ever be displayed, so be sure not to lose it!": "This is the only time the token will ever be displayed, so be sure not to lose it!",
     "This is the only time this token will be displayed, so be sure not to lose it!": "This is the only time this token will be displayed, so be sure not to lose it!",
     "This plan has been discontinued, but you may continue your subscription to this plan as long as you wish. If you cancel your subscription and later want to begin a new subscription, you will need to choose from one of the active plans listed below.": "This plan has been discontinued, but you may continue your subscription to this plan as long as you wish. If you cancel your subscription and later want to begin a new subscription, you will need to choose from one of the active plans listed below.",
+    "This team has too many team members for the selected plan.": "This team has too many team members for the selected plan.",
+    "This team is not eligible for this plan.": "This team is not eligible for this plan.",
     "This user has a discount of :discountAmount for a single invoice.": "This user has a discount of :discountAmount for a single invoice.",
     "This user has a discount of :discountAmount for all invoices during the next :months months.": "This user has a discount of :discountAmount for all invoices during the next :months months.",
     "This user has a discount of :discountAmount for all invoices during the next month.": "This user has a discount of :discountAmount for all invoices during the next month.",
