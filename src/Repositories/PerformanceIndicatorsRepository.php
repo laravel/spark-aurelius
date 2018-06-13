@@ -45,6 +45,16 @@ class PerformanceIndicatorsRepository implements Contract
     /**
      * {@inheritdoc}
      */
+    public function totalRevenueForTeam($team)
+    {
+        return DB::table('invoices')
+                        ->where('team_id', $team->id)
+                        ->sum('total');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function totalVolume()
     {
         return DB::table('invoices')->sum('total');

@@ -6,6 +6,7 @@ use Laravel\Spark\Spark;
 use Illuminate\Http\Request;
 use Laravel\Spark\Http\Controllers\Controller;
 use Laravel\Spark\Contracts\Repositories\UserRepository;
+use Laravel\Spark\Contracts\Repositories\TeamRepository;
 use Laravel\Spark\Contracts\Repositories\PerformanceIndicatorsRepository;
 
 class ProfileController extends Controller
@@ -45,6 +46,23 @@ class ProfileController extends Controller
         return response()->json([
             'user' => $user,
             'revenue' => $this->indicators->totalRevenueForUser($user),
+        ]);
+    }
+
+    /**
+     * Get the team to be displayed on the team profile screen.
+     *
+     * @param  Request  $request
+     * @param  string  $id
+     * @return Response
+     */
+    public function showTeam(Request $request, $id)
+    {
+        $team = Spark::call(TeamRepository::class.'@find', [$id]);
+
+        return response()->json([
+            'team' => $team,
+            'revenue' => $this->indicators->totalRevenueForTeam($team),
         ]);
     }
 }

@@ -47,6 +47,16 @@
                                 {{__('Users')}}
                             </a>
                         </li>
+
+                        <li class="nav-item ">
+                            <a class="nav-link" href="#{{ Spark::teamsPrefix() }}" aria-controls="teams" role="tab" data-toggle="tab">
+                                <svg class="icon-20 " viewBox="0 0 20 20 " xmlns="http://www.w3.org/2000/svg ">
+                                    <path d="M3 8V6c0-3.3 2.7-6 6-6s6 2.7 6 6v2h1c1 0 2 1 2 2v8c0 1-1 2-2 2H2c-1 0-2-1-2-2v-8c0-1 1-2 2-2h1zm5
+              6.7V17h2v-2.3c.6-.3 1-1 1-1.7 0-1-1-2-2-2s-2 1-2 2c0 .7.4 1.4 1 1.7zM6 6v2h6V6c0-1.7-1.3-3-3-3S6 4.3 6 6z "/>
+                                </svg>
+                                {{__('teams.teams')}}
+                            </a>
+                        </li>
                     </ul>
                 </aside>
             </div>
@@ -67,6 +77,11 @@
                     <!-- User Management -->
                     <div role="tabcard" class="tab-pane" id="users">
                         @include('spark::kiosk.users')
+                    </div>
+
+                    <!-- Team Management -->
+                    <div role="tabcard" class="tab-pane" id="teams">
+                        @include('spark::kiosk.teams')
                     </div>
                 </div>
             </div>
