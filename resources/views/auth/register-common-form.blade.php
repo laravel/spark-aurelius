@@ -19,7 +19,7 @@
                 <label class="col-md-4 col-form-label text-md-right">{{ __('teams.team_slug') }}</label>
 
                 <div class="col-md-6">
-                    <input type="text" class="form-control" name="team_slug" v-model="registerForm.team_slug" :class="{'is-invalid': registerForm.errors.has('team_slug')}" autofocus>
+                    <input type="text" class="form-control" name="team_slug" v-model="registerForm.team_slug" :class="{'is-invalid': registerForm.errors.has('team_slug')}">
 
                     <small class="form-text text-muted" v-show="! registerForm.errors.has('team_slug')">
                         {{__('teams.slug_input_explanation')}}
@@ -38,7 +38,7 @@
         <label class="col-md-4 col-form-label text-md-right">{{__('Name')}}</label>
 
         <div class="col-md-6">
-            <input type="text" class="form-control" name="name" v-model="registerForm.name" :class="{'is-invalid': registerForm.errors.has('name')}" autofocus>
+            <input type="text" class="form-control" name="name" v-model="registerForm.name" :class="{'is-invalid': registerForm.errors.has('name')}" @if (! (Spark::usesTeams() && Spark::onlyTeamPlans())) autofocus @endif>
 
             <span class="invalid-feedback" v-show="registerForm.errors.has('name')">
                 @{{ registerForm.errors.get('name') }}
