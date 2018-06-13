@@ -181,6 +181,8 @@
     "This is the only time the token will ever be displayed, so be sure not to lose it!": "C'est la seule fois que votre jeton sera affiché, assurez-vous de ne pas le perdre!",
     "This is the only time this token will be displayed, so be sure not to lose it!": "C'est la seule fois que votre jeton sera affiché, assurez-vous de ne pas le perdre!",
     "This plan has been discontinued, but you may continue your subscription to this plan as long as you wish. If you cancel your subscription and later want to begin a new subscription, you will need to choose from one of the active plans listed below.": "Cette offre n'est plus disponible, mais vous pouvez conserver votre abonnement à cette offre autant que vous le voulez. Si vous annulez votre abonnement et voulez plus tard vous réabonner, vous devrez choisir une offre parmie les offres listées ci dessous.",
+    "This team has too many team members for the selected plan.": "Cette équipe a trop de membres pour l'offre sélectionnée.",
+    "This team is not eligible for this plan.": "Cette équipe n'est pas éligible pour cette offre.",
     "This user has a discount of :discountAmount for a single invoice.": "Cet utilisateur a une réduction de :discountAmount pour une seule facture.",
     "This user has a discount of :discountAmount for all invoices during the next :months months.": "Cet utilisateur a une réduction de :discountAmount pour toutes les factures pour les :months prochains mois.",
     "This user has a discount of :discountAmount for all invoices during the next month.": "Cet utilisateur a une réduction de :discountAmount pour toutes les factures du mois prochain.",
