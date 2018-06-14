@@ -5,12 +5,12 @@ module.exports = {
          */
         collectsVat(country) {
             return Spark.collectsEuropeanVat ? _.includes([
-                'BE', 'BG', 'CZ', 'DK', 'DE',
-                'EE', 'IE', 'GR', 'ES', 'FR',
-                'HR', 'IT', 'CY', 'LV', 'LT',
-                'LU', 'HU', 'MT', 'NL', 'AT',
-                'PL', 'PT', 'RO', 'SI', 'SK',
-                'FI', 'SE', 'GB',
+                'AT', 'BE', 'BG', 'CY', 'CZ',
+                'DE', 'DK', 'EE', 'ES', 'FI',
+                'FR', 'GB', 'GR', 'HR', 'HU',
+                'IE', 'IT', 'LT', 'LU', 'LV',
+                'MT', 'NL', 'PL', 'PT', 'RO',
+                'SE', 'SI', 'SK', 'NO',
             ], country) : false;
         },
 
