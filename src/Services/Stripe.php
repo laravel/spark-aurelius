@@ -18,16 +18,4 @@ class Stripe
             $token, config('services.stripe.secret')
         )->card->country;
     }
-
-    /**
-     * Verify that the given token origin country matches the given country.
-     *
-     * @param  string  $token
-     * @param  string  $country
-     * @return bool
-     */
-    public function tokenIsForCountry($token, $country)
-    {
-        return $this->countryForToken($token) === $country;
-    }
 }
