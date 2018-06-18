@@ -186,7 +186,7 @@ trait Billable
         $vatCalculator->setBusinessCountryCode(Spark::homeCountry());
 
         try {
-            $isValidVAT = $vatCalculator->isValidVATNumber($this->vat_id);
+            $isValidVAT = ! empty($this->vat_id) && $vatCalculator->isValidVATNumber($this->vat_id);
         } catch (VatCalculator\Exceptions\VATCheckUnavailableException $e) {
             $isValidVAT = false;
         }
