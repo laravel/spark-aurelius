@@ -90,7 +90,7 @@
         <div class="form-group row">
             <div class="col-md-6 offset-md-4">
                 <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="terms" :class="{'is-invalid': registerForm.errors.has('terms')}">
+                    <input type="checkbox" class="form-check-input" id="terms" :class="{'is-invalid': registerForm.errors.has('terms')}" v-model="registerForm.terms">
                     <label class="form-check-label" for="terms">
                         {!! __('I Accept :linkOpen The Terms Of Service :linkClose', ['linkOpen' => '<a href="/terms" target="_blank">', 'linkClose' => '</a>']) !!}
                     </label>
