@@ -208,7 +208,7 @@ module.exports = {
         /**
          * Get the current billing address from the subscribe form.
          *
-         * This used primarily for wathcing.
+         * This used primarily for watching.
          */
         currentBillingAddress() {
             return this.form.address +
