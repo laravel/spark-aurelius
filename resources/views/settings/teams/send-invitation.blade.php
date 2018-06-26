@@ -26,7 +26,7 @@
 
                 <!-- Role -->
                 <div class="form-group row" v-if="roles.length > 0">
-                    <label class="col-md-4 col-form-label text-md-right">Role</label>
+                    <label class="col-md-4 col-form-label text-md-right">{{__('Role')}}</label>
 
                     <div class="col-md-6">
                         <select class="form-control" v-model="form.role" :class="{'is-invalid': form.errors.has('role')}" >
