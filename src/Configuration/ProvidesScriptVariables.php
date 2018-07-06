@@ -32,6 +32,7 @@ trait ProvidesScriptVariables
             'state' => Spark::call(InitialFrontendState::class.'@forUser', [Auth::user()]),
             'stripeKey' => config('services.stripe.key'),
             'teamsPrefix' => Spark::teamsPrefix(),
+            'teamsIdentifiedByPath' => Spark::teamsIdentifiedByPath(),
             'userId' => Auth::id(),
             'usesApi' => Spark::usesApi(),
             'usesBraintree' => Spark::billsUsingBraintree(),
