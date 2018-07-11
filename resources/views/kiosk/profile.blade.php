@@ -97,7 +97,7 @@
                                     <tr v-for="team in profile.owned_teams">
                                         <!-- Photo -->
                                         <td>
-                                            <img :src="team.photo_url" class="spark-team-photo">
+                                            <img :src="team.photo_url" class="spark-profile-photo">
                                         </td>
 
                                         <!-- Team Name -->
