@@ -67,7 +67,7 @@ class MailedInvitationController extends Controller
      */
     public function destroy(Request $request, Invitation $invitation)
     {
-        abort_unless($request->user()->ownsTeam($invitation->team), 404);
+        abort_unless($request->user()->ownsTeam($invitation->team)|| $request->user()->managesTeam($invitation->team), 404);
 
         $invitation->delete();
     }

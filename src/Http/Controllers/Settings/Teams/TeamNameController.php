@@ -26,7 +26,7 @@ class TeamNameController extends Controller
      */
     public function update(Request $request, $team)
     {
-        abort_unless($request->user()->ownsTeam($team), 404);
+        abort_unless(($request->user()->ownsTeam($team) || $request->user()->managesTeam($team)), 404);
 
         $this->validate($request, [
             'name' => 'required|max:255',

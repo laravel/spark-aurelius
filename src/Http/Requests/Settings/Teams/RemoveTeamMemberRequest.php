@@ -17,8 +17,10 @@ class RemoveTeamMemberRequest extends FormRequest
 
         $member = $this->route('team_member');
 
-        return ($this->user()->ownsTeam($team) && $this->user()->id !== $member->id) ||
-               (! $this->user()->ownsTeam($team) && $this->user()->id === $member->id);
+        return (($this->user()->ownsTeam($team) && $this->user()->id !== $member->id) ||
+                (! $this->user()->ownsTeam($team) && $this->user()->id === $member->id)) ||
+            (($this->user()->managesTeam($team) && $this->user()->id !== $member->id) ||
+                (! $this->user()->managesTeam($team) && $this->user()->id === $member->id));
     }
 
     /**

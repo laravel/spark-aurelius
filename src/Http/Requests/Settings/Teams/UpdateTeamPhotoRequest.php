@@ -13,7 +13,7 @@ class UpdateTeamPhotoRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->ownsTeam($this->route('team'));
+        return ($this->user()->ownsTeam($this->route('team') || $this->user()->managesTeam($this->route('team'))));
     }
 
     /**
