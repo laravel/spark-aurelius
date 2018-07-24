@@ -15,7 +15,7 @@ class CreateInvitationRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->ownsTeam($this->team);
+        return ($request->user()->ownsTeam($team) || $request->user()->managesTeam($team));
     }
 
     /**
