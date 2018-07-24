@@ -1,6 +1,6 @@
 <spark-team-membership :user="user" :team="team" :billable-type="billableType" inline-template>
     <div>
-        @if (Auth::user()->ownsTeam($team))
+        @if (Auth::user()->ownsTeam($team)||Auth::user()->managesTeam($team))
             <!-- Send Invitation -->
             <div v-if="user && team">
                 @include('spark::settings.teams.send-invitation')
