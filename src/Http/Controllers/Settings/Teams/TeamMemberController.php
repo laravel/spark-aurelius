@@ -30,7 +30,7 @@ class TeamMemberController extends Controller
      */
     public function update(Request $request, $team, $member)
     {
-        abort_unless($request->user()->ownsTeam($team), 404);
+        abort_unless(($request->user()->ownsTeam($team) || $request->user()->managesTeam($team)), 404);
 
         $this->interaction($request, UpdateTeamMember::class, [
             $team, $member, $request->all()
@@ -47,6 +47,8 @@ class TeamMemberController extends Controller
      */
     public function destroy(RemoveTeamMemberRequest $request, $team, $member)
     {
+        abort_unless(($request->user()->ownsTeam($team) || $request->user()->managesTeam($team)), 404);
+        
         $team->users()->detach($member->id);
 
         event(new TeamMemberRemoved($team, $member));
