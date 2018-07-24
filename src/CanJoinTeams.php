@@ -65,6 +65,17 @@ trait CanJoinTeams
     }
 
     /**
+     * Determine if the given team is managed by the user.
+     *
+     * @param \Laravel\Spark\Team $team
+     * @return bool
+     */
+    public function managesTeam($team)
+    {
+        return $this->id && ($this->roleOn($team) == 'manager');
+    }
+    
+    /**
      * Get the user's role on a given team.
      *
      * @param  \Laravel\Spark\Team  $team
