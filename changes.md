@@ -1,6 +1,6 @@
 # Change Log
 
-### Version 6.0.11
+### Version 6.0.12
 
 - Various bug fixes.
 
