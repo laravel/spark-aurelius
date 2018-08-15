@@ -54,7 +54,7 @@ class RegisterRequest extends FormRequest
         $allPlanIdList = Spark::activePlanIdList().','.Spark::activeTeamPlanIdList();
 
         $validator->sometimes('plan', 'required|in:'.$allPlanIdList, function () {
-            return Spark::needsCardUpFront();
+            return $this->invitation ? false : Spark::needsCardUpFront();
         });
 
         return $validator;
