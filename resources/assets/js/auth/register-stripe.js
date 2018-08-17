@@ -164,7 +164,7 @@ module.exports = {
             this.registerForm.busy = true;
             this.registerForm.errors.forget();
 
-            if ( ! Spark.cardUpFront || this.selectedPlan.price == 0) {
+            if ( ! Spark.cardUpFront || this.registerForm.invitation || this.selectedPlan.price == 0) {
                 return this.sendRegistration();
             }
 

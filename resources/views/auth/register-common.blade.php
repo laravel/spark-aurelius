@@ -23,7 +23,7 @@
 </div>
 
 <!-- Plan Selection -->
-<div class="row justify-content-center" v-if="paidPlans.length > 0">
+<div class="row justify-content-center" v-if="paidPlans.length > 0 && !registerForm.invitation">
     <div class="col-lg-8">
         <div class="card card-default">
             <div class="card-header">
