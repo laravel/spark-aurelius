@@ -46,8 +46,8 @@ class InstallResources
             SPARK_STUB_PATH.'/terms.md' => base_path('terms.md'),
             SPARK_STUB_PATH.'/webpack.mix.js' => base_path('webpack.mix.js'),
             SPARK_STUB_PATH.'/package.json' => base_path('package.json'),
-            SPARK_STUB_PATH.'/resources/assets/sass/app.scss' => resource_path('assets/sass/app.scss'),
-            SPARK_STUB_PATH.'/resources/assets/sass/app-rtl.scss' => resource_path('assets/sass/app-rtl.scss'),
+            SPARK_STUB_PATH.'/resources/sass/app.scss' => resource_path('sass/app.scss'),
+            SPARK_STUB_PATH.'/resources/sass/app-rtl.scss' => resource_path('sass/app-rtl.scss'),
             SPARK_STUB_PATH.'/resources/lang/en/validation.php' => resource_path('lang/en/validation.php'),
             SPARK_STUB_PATH.'/resources/lang/ar/validation.php' => resource_path('lang/ar/validation.php'),
             SPARK_STUB_PATH.'/resources/lang/en/teams.php' => resource_path('lang/en/teams.php'),
@@ -63,7 +63,7 @@ class InstallResources
         }
 
         (new Filesystem)->copyDirectory(
-            SPARK_STUB_PATH.'/resources/assets/js', resource_path('/assets/js')
+            SPARK_STUB_PATH.'/resources/js', resource_path('/js')
         );
 
         Artisan::call('vendor:publish', ['--tag' => ['spark-views']]);
@@ -76,22 +76,22 @@ class InstallResources
      */
     protected function installFrontEndDirectories()
     {
-        (new Filesystem)->deleteDirectory(resource_path('/assets/sass'));
+        (new Filesystem)->deleteDirectory(resource_path('/sass'));
 
-        if (! is_dir(resource_path('/assets/js/components'))) {
+        if (! is_dir(resource_path('/js/components'))) {
             (new Filesystem)->makeDirectory(
-                resource_path('/assets/js/components'), $mode = 0755, $recursive = true
+                resource_path('/js/components'), $mode = 0755, $recursive = true
             );
         }
 
-        if (! is_dir(resource_path('/assets/js/spark-components'))) {
+        if (! is_dir(resource_path('/js/spark-components'))) {
             (new Filesystem)->makeDirectory(
-                resource_path('/assets/js/spark-components'), $mode = 0755, $recursive = true
+                resource_path('/js/spark-components'), $mode = 0755, $recursive = true
             );
         }
 
-        if (! is_dir(resource_path('/assets/sass'))) {
-            (new Filesystem)->makeDirectory(resource_path('/assets/sass'));
+        if (! is_dir(resource_path('/sass'))) {
+            (new Filesystem)->makeDirectory(resource_path('/sass'));
         }
     }
 }
