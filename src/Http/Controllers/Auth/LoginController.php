@@ -43,7 +43,7 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         if ($request->filled('remember')) {
-            $request->session()->put('spark:auth-remember', $request->remember);
+            $request->session()->put('spark:auth:remember', $request->remember);
         }
 
         $user = Spark::user()->where('email', $request->email)->first();
@@ -87,7 +87,6 @@ class LoginController extends Controller
         // be able to get it back out and log in the correct user after verification.
         $request->session()->put([
             'spark:auth:id' => $user->id,
-            'spark:auth:remember' => $request->remember,
         ]);
 
         return redirect('login/token');
