@@ -117,7 +117,7 @@ class TokenGuard
         // first decrypt the cookie and then attempt to find the token value within the
         // database. If we can't decrypt the value we'll bail out with a null return.
         try {
-            $token = JWT::decode(decrypt($request->cookie('spark_token')));
+            $token = JWT::decode(decrypt($request->cookie('spark_token'), Spark::$unserializesCookies));
         } catch (Exception $e) {
             return;
         }
@@ -178,7 +178,7 @@ class TokenGuard
     protected function decryptXsrfHeader($request)
     {
         try {
-            return decrypt($request->header('X-XSRF-TOKEN'));
+            return decrypt($request->header('X-XSRF-TOKEN'), Spark::$unserializesCookies);
         } catch (Exception $e) {
         }
     }
