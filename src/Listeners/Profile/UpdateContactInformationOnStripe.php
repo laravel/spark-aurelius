@@ -11,14 +11,22 @@ class UpdateContactInformationOnStripe
      */
     public function handle($event)
     {
-        if (! $event->user->hasBillingProvider()) {
-            return;
+        if ($event->user->hasBillingProvider()) {
+            $customer = $event->user->asStripeCustomer();
+
+            $customer->email = $event->user->email;
+
+            $customer->save();
         }
+        
+        foreach ($event->user->ownedTeams as $team) {
+            if ($team->hasBillingProvider()) {
+                $customer = $team->asStripeCustomer();
 
-        $customer = $event->user->asStripeCustomer();
+                $customer->email = $event->user->email;
 
-        $customer->email = $event->user->email;
-
-        $customer->save();
+                $customer->save();
+            }
+        }
     }
 }
