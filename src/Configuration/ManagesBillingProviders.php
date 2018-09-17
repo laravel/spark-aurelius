@@ -4,6 +4,7 @@ namespace Laravel\Spark\Configuration;
 
 use Closure;
 use Exception;
+use Illuminate\Http\Request;
 
 trait ManagesBillingProviders
 {
@@ -333,6 +334,17 @@ trait ManagesBillingProviders
     public static function billsUsingBraintree()
     {
         return static::billsUsing('braintree');
+    }
+
+    /**
+     * Determine if the current request needs a Braintree token.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return bool
+     */
+    public static function needsBraintreeToken(Request $request)
+    {
+        return $request->is(['register', 'settings']);
     }
 
     /**
