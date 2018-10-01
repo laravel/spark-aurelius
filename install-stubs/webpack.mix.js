@@ -25,7 +25,7 @@ mix
     .webpackConfig({
         resolve: {
             modules: [
-                path.resolve(__dirname, 'vendor/laravel/spark-aurelius/resources/assets/js'),
+                path.resolve(__dirname, 'vendor/laravel/spark-aurelius/resources/js'),
                 'node_modules'
             ],
             alias: {
