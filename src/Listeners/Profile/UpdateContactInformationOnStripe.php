@@ -36,7 +36,7 @@ class UpdateContactInformationOnStripe
             if ($team->hasBillingProvider()) {
                 $customer = $team->asStripeCustomer();
 
-                $customer->email = $event->user->email;
+                $customer->email = $user->email;
 
                 $customer->save();
             }
