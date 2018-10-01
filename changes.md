@@ -1,5 +1,9 @@
 # Change Log
 
+### Version 7.0.1
+
+- Various bug fixes.
+
 ### Version 7.0.0
 
 - Update for Laravel 5.7 compatibility.
