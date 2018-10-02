@@ -1,5 +1,9 @@
 # Change Log
 
+### Version 7.0.2
+
+- Fix Webpack file installation stub.
+
 ### Version 7.0.1
 
 - Fix Webpack file installation stub.
