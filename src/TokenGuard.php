@@ -70,7 +70,7 @@ class TokenGuard
      * Get the token instance from the database.
      *
      * @param  Request  $request
-     * @return Token
+     * @return Token|null
      */
     protected function getToken(Request $request)
     {
