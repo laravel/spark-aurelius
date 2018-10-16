@@ -109,7 +109,7 @@ class TokenGuard
      * Get the token for the given request cookie.
      *
      * @param  Request  $request
-     * @return Token
+     * @return Token|null
      */
     protected function getTokenFromCookie($request)
     {
