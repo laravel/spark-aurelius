@@ -25,7 +25,7 @@ class CouponController extends Controller
     {
         $this->coupons = $coupons;
 
-        $this->middleware('auth', ['only' => 'current']);
+        $this->middleware('auth')->only('current');
     }
 
     /**
