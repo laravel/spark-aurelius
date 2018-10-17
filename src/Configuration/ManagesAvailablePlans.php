@@ -87,7 +87,7 @@ trait ManagesAvailablePlans
     }
 
     /**
-     * Determine if the application bills customers.
+     * Determine if the application bills teams.
      *
      * @return bool
      */
@@ -100,15 +100,17 @@ trait ManagesAvailablePlans
      * Define or retrieve an application wide promotion for new registrations.
      *
      * @param  string|null  $coupon
-     * @return string|void
+     * @return static|string
      */
     public static function promotion($coupon = null)
     {
         if (is_null($coupon)) {
             return static::$promotion;
-        } else {
-            static::$promotion = $coupon;
         }
+
+        static::$promotion = $coupon;
+
+        return new static;
     }
 
     /**
@@ -160,7 +162,7 @@ trait ManagesAvailablePlans
      * Create a new free team plan instance.
      *
      * @param  string  $name
-     * @return \Laravel\Spark\Plan
+     * @return \Laravel\Spark\TeamPlan
      */
     public static function freeTeamPlan($name = 'Free')
     {
@@ -186,7 +188,7 @@ trait ManagesAvailablePlans
      *
      * @param  string  $name
      * @param  string  $id
-     * @return \Laravel\Spark\Plan
+     * @return \Laravel\Spark\TeamPlan
      */
     public static function teamPlan($name, $id)
     {

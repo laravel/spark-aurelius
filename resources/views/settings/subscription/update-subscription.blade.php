@@ -39,12 +39,12 @@
 
                 <!-- Current Subscription (Active) -->
                 <div class="m-4" v-if="activePlan.active">
-                    <?php echo __('You are currently subscribed to the :planName plan.', ['planName' => '{{ activePlan.name }} ({{ activePlan.interval | capitalize }})']); ?>
+                    <?php echo __('You are currently subscribed to the :planName plan.', ['planName' => '{{ activePlan.name }} ({{ __(activePlan.interval) | capitalize }})']); ?>
                 </div>
 
                 <!-- Current Subscription (Archived) -->
                 <div class="alert alert-warning m-4" v-if=" ! activePlan.active">
-                    <?php echo __('You are currently subscribed to the :planName plan.', ['planName' => '{{ activePlan.name }} ({{ activePlan.interval | capitalize }})']); ?>
+                    <?php echo __('You are currently subscribed to the :planName plan.', ['planName' => '{{ activePlan.name }} ({{ __(activePlan.interval) | capitalize }})']); ?>
                     {{__('This plan has been discontinued, but you may continue your subscription to this plan as long as you wish. If you cancel your subscription and later want to begin a new subscription, you will need to choose from one of the active plans listed below.')}}
                 </div>
 
@@ -71,7 +71,7 @@
                             <!-- Plan Features Button -->
                             <td>
                                 <button class="btn btn-default" @click="showPlanDetails(plan)">
-                                    {{__('Features')}}
+                                    <i class="fa fa-btn fa-star-o"></i> {{__('Features')}}
                                 </button>
                             </td>
 

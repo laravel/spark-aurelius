@@ -4,7 +4,7 @@ module.exports = {
      */
     data() {
         return {
-            stripe: Stripe(Spark.stripeKey)
+            stripe: Spark.stripeKey ? Stripe(Spark.stripeKey) : null
         }
     },
 
@@ -14,6 +14,10 @@ module.exports = {
          * Create a Stripe Card Element.
          */
         createCardElement(container){
+            if (!this.stripe) {
+                throw "Invalid Stripe Key/Secret";
+            }
+
             var card = this.stripe.elements().create('card', {
                 hideIcon: true,
                 hidePostalCode: true,

@@ -74,7 +74,7 @@ module.exports = {
          * Determine if the ability has been assigned to the token being edited.
          */
         abilityIsAssigned(ability) {
-            return _.contains(this.updateTokenForm.abilities, ability);
+            return _.includes(this.updateTokenForm.abilities, ability);
         },
 
 

@@ -43,7 +43,7 @@ class PendingInvitationController extends Controller
         abort_unless($request->user()->id == $invitation->user_id, 404);
 
         Spark::interact(AddTeamMember::class, [
-            $invitation->team, $request->user()
+            $invitation->team, $request->user(), $invitation->role
         ]);
 
         $invitation->delete();

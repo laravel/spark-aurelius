@@ -2,7 +2,6 @@
 
 namespace Laravel\Spark;
 
-use LogicException;
 use Mpociot\VatCalculator\VatCalculator;
 use Laravel\Cashier\Billable as CashierBillable;
 
@@ -186,8 +185,14 @@ trait Billable
 
         $vatCalculator->setBusinessCountryCode(Spark::homeCountry());
 
-        return $vatCalculator->getTaxRateForCountry(
-            $this->card_country, ! empty($this->vat_id)
+        try {
+            $isValidVAT = ! empty($this->vat_id) && $vatCalculator->isValidVATNumber($this->vat_id);
+        } catch (VatCalculator\Exceptions\VATCheckUnavailableException $e) {
+            $isValidVAT = false;
+        }
+
+        return $vatCalculator->getTaxRateForLocation(
+            $this->billing_country, $this->billing_zip, $isValidVAT
         ) * 100;
     }
 }

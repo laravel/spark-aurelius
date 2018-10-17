@@ -248,7 +248,7 @@ module.exports = {
             if ( ! this.lastYearsIndicators || ! this.indicators) {
                 return false;
             }
-;
+
             return this.percentChange(
                 _.takeRight(this.indicators).yearly_recurring_revenue,
                 this.lastYearsIndicators.yearly_recurring_revenue

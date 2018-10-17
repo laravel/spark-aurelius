@@ -18,10 +18,10 @@
                 <form role="form">
                     <!-- Payment Method -->
                     <div class="form-group row" v-if="hasPaymentMethod()">
-                        <label for="use_exiting_payment_method" class="col-md-4 col-form-label text-md-right">{{__('Payment Method')}}</label>
+                        <label for="use_existing_payment_method" class="col-md-4 col-form-label text-md-right">{{__('Payment Method')}}</label>
 
                         <div class="col-md-6">
-                            <select name="use_exiting_payment_method" v-model="form.use_exiting_payment_method" id="use_exiting_payment_method" class="form-control">
+                            <select name="use_existing_payment_method" v-model="form.use_existing_payment_method" id="use_existing_payment_method" class="form-control">
                                 <option value="1">{{__('Use existing payment method')}}</option>
                                 <option value="0">{{__('Use a different method')}}</option>
                             </select>
@@ -29,7 +29,7 @@
                     </div>
 
                     <!-- Cardholder's Name -->
-                    <div class="form-group row" v-show="form.use_exiting_payment_method != '1'">
+                    <div class="form-group row" v-show="form.use_existing_payment_method != '1'">
                         <label for="name" class="col-md-4 col-form-label text-md-right">{{__('Cardholder\'s Name')}}</label>
 
                         <div class="col-md-6">
@@ -38,7 +38,7 @@
                     </div>
 
                     <!-- Card Details -->
-                    <div class="form-group row" v-show="form.use_exiting_payment_method != '1'">
+                    <div class="form-group row" v-show="form.use_existing_payment_method != '1'">
                         <label for="name" class="col-md-4 col-form-label text-md-right">{{__('Card')}}</label>
 
                         <div class="col-md-6">

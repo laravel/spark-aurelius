@@ -22,7 +22,7 @@ module.exports = {
             cardElement: null,
 
             form: new SparkForm({
-                use_exiting_payment_method: this.hasPaymentMethod() ? '1' : '0',
+                use_existing_payment_method: this.hasPaymentMethod() ? '1' : '0',
                 stripe_token: '',
                 plan: '',
                 coupon: null,
@@ -103,7 +103,7 @@ module.exports = {
 
             this.form.startProcessing();
 
-            if (this.form.use_exiting_payment_method == '1') {
+            if (this.form.use_existing_payment_method == '1') {
                 return this.createSubscription();
             }
 
@@ -208,7 +208,7 @@ module.exports = {
         /**
          * Get the current billing address from the subscribe form.
          *
-         * This used primarily for wathcing.
+         * This used primarily for watching.
          */
         currentBillingAddress() {
             return this.form.address +

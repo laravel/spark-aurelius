@@ -16,8 +16,8 @@ class CreateBraintreeSubscriptionRequest extends CreateSubscriptionRequest imple
     public function validator()
     {
         $validator = Validator::make($this->all(), [
-            'braintree_type' => 'required_if:use_exiting_payment_method,0',
-            'braintree_token' => 'required_if:use_exiting_payment_method,0',
+            'braintree_type' => 'required_if:use_existing_payment_method,0',
+            'braintree_token' => 'required_if:use_existing_payment_method,0',
             'plan' => 'required|in:'.Spark::activePlanIdList()
         ]);
 

@@ -34,28 +34,27 @@ $router->group(['middleware' => 'web'], function ($router) {
 
         // General Settings...
         $router->get('/settings/'.Spark::teamsPrefix().'/roles', 'Settings\Teams\TeamMemberRoleController@all');
-        $router->get('/settings/'.Spark::teamsPrefix().'/{team}', 'Settings\Teams\DashboardController@show')->name('settings.team');
-
-        $router->get('/settings/'.Spark::teamsPrefix(), 'TeamController@all');
         $router->get('/settings/'.Spark::teamsPrefix().'/current', 'TeamController@current');
         $router->get('/settings/'.Spark::teamsPrefix().'/json/{team_id}', 'TeamController@show');
-        $router->post('/settings/'.Spark::teamsPrefix(), 'Settings\Teams\TeamController@store');
+
+        $router->get('/settings/'.Spark::teamsPrefix().'/{team}', 'Settings\Teams\DashboardController@show')->name('settings.team');
         $router->post('/settings/'.Spark::teamsPrefix().'/{team}/photo', 'Settings\Teams\TeamPhotoController@update');
         $router->put('/settings/'.Spark::teamsPrefix().'/{team}/name', 'Settings\Teams\TeamNameController@update');
-
-        // Invitations...
         $router->get('/settings/'.Spark::teamsPrefix().'/{team}/invitations', 'Settings\Teams\MailedInvitationController@all');
         $router->post('/settings/'.Spark::teamsPrefix().'/{team}/invitations', 'Settings\Teams\MailedInvitationController@store');
+        $router->put('/settings/'.Spark::teamsPrefix().'/{team}/members/{team_member}', 'Settings\Teams\TeamMemberController@update');
+        $router->delete('/settings/'.Spark::teamsPrefix().'/{team}/members/{team_member}', 'Settings\Teams\TeamMemberController@destroy');
+        $router->delete('/settings/'.Spark::teamsPrefix().'/{team}', 'Settings\Teams\TeamController@destroy');
+        $router->get('/settings/'.Spark::teamsPrefix().'/{team}/switch', 'TeamController@switchCurrentTeam');
+
+        $router->get('/settings/'.Spark::teamsPrefix(), 'TeamController@all');
+        $router->post('/settings/'.Spark::teamsPrefix(), 'Settings\Teams\TeamController@store');
+
         $router->get('/settings/invitations/pending', 'Settings\Teams\PendingInvitationController@all');
         $router->get('/invitations/{invitation}', 'InvitationController@show');
         $router->post('/settings/invitations/{invitation}/accept', 'Settings\Teams\PendingInvitationController@accept');
         $router->post('/settings/invitations/{invitation}/reject', 'Settings\Teams\PendingInvitationController@reject');
         $router->delete('/settings/invitations/{invitation}', 'Settings\Teams\MailedInvitationController@destroy');
-
-        $router->put('/settings/'.Spark::teamsPrefix().'/{team}/members/{team_member}', 'Settings\Teams\TeamMemberController@update');
-        $router->delete('/settings/'.Spark::teamsPrefix().'/{team}/members/{team_member}', 'Settings\Teams\TeamMemberController@destroy');
-        $router->delete('/settings/'.Spark::teamsPrefix().'/{team}', 'Settings\Teams\TeamController@destroy');
-        $router->get('/settings/'.Spark::teamsPrefix().'/{team}/switch', 'TeamController@switchCurrentTeam');
 
         // Billing
 

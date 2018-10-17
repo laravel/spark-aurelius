@@ -31,7 +31,7 @@ trait DeterminesTeamPlanEligibility
         // back to the client informing them of this limitation and they can upgrade.
         if (! $this->teamIsEligibleForPlan($this->route('team'), $plan)) {
             $validator->errors()->add(
-                'plan', 'This team has too many team members for the selected plan.'
+                'plan', __('This team has too many team members for the selected plan.')
             );
         }
     }
@@ -40,7 +40,7 @@ trait DeterminesTeamPlanEligibility
      * Determine if the team is eligible to move to a given plan.
      *
      * @param  \Laravel\Spark\Team  $team
-     * @param  \Laravel\Spark\Plan  $plan
+     * @param  \Laravel\Spark\TeamPlan  $plan
      * @return bool
      */
     protected function teamIsEligibleForPlan($team, $plan)
@@ -52,7 +52,7 @@ trait DeterminesTeamPlanEligibility
      * Determine if the team exceeds the maximum team members for the plan.
      *
      * @param  \Laravel\Spark\Team  $team
-     * @param  \Laravel\Spark\Plan  $plan
+     * @param  \Laravel\Spark\TeamPlan  $plan
      * @return bool
      */
     protected function exceedsMaximumTeamMembers($team, $plan)
@@ -65,14 +65,16 @@ trait DeterminesTeamPlanEligibility
      * Call the custom plan eligibility checker callback.
      *
      * @param  \Illuminate\Validation\Validator  $validator
-     * @param  \Laravel\Spark\Plan  $plan
+     * @param  \Laravel\Spark\TeamPlan  $plan
      * @return void
      */
     protected function callCustomCallback($validator, $plan)
     {
         try {
             if (! Spark::eligibleForTeamPlan($this->route('team'), $plan)) {
-                $validator->errors()->add('plan', 'This team is not eligible for this plan.');
+                $validator->errors()->add(
+                    'plan', __('This team is not eligible for this plan.')
+                );
             }
         } catch (IneligibleForPlan $e) {
             $validator->errors()->add('plan', $e->getMessage());

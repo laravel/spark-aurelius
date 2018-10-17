@@ -69,8 +69,7 @@ trait ManagesApiOptions
     /**
      * Get the default token abilities to "check" in the UI.
      *
-     * @param  array  $defaults
-     * @return array|null
+     * @return array
      */
     public static function tokenDefaults()
     {
@@ -81,7 +80,7 @@ trait ManagesApiOptions
      * Set the default token abilities to "check" in the UI.
      *
      * @param  array  $defaults
-     * @return array|null
+     * @return void
      */
     public static function byDefaultTokensCan(array $defaults)
     {

@@ -52,7 +52,7 @@
 
     <!-- Zip Code -->
     <div class="col-sm-3">
-        <input type="text" class="form-control" placeholder="{{__('Postal Code')}}" v-model.lazy="registerForm.zip">
+        <input type="text" class="form-control" placeholder="{{__('Postal Code')}}" v-model.lazy="registerForm.zip" :class="{'is-invalid': registerForm.errors.has('zip')}">
 
         <span class="invalid-feedback" v-show="registerForm.errors.has('zip')">
             @{{ registerForm.errors.get('zip') }}

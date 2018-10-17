@@ -1,11 +1,44 @@
-$blue: #42a2dc !default;
-$primary: $blue !default;
-$body-bg: #edf0f2 !default;
-$body-color: #424c55 !default;
+
+// Fonts
 $font-family-sans-serif: Whitney, Lato, -apple-system, BlinkMacSystemFont,
   'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji',
   'Segoe UI Emoji', 'Segoe UI Symbol' !default;
 
+// Brand Hue
+$brand-hue: 203 !default;
+
+// Grays
+$white: #fff !default;
+$gray-100: hsl($brand-hue, 10%, 96%) !default;
+$gray-200: hsl($brand-hue, 10%, 88%) !default;
+$gray-300: hsl($brand-hue, 10%, 80%) !default;
+$gray-400: hsl($brand-hue, 10%, 72%) !default;
+$gray-500: hsl($brand-hue, 10%, 64%) !default;
+$gray-600: hsl($brand-hue, 10%, 56%) !default;
+$gray-700: hsl($brand-hue, 10%, 48%) !default;
+$gray-800: hsl($brand-hue, 10%, 40%) !default;
+$gray-900: hsl($brand-hue, 10%, 32%) !default;
+$black: hsl($brand-hue, 10%, 24%) !default;
+
+// Colors
+$blue: #42a2dc !default;
+$primary: $blue !default;
+$body-bg: hsl($brand-hue, 16%, 94%) !default;
+$body-color: $gray-900 !default;
+
 // Cards
+$card-bg: hsl($brand-hue, 22%, 97%) !default;
+$card-cap-bg: $white !default;
 $card-border-width: 0 !default;
-$card-border-radius: 5px !default;
+
+// Modals
+$modal-header-bg: $card-cap-bg !default;
+$modal-content-bg: $gray-100 !default;
+$modal-header-border-color: $gray-200 !default;
+$modal-footer-border-color: $modal-header-border-color !default;
+
+// Navbar
+$nav-link-color: $gray-900 !default;
+
+// Buttons
+$btn-font-weight: 500 !default;
