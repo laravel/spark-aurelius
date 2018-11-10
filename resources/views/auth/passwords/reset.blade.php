@@ -18,7 +18,7 @@
                             <label class="col-md-4 col-form-label text-md-right">{{__('E-Mail Address')}}</label>
 
                             <div class="col-md-6">
-                                <input type="email" class="form-control" name="email" value="{{ $email or old('email') }}" autofocus>
+                                <input type="email" class="form-control" name="email" value="{{ $email ?? old('email') }}" autofocus>
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback">
