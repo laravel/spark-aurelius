@@ -4,6 +4,7 @@ namespace Laravel\Spark\Configuration;
 
 use Closure;
 use Exception;
+use Laravel\Spark\Spark;
 use Illuminate\Http\Request;
 
 trait ManagesBillingProviders
@@ -344,7 +345,7 @@ trait ManagesBillingProviders
      */
     public static function needsBraintreeToken(Request $request)
     {
-        return $request->is(['register', 'settings']);
+        return $request->is(['register', 'settings', 'settings/'.Spark::teamsPrefix().'*']);
     }
 
     /**
