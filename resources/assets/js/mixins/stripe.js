@@ -19,7 +19,7 @@ module.exports = {
             }
 
             var card = this.stripe.elements({ 
-                    locale: _.get(window, 'Spark.locale', 'en'),
+                    locale: _.get(window, 'Spark.locale'),
                 }).create('card', {
                 hideIcon: true,
                 hidePostalCode: true,
