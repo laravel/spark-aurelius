@@ -18,7 +18,9 @@ module.exports = {
                 throw "Invalid Stripe Key/Secret";
             }
 
-            var card = this.stripe.elements().create('card', {
+            var card = this.stripe.elements({ 
+                    locale: _.get(window, 'Spark.locale'),
+                }).create('card', {
                 hideIcon: true,
                 hidePostalCode: true,
                 style: {
