@@ -1,5 +1,9 @@
 # Change Log
 
+### Version 7.1.0
+
+- Support for Laravel 5.7 email verification.
+
 ### Version 7.0.2
 
 - Fix Webpack file installation stub.
