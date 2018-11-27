@@ -6,6 +6,7 @@ use Laravel\Spark\Spark;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Spark\Events\Auth\UserRegistered;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Laravel\Spark\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RedirectsUsers;
 use Laravel\Spark\Contracts\Interactions\Auth\Register;
@@ -60,6 +61,10 @@ class RegisterController extends Controller
         ));
 
         event(new UserRegistered($user));
+
+        if ($user instanceof MustVerifyEmail && ! $user->hasVerifiedEmail()) {
+            $user->sendEmailVerificationNotification();
+        }
 
         return response()->json([
             'redirect' => $this->redirectPath()

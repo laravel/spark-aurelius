@@ -47,6 +47,13 @@ trait ManagesAppOptions
     public static $usesRightToLeftTheme = false;
 
     /**
+     * Indicates that the user must verify email to have access.
+     *
+     * @var bool
+     */
+    public static $mustVerifyEmail = false;
+
+    /**
      * Where to redirect users after authentication.
      *
      * @return string
@@ -187,5 +194,25 @@ trait ManagesAppOptions
     public static function useRightToLeftTheme()
     {
         static::$usesRightToLeftTheme = true;
+    }
+
+    /**
+     * Determine if the user must verify his email.
+     *
+     * @return bool
+     */
+    public static function mustVerifyEmail()
+    {
+        return static::$mustVerifyEmail;
+    }
+
+    /**
+     * Indication that the user must verify his email.
+     *
+     * @return void
+     */
+    public static function ensureEmailIsVerified()
+    {
+        static::$mustVerifyEmail = true;
     }
 }

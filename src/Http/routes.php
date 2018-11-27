@@ -1,9 +1,6 @@
 <?php
 
-$router->group(['middleware' => 'web'], function ($router) {
-    // Terms Of Service...
-    $router->get('/terms', 'TermsController@show')->name('terms');
-
+$router->group(['middleware' => Laravel\Spark\Spark::mustVerifyEmail() ? ['web', 'verified'] : 'web'], function ($router) {
     // Customer Support...
     $router->post('/support/email', 'SupportController@sendEmail');
 
@@ -156,6 +153,11 @@ $router->group(['middleware' => 'web'], function ($router) {
     // Kiosk Impersonation...
     $router->get('/spark/kiosk/users/impersonate/{id}', 'Kiosk\ImpersonationController@impersonate');
     $router->get('/spark/kiosk/users/stop-impersonating', 'Kiosk\ImpersonationController@stopImpersonating');
+});
+
+$router->group(['middleware' => 'web'], function ($router) {
+    // Terms Of Service...
+    $router->get('/terms', 'TermsController@show')->name('terms');
 
     // Authentication...
     $router->get('/login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -178,6 +180,11 @@ $router->group(['middleware' => 'web'], function ($router) {
     $router->get('/password/reset/{token?}', 'Auth\PasswordController@showResetForm')->name('password.reset');
     $router->post('/password/email', 'Auth\PasswordController@sendResetLinkEmail');
     $router->post('/password/reset', 'Auth\PasswordController@reset');
+
+    // Email Verification
+    $router->get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
+    $router->get('email/verify/{id}', 'Auth\VerificationController@verify')->name('verification.verify');
+    $router->get('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
 });
 
 // Tax Rates...
