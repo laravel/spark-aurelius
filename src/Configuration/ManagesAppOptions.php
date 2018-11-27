@@ -40,18 +40,18 @@ trait ManagesAppOptions
     public static $minimumPasswordLength = 6;
 
     /**
-     * Indicates that the application should use the right-to-left theme.
-     *
-     * @var bool
-     */
-    public static $usesRightToLeftTheme = false;
-
-    /**
      * Indicates that the user must verify email to have access.
      *
      * @var bool
      */
     public static $mustVerifyEmail = false;
+
+    /**
+     * Indicates that the application should use the right-to-left theme.
+     *
+     * @var bool
+     */
+    public static $usesRightToLeftTheme = false;
 
     /**
      * Where to redirect users after authentication.
@@ -177,26 +177,6 @@ trait ManagesAppOptions
     }
 
     /**
-     * Determine if the application should use the right-to-left theme.
-     *
-     * @return bool
-     */
-    public static function usesRightToLeftTheme()
-    {
-        return static::$usesRightToLeftTheme;
-    }
-
-    /**
-     * Indication that the application should use the right-to-left theme.
-     *
-     * @return void
-     */
-    public static function useRightToLeftTheme()
-    {
-        static::$usesRightToLeftTheme = true;
-    }
-
-    /**
      * Determine if the user must verify his email.
      *
      * @return bool
@@ -214,5 +194,25 @@ trait ManagesAppOptions
     public static function ensureEmailIsVerified()
     {
         static::$mustVerifyEmail = true;
+    }
+
+    /**
+     * Determine if the application should use the right-to-left theme.
+     *
+     * @return bool
+     */
+    public static function usesRightToLeftTheme()
+    {
+        return static::$usesRightToLeftTheme;
+    }
+
+    /**
+     * Indication that the application should use the right-to-left theme.
+     *
+     * @return void
+     */
+    public static function useRightToLeftTheme()
+    {
+        static::$usesRightToLeftTheme = true;
     }
 }

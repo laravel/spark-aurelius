@@ -181,7 +181,7 @@ $router->group(['middleware' => 'web'], function ($router) {
     $router->post('/password/email', 'Auth\PasswordController@sendResetLinkEmail');
     $router->post('/password/reset', 'Auth\PasswordController@reset');
 
-    // Email Verification
+    // Email Verification...
     $router->get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
     $router->get('email/verify/{id}', 'Auth\VerificationController@verify')->name('verification.verify');
     $router->get('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
