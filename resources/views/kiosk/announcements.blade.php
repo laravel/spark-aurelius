@@ -103,13 +103,13 @@
                                 <div class="reveal-target text-right">
                                     <button class="btn-reset" @click="editAnnouncement(announcement)">
                                         <svg class="icon-20 icon-sidenav " xmlns="http://www.w3.org/2000/svg ">
-                                            <path fill="#95A2AE" d="M12.3 3.7L0 16v4h4L16.3 7.7l-4-4zm1.4-1.4L16 0l4 4-2.3 2.3-4-4z"/>
+                                            <path fill="#95A2AE" d="M12.3 3.7L0 16v4h4L16.3 7.7l-4-4zm1.4-1.4L16 0l4 4-2.3 2.3-4-4z"></path>
                                         </svg>
                                     </button>
 
                                     <button class="btn-reset" @click="approveAnnouncementDelete(announcement)">
                                         <svg class="icon-20 icon-sidenav " xmlns="http://www.w3.org/2000/svg ">
-                                            <path fill="#95A2AE " d="M4 2l2-2h4l2 2h4v2H0V2h4zM1 6h14l-1 14H2L1 6zm5 2v10h1V8H6zm3 0v10h1V8H9z " />
+                                            <path fill="#95A2AE " d="M4 2l2-2h4l2 2h4v2H0V2h4zM1 6h14l-1 14H2L1 6zm5 2v10h1V8H6zm3 0v10h1V8H9z"></path>
                                         </svg>
                                     </button>
                                 </div>
