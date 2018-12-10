@@ -19,7 +19,7 @@ class StripeWebhookController extends WebhookController
      * By default, this e-mails a copy of the invoice to the customer.
      *
      * @param  array  $payload
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     protected function handleInvoicePaymentSucceeded(array $payload)
     {
@@ -46,7 +46,7 @@ class StripeWebhookController extends WebhookController
      * Handle a successful invoice payment from a Stripe subscription.
      *
      * @param  array  $payload
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     protected function teamInvoicePaymentSucceeded(array $payload)
     {
@@ -73,7 +73,7 @@ class StripeWebhookController extends WebhookController
      * Handle a cancelled customer from a Stripe subscription.
      *
      * @param  array  $payload
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     protected function handleCustomerSubscriptionDeleted(array $payload)
     {
@@ -96,7 +96,7 @@ class StripeWebhookController extends WebhookController
      * Handle a cancelled customer from a Stripe subscription.
      *
      * @param  array  $payload
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     protected function teamSubscriptionDeleted(array $payload)
     {

@@ -23,10 +23,10 @@ class TeamMemberController extends Controller
     /**
      * Update the given team member.
      *
-     * @param  Request  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  \Laravel\Spark\Team  $team
      * @param  mixed  $member
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $team, $member)
     {
@@ -40,10 +40,10 @@ class TeamMemberController extends Controller
     /**
      * Remove the given team member from the team.
      *
-     * @param  RemoveTeamMemberRequest  $request
+     * @param  \Laravel\Spark\Http\Requests\Settings\Teams\RemoveTeamMemberRequest  $request
      * @param  \Laravel\Spark\Team  $team
      * @param  mixed  $member
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function destroy(RemoveTeamMemberRequest $request, $team, $member)
     {

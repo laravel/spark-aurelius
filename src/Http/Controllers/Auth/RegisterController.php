@@ -31,8 +31,8 @@ class RegisterController extends Controller
     /**
      * Show the application registration form.
      *
-     * @param  Request  $request
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function showRegistrationForm(Request $request)
     {
@@ -51,8 +51,8 @@ class RegisterController extends Controller
     /**
      * Handle a registration request for the application.
      *
-     * @param  RegisterRequest  $request
-     * @return Response
+     * @param  \Laravel\Spark\Contracts\Http\Requests\Auth\RegisterRequest  $request
+     * @return \Illuminate\Http\Response
      */
     public function register(RegisterRequest $request)
     {

@@ -13,7 +13,7 @@ class RedeemCouponController extends Controller
     /**
      * The coupon repository implementation.
      *
-     * @var CouponRepository
+     * @var \Laravel\Spark\Contracts\Repositories\CouponRepository
      */
     protected $coupons;
 
@@ -33,8 +33,8 @@ class RedeemCouponController extends Controller
     /**
      * Redeem the given coupon code.
      *
-     * @param  Request  $request
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function redeem(Request $request)
     {

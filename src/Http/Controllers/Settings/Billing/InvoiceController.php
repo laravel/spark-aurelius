@@ -21,8 +21,8 @@ class InvoiceController extends Controller
     /**
      * Get all of the invoices for the current user.
      *
-     * @param  Request  $request
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function all(Request $request)
     {
@@ -36,9 +36,9 @@ class InvoiceController extends Controller
     /**
      * Download the invoice with the given ID.
      *
-     * @param  Request  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  string  $id
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function download(Request $request, $id)
     {

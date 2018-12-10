@@ -12,14 +12,14 @@ class PerformanceIndicatorsController extends Controller
     /**
      * The performance indicators repository instance.
      *
-     * @var PerformanceIndicatorsRepository
+     * @var \Laravel\Spark\Contracts\Repositories\PerformanceIndicatorsRepository
      */
     protected $indicators;
 
     /**
      * Create a new controller instance.
      *
-     * @param  PerformanceIndicatorsRepository  $indicators
+     * @param  \Laravel\Spark\Contracts\Repositories\PerformanceIndicatorsRepository  $indicators
      * @return void
      */
     public function __construct(PerformanceIndicatorsRepository $indicators)
@@ -33,7 +33,7 @@ class PerformanceIndicatorsController extends Controller
     /**
      * Get the performance indicators for the application.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function all()
     {
@@ -47,7 +47,7 @@ class PerformanceIndicatorsController extends Controller
     /**
      * Get the revenue amounts for the application.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function revenue()
     {
@@ -61,7 +61,7 @@ class PerformanceIndicatorsController extends Controller
     /**
      * Get the subscriber counts by plan.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function subscribers()
     {
@@ -82,7 +82,7 @@ class PerformanceIndicatorsController extends Controller
     /**
      * Get the number of users or teams who are on a generic trial.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function trials()
     {

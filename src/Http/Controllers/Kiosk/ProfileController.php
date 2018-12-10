@@ -13,14 +13,14 @@ class ProfileController extends Controller
     /**
      * The performance indicators repository instance.
      *
-     * @var PerformanceIndicatorsRepository
+     * @var \Laravel\Spark\Contracts\Repositories\PerformanceIndicatorsRepository
      */
     protected $indicators;
 
     /**
      * Create a new controller instance.
      *
-     * @param  PerformanceIndicatorsRepository  $indicators
+     * @param  \Laravel\Spark\Contracts\Repositories\PerformanceIndicatorsRepository  $indicators
      * @return void
      */
     public function __construct(PerformanceIndicatorsRepository $indicators)
@@ -34,9 +34,9 @@ class ProfileController extends Controller
     /**
      * Get the user to be displayed on the user profile screen.
      *
-     * @param  Request  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  string  $id
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function show(Request $request, $id)
     {

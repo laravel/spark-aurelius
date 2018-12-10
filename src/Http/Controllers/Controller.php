@@ -16,7 +16,7 @@ class Controller extends BaseController
      *
      * This performs the common validate and handle flow of some interactions.
      *
-     * @param  Request  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  string  $interaction
      * @param  array  $parameters
      * @return void

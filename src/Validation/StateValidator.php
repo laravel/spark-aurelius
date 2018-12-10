@@ -9,14 +9,14 @@ class StateValidator
     /**
      * The state repository implementation.
      *
-     * @var StateRepository
+     * @var \Laravel\Spark\Contracts\Repositories\Geography\StateRepository
      */
     protected $states;
 
     /**
      * Create a new state validator instance.
      *
-     * @param  StateRepository  $states
+     * @param  \Laravel\Spark\Contracts\Repositories\Geography\StateRepository  $states
      * @return void
      */
     public function __construct(StateRepository $states)

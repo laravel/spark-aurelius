@@ -22,7 +22,7 @@ class MailedInvitationController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @param  TeamRepository  $teams
+     * @param  \Laravel\Spark\Contracts\Repositories\TeamRepository  $teams
      * @return void
      */
     public function __construct(TeamRepository $teams)
@@ -35,9 +35,9 @@ class MailedInvitationController extends Controller
     /**
      * Get all of the mailed invitations for the given team.
      *
-     * @param  Request  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  \Laravel\Spark\Team  $team
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function all(Request $request, $team)
     {
@@ -49,9 +49,9 @@ class MailedInvitationController extends Controller
     /**
      * Create a new invitation.
      *
-     * @param  CreateInvitationRequest  $request
+     * @param  \Laravel\Spark\Http\Requests\Settings\Teams\CreateInvitationRequest  $request
      * @param  \Laravel\Spark\Team  $team
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function store(CreateInvitationRequest $request, $team)
     {
@@ -61,9 +61,9 @@ class MailedInvitationController extends Controller
     /**
      * Cancel / delete the given invitation.
      *
-     * @param  Request  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  \Laravel\Spark\Invitation  $invitation
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, Invitation $invitation)
     {

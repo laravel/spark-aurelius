@@ -19,7 +19,7 @@ class DashboardController extends Controller
     /**
      * Show the settings dashboard.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function show()
     {

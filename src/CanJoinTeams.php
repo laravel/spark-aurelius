@@ -155,7 +155,7 @@ trait CanJoinTeams
     /**
      * Refresh the current team for the user.
      *
-     * @return  \Laravel\Spark\Team
+     * @return \Laravel\Spark\Team
      */
     public function refreshCurrentTeam()
     {

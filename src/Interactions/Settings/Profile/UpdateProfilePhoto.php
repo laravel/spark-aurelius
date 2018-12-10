@@ -12,14 +12,14 @@ class UpdateProfilePhoto implements Contract
     /**
      * The image manager instance.
      *
-     * @var ImageManager
+     * @var \Intervention\Image\ImageManager
      */
     protected $images;
 
     /**
      * Create a new interaction instance.
      *
-     * @param  ImageManager  $images
+     * @param  \Intervention\Image\ImageManager  $images
      * @return void
      */
     public function __construct(ImageManager $images)

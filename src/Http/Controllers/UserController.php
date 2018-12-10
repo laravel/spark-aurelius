@@ -24,7 +24,7 @@ class UserController extends Controller
     /**
      * Get the current user of the application.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function current()
     {
@@ -34,8 +34,8 @@ class UserController extends Controller
     /**
      * Update the last read announcements timestamp.
      *
-     * @param  Request  $request
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function updateLastReadAnnouncementsTimestamp(Request $request)
     {

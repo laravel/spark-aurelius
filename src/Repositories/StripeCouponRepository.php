@@ -63,8 +63,8 @@ class StripeCouponRepository implements CouponRepository
     /**
      * Convert the given Stripe coupon into a Coupon instance.
      *
-     * @param  StripeCoupon  $coupon
-     * @return Coupon
+     * @param  \Stripe\Coupon  $coupon
+     * @return \Laravel\Spark\Coupon
      */
     protected function toCoupon($coupon)
     {

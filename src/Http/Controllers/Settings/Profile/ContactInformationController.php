@@ -21,8 +21,8 @@ class ContactInformationController extends Controller
     /**
      * Update the user's contact information settings.
      *
-     * @param  Request  $request
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
     {

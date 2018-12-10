@@ -9,14 +9,14 @@ class AnnouncementCreated
     /**
      * The announcement instance.
      *
-     * @var Announcement
+     * @var \Laravel\Spark\Announcement
      */
     public $announcement;
 
     /**
      * Create a new event instance.
      *
-     * @param  Announcement  $announcement
+     * @param  \Laravel\Spark\Announcement  $announcement
      * @return void
      */
     public function __construct(Announcement $announcement)

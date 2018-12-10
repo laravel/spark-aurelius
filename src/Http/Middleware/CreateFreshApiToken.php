@@ -12,14 +12,14 @@ class CreateFreshApiToken
     /**
      * The token repository implementation.
      *
-     * @var  TokenRepository
+     * @var \Laravel\Spark\Contracts\Repositories\TokenRepository
      */
     protected $tokens;
 
     /**
      * Create a new middleware instance.
      *
-     * @param  TokenRepository  $tokens
+     * @param  \Laravel\Spark\Contracts\Repositories\TokenRepository  $tokens
      * @return void
      */
     public function __construct(TokenRepository $tokens)

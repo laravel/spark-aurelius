@@ -24,9 +24,9 @@ class ImpersonationController extends Controller
     /**
      * Impersonate the given user.
      *
-     * @param  Request  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  string  $userId
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function impersonate(Request $request, $userId)
     {
@@ -47,8 +47,8 @@ class ImpersonationController extends Controller
     /**
      * Stop impersonating and switch back to primary account.
      *
-     * @param  Request  $request
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function stopImpersonating(Request $request)
     {
