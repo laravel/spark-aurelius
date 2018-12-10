@@ -118,11 +118,7 @@
                     @endif
 
                     <!-- Membership -->
-                    @if (Auth::user()->ownsTeam($team))
-                    <div role="tabcard" class="tab-pane" id="membership">
-                    @else
-                    <div role="tabcard" class="tab-pane active" id="membership">
-                    @endif
+                    <div role="tabcard" class="tab-pane {{ Auth::user()->ownsTeam($team) ? 'active' : '' }}" id="membership">
                         <div v-if="team">
                             @include('spark::settings.teams.team-membership')
                         </div>
