@@ -59,7 +59,7 @@
             border-radius: 4px;
             color: white;
             cursor: pointer;
-            font-family: 'Open Sans';
+            font-family: 'Open Sans', sans-serif;
             font-size: 14px;
             font-weight: 600;
             padding: 15px;
