@@ -70,7 +70,7 @@
                             @{{ plan.type == 'team' && spark.chargesTeamsPerSeat ? '/ '+ spark.teamSeatName : '' }}
                             @{{ plan.type == 'team' && spark.chargesTeamsPerMember ? '/ '+ __('teams.member') : '' }}
                             / @{{ __(plan.interval) | capitalize }}
-                        </div>
+                        </span>
                     </td>
 
                     <!-- Trial Days -->
