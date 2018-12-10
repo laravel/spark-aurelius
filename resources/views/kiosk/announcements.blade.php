@@ -81,7 +81,7 @@
                         <tr class="reveal" v-for="announcement in announcements">
                             <!-- Photo -->
                             <td>
-                                <img :src="announcement.creator.photo_url" class="spark-profile-photo">
+                                <img :src="announcement.creator.photo_url" class="spark-profile-photo" alt="{{__('Creator Photo')}}" />
                             </td>
 
                             <!-- Date -->

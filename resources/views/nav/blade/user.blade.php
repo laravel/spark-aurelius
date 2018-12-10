@@ -21,7 +21,7 @@
                     <!-- User Photo / Name -->
                     <a href="#" class="d-block d-md-flex text-center nav-link dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
-                        <img src="{{ Auth::user()->photo_url }}" class="dropdown-toggle-image spark-nav-profile-photo">
+                        <img src="{{ Auth::user()->photo_url }}" class="dropdown-toggle-image spark-nav-profile-photo" alt="{{__('User Photo')}}" />
                         <span class="d-none d-md-block">{{ auth()->user()->name }}</span>
                     </a>
 

@@ -50,7 +50,7 @@
                             <tr v-for="searchUser in searchResults">
                                 <!-- Profile Photo -->
                                 <td>
-                                    <img :src="searchUser.photo_url" class="spark-profile-photo">
+                                    <img :src="searchUser.photo_url" class="spark-profile-photo" alt="{{__('User Photo')}}" />
                                 </td>
 
                                 <!-- Name -->

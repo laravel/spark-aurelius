@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="intro mt-5">
                 <div class="intro-img">
-                    <img src="{{asset('/img/create-team.svg')}}" class="h-90">
+                    <img src="{{asset('/img/create-team.svg')}}" class="h-90" alt="{{__('Create Team')}}" />
                 </div>
                 <h4>
                     {{__('teams.wheres_your_team')}}

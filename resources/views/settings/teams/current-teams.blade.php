@@ -16,7 +16,7 @@
                         <tr  v-for="team in teams">
                             <!-- Photo -->
                             <td>
-                                <img :src="team.photo_url" class="spark-profile-photo">
+                                <img :src="team.photo_url" class="spark-profile-photo" alt="{{__('Team Photo')}}" />
                             </td>
 
                             <!-- Team Name -->
