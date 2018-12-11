@@ -1,5 +1,9 @@
 # Change Log
 
+### Version 7.1.1
+
+- Various bug fixes.
+
 ### Version 7.1.0
 
 - Support for Laravel 5.7 email verification.
