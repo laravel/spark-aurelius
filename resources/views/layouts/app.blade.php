@@ -16,7 +16,7 @@
     <link href="{{ mix(Spark::usesRightToLeftTheme() ? 'css/app-rtl.css' : 'css/app.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
-    @yield('scripts', '')
+    @stack('scripts')
 
     <!-- Global Spark Object -->
     <script>
