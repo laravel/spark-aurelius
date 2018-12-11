@@ -11,7 +11,7 @@ module.exports = {
 
 
     /**
-     * The componetn's data.
+     * The component's data.
      */
     data() {
         return {

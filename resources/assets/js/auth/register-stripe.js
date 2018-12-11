@@ -234,7 +234,7 @@ module.exports = {
         /**
          * Get the current billing address from the register form.
          *
-         * This used primarily for wathcing.
+         * This used primarily for watching.
          */
         currentBillingAddress() {
             return this.registerForm.address +
