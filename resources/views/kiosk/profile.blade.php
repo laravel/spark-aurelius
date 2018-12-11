@@ -27,7 +27,7 @@
                             <div class="row">
                                 <!-- Profile Photo -->
                                 <div class="col-md-3 text-center">
-                                    <img :src="profile.photo_url" class="spark-profile-photo-xl">
+                                    <img :src="profile.photo_url" class="spark-profile-photo-xl" alt="{{__('Profile Photo')}}" />
                                 </div>
 
                                 <div class="col-md-9">
@@ -97,7 +97,7 @@
                                     <tr v-for="team in profile.owned_teams">
                                         <!-- Photo -->
                                         <td>
-                                            <img :src="team.photo_url" class="spark-profile-photo">
+                                            <img :src="team.photo_url" class="spark-profile-photo" alt="{{__('Team Photo')}}" />
                                         </td>
 
                                         <!-- Team Name -->

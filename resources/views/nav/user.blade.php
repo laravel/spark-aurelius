@@ -46,7 +46,7 @@
                     <li class="nav-item dropdown">
                         <a href="#" class="d-block d-md-flex text-center nav-link dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
-                            <img :src="user.photo_url" class="dropdown-toggle-image spark-nav-profile-photo">
+                            <img :src="user.photo_url" class="dropdown-toggle-image spark-nav-profile-photo" alt="{{__('User Photo')}}" />
                             <span class="d-none d-md-block">@{{ user.name }}</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
