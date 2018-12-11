@@ -33,7 +33,7 @@ class AnnouncementController extends Controller
     /**
      * Get all of the application's recent announcements.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function all()
     {
@@ -43,8 +43,8 @@ class AnnouncementController extends Controller
     /**
      * Create a new announcement.
      *
-     * @param  Request  $request
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -62,9 +62,9 @@ class AnnouncementController extends Controller
     /**
      * Update the given announcement.
      *
-     * @param  Request  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  string  $id
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
@@ -83,7 +83,7 @@ class AnnouncementController extends Controller
      * Delete the announcement with the given ID.
      *
      * @param  string  $id
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {

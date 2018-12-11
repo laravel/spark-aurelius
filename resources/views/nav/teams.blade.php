@@ -16,7 +16,7 @@
         </span>
 
         <span v-else>
-            <img :src="team.photo_url" class="spark-profile-photo-xs"><i class="fa fa-btn"></i> @{{ team.name }}
+            <img :src="team.photo_url" class="spark-profile-photo-xs" alt="{{__('Team Photo')}}" /><i class="fa fa-btn"></i> @{{ team.name }}
         </span>
     </a>
 @endif

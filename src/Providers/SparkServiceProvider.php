@@ -90,6 +90,8 @@ class SparkServiceProvider extends ServiceProvider
 
             $this->defineAssetPublishing();
 
+            $this->defineLanguagePublishing();
+
             $this->defineFullPublishing();
         }
     }
@@ -123,6 +125,18 @@ class SparkServiceProvider extends ServiceProvider
     }
 
     /**
+     * Define the language publishing configuration.
+     *
+     * @return void
+     */
+    public function defineLanguagePublishing()
+    {
+        $this->publishes([
+            SPARK_PATH.'/install-stubs/resources/lang' => resource_path('lang'),
+        ], 'spark-lang');
+    }
+
+    /**
      * Define the "full" publishing configuration.
      *
      * @return void
@@ -133,6 +147,7 @@ class SparkServiceProvider extends ServiceProvider
             SPARK_PATH.'/resources/views' => resource_path('views/vendor/spark'),
             SPARK_PATH.'/resources/assets/js' => resource_path('assets/js/spark'),
             SPARK_PATH.'/resources/assets/sass' => resource_path('assets/sass/spark'),
+            SPARK_PATH.'/install-stubs/resources/lang' => resource_path('lang'),
         ], 'spark-full');
     }
 

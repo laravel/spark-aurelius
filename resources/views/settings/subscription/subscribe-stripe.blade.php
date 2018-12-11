@@ -18,13 +18,34 @@
                 <form role="form">
                     <!-- Payment Method -->
                     <div class="form-group row" v-if="hasPaymentMethod()">
-                        <label for="use_exiting_payment_method" class="col-md-4 col-form-label text-md-right">{{__('Payment Method')}}</label>
+                        <label for="use_existing_payment_method" class="col-md-4 col-form-label text-md-right">{{__('Payment Method')}}</label>
 
                         <div class="col-md-6">
-                            <select name="use_exiting_payment_method" v-model="form.use_exiting_payment_method" id="use_exiting_payment_method" class="form-control">
+                            <select name="use_existing_payment_method" v-model="form.use_existing_payment_method" id="use_existing_payment_method" class="form-control">
                                 <option value="1">{{__('Use existing payment method')}}</option>
                                 <option value="0">{{__('Use a different method')}}</option>
                             </select>
+                        </div>
+                    </div>
+
+                    <!-- Cardholder's Name -->
+                    <div class="form-group row" v-show="form.use_existing_payment_method != '1'">
+                        <label for="name" class="col-md-4 col-form-label text-md-right">{{__('Cardholder\'s Name')}}</label>
+
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" name="name" v-model="cardForm.name">
+                        </div>
+                    </div>
+
+                    <!-- Card Details -->
+                    <div class="form-group row" v-show="form.use_existing_payment_method != '1'">
+                        <label for="name" class="col-md-4 col-form-label text-md-right">{{__('Card')}}</label>
+
+                        <div class="col-md-6">
+                            <div id="subscription-card-element"></div>
+                            <span class="invalid-feedback" v-show="cardForm.errors.has('card')">
+                                @{{ cardForm.errors.get('card') }}
+                            </span>
                         </div>
                     </div>
 
@@ -33,26 +54,12 @@
                         @include('spark::settings.subscription.subscribe-address')
                     @endif
 
-                    <div v-show="form.use_exiting_payment_method != '1'">
-                        <!-- Cardholder's Name -->
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{__('Cardholder\'s Name')}}</label>
+                    <!-- ZIP Code -->
+                    <div class="form-group row" v-if=" ! spark.collectsBillingAddress">
+                        <label for="number" class="col-md-4 col-form-label text-md-right">{{__('ZIP / Postal Code')}}</label>
 
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="name" v-model="cardForm.name">
-                            </div>
-                        </div>
-
-                        <!-- Card Details -->
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{__('Card')}}</label>
-
-                            <div class="col-md-6">
-                                <div id="card-element"></div>
-                                <span class="invalid-feedback" v-show="cardForm.errors.has('card')">
-                                    @{{ cardForm.errors.get('card') }}
-                                </span>
-                            </div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" name="zip" v-model="form.zip">
                         </div>
                     </div>
 

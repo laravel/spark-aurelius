@@ -2,9 +2,9 @@
 
 @section('content')
 <div class="container">
-    <!-- Application Dashboard -->
+    <!-- Terms of Service -->
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-lg-8">
             <div class="card card-default">
                 <div class="card-header">{{__('Terms Of Service')}}</div>
 

@@ -31,7 +31,7 @@ module.exports = {
                 this.billable.subscriptions,
                 subscription => subscription.name == 'default'
             );
-
+            
             if (typeof subscription !== 'undefined') {
                 return subscription;
             }
@@ -77,10 +77,6 @@ module.exports = {
          * Check if the user can invite more team members.
          */
         canInviteMoreTeamMembers() {
-            if (Spark.chargesTeamsPerMember && !this.activePlan) {
-                return false;
-            }
-
             if (! this.hasTeamMembersLimit) {
                 return true;
             }

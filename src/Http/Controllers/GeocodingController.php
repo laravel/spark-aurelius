@@ -12,8 +12,8 @@ class GeocodingController extends Controller
     /**
      * Attempt to gather the current user's country via Geocoding.
      *
-     * @param  Request  $request
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function country(Request $request)
     {
@@ -34,7 +34,7 @@ class GeocodingController extends Controller
      * Get the states / provinces for a given country code.
      *
      * @param  string  $country
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function states($country)
     {

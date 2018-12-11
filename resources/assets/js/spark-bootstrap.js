@@ -6,7 +6,6 @@ window.axios = require('axios');
 window._ = require('lodash');
 window.moment = require('moment');
 window.Promise = require('promise');
-window.Cookies = require('js-cookie');
 window.Popper = require('popper.js').default;
 window.__ = (key, replace) => {
     var translation = Spark.translations[key] ? Spark.translations[key] : key;

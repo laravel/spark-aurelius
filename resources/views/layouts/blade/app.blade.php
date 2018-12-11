@@ -11,19 +11,17 @@
 
     <!-- Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600' rel='stylesheet' type='text/css'>
-    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
 
     <!-- CSS -->
-    <link href="{{ Spark::usesRightToLeftTheme() ? 'css/app-rtl.css' : 'css/app.css' }}" rel="stylesheet">
+    <link href="{{ mix(Spark::usesRightToLeftTheme() ? 'css/app-rtl.css' : 'css/app.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
     @yield('scripts', '')
 
     <!-- Global Spark Object -->
     <script>
-        window.Spark = <?php echo json_encode(array_merge(
-            Spark::scriptVariables(), []
-        )); ?>;
+        window.Spark = @json(array_merge(Spark::scriptVariables(), []));
     </script>
 </head>
 <body class="with-navbar">
@@ -36,10 +34,12 @@
         @endif
 
         <!-- Main Content -->
-        @yield('content')
+        <main class="py-4">
+            @yield('content')
+        </main>
 
         <!-- JavaScript -->
-        <script src="/js/app.js"></script>
+        <script src="{{ mix('js/app.js') }}"></script>
     </div>
 </body>
 </html>

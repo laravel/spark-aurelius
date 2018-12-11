@@ -12,14 +12,14 @@ class SparkChannel
     /**
      * The notifications repository implementation.
      *
-     * @var NotificationRepository
+     * @var \Laravel\Spark\Contracts\Repositories\NotificationRepository
      */
     private $notifications;
 
     /**
      * Create a new spark channel instance.
      *
-     * @param  NotificationRepository  $notifications
+     * @param  \Laravel\Spark\Contracts\Repositories\NotificationRepository  $notifications
      * @return void
      */
     public function __construct(NotificationRepository $notifications)
@@ -31,7 +31,7 @@ class SparkChannel
      * Send the given notification.
      *
      * @param  mixed  $notifiable
-     * @param  Notification  $notification
+     * @param  \Illuminate\Notifications\Notification  $notification
      * @return void
      */
     public function send($notifiable, Notification $notification)
@@ -53,7 +53,7 @@ class SparkChannel
      * Get the data for the notification.
      *
      * @param  mixed  $notifiable
-     * @param  Notification  $notification
+     * @param  \Illuminate\Notifications\Notification  $notification
      * @return array
      *
      * @throws RuntimeException

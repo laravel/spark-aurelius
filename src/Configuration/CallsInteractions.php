@@ -2,7 +2,6 @@
 
 namespace Laravel\Spark\Configuration;
 
-use Closure;
 use Illuminate\Support\Str;
 use Laravel\Spark\Contracts\Interactions\CheckPlanEligibility;
 use Laravel\Spark\Contracts\Interactions\CheckTeamPlanEligibility;
@@ -111,6 +110,29 @@ trait CallsInteractions
     }
 
     /**
+     * Register a callback to create new teams.
+     *
+     * @param  mixed  $callback
+     * @return void
+     */
+    public static function createTeamsWith($callback)
+    {
+        return static::swap('CreateTeam@handle', $callback);
+    }
+
+    /**
+     * Register a callback to provide the rules for new teams.
+     *
+     * @param  mixed  $callback
+     * @return void
+     */
+    public static function validateTeamsWith($callback)
+    {
+        return static::swap('CreateTeam@rules', $callback);
+    }
+
+
+    /**
      * Set a callback to be used to check plan eligibility.
      *
      * @param  \Closure  $callback
@@ -139,7 +161,7 @@ trait CallsInteractions
      * @param  \Closure  $callback
      * @return void
      */
-    public static function checkTeamPlanEligibilityUsing(Closure $callback)
+    public static function checkTeamPlanEligibilityUsing($callback)
     {
         static::swap('CheckTeamPlanEligibility@handle', $callback);
     }

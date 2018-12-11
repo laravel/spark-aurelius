@@ -1,9 +1,6 @@
 <?php
 
-$router->group(['middleware' => 'web'], function ($router) {
-    // Terms Of Service...
-    $router->get('/terms', 'TermsController@show')->name('terms');
-
+$router->group(['middleware' => Laravel\Spark\Spark::mustVerifyEmail() ? ['web', 'verified'] : 'web'], function ($router) {
     // Customer Support...
     $router->post('/support/email', 'SupportController@sendEmail');
 
@@ -34,28 +31,27 @@ $router->group(['middleware' => 'web'], function ($router) {
 
         // General Settings...
         $router->get('/settings/'.Spark::teamsPrefix().'/roles', 'Settings\Teams\TeamMemberRoleController@all');
-        $router->get('/settings/'.Spark::teamsPrefix().'/{team}', 'Settings\Teams\DashboardController@show')->name('settings.team');
-
-        $router->get('/settings/'.Spark::teamsPrefix(), 'TeamController@all');
         $router->get('/settings/'.Spark::teamsPrefix().'/current', 'TeamController@current');
         $router->get('/settings/'.Spark::teamsPrefix().'/json/{team_id}', 'TeamController@show');
-        $router->post('/settings/'.Spark::teamsPrefix(), 'Settings\Teams\TeamController@store');
+
+        $router->get('/settings/'.Spark::teamsPrefix().'/{team}', 'Settings\Teams\DashboardController@show')->name('settings.team');
         $router->post('/settings/'.Spark::teamsPrefix().'/{team}/photo', 'Settings\Teams\TeamPhotoController@update');
         $router->put('/settings/'.Spark::teamsPrefix().'/{team}/name', 'Settings\Teams\TeamNameController@update');
-
-        // Invitations...
         $router->get('/settings/'.Spark::teamsPrefix().'/{team}/invitations', 'Settings\Teams\MailedInvitationController@all');
         $router->post('/settings/'.Spark::teamsPrefix().'/{team}/invitations', 'Settings\Teams\MailedInvitationController@store');
+        $router->put('/settings/'.Spark::teamsPrefix().'/{team}/members/{team_member}', 'Settings\Teams\TeamMemberController@update');
+        $router->delete('/settings/'.Spark::teamsPrefix().'/{team}/members/{team_member}', 'Settings\Teams\TeamMemberController@destroy');
+        $router->delete('/settings/'.Spark::teamsPrefix().'/{team}', 'Settings\Teams\TeamController@destroy');
+        $router->get('/settings/'.Spark::teamsPrefix().'/{team}/switch', 'TeamController@switchCurrentTeam');
+
+        $router->get('/settings/'.Spark::teamsPrefix(), 'TeamController@all');
+        $router->post('/settings/'.Spark::teamsPrefix(), 'Settings\Teams\TeamController@store');
+
         $router->get('/settings/invitations/pending', 'Settings\Teams\PendingInvitationController@all');
         $router->get('/invitations/{invitation}', 'InvitationController@show');
         $router->post('/settings/invitations/{invitation}/accept', 'Settings\Teams\PendingInvitationController@accept');
         $router->post('/settings/invitations/{invitation}/reject', 'Settings\Teams\PendingInvitationController@reject');
         $router->delete('/settings/invitations/{invitation}', 'Settings\Teams\MailedInvitationController@destroy');
-
-        $router->put('/settings/'.Spark::teamsPrefix().'/{team}/members/{team_member}', 'Settings\Teams\TeamMemberController@update');
-        $router->delete('/settings/'.Spark::teamsPrefix().'/{team}/members/{team_member}', 'Settings\Teams\TeamMemberController@destroy');
-        $router->delete('/settings/'.Spark::teamsPrefix().'/{team}', 'Settings\Teams\TeamController@destroy');
-        $router->get('/settings/'.Spark::teamsPrefix().'/{team}/switch', 'TeamController@switchCurrentTeam');
 
         // Billing
 
@@ -157,6 +153,11 @@ $router->group(['middleware' => 'web'], function ($router) {
     // Kiosk Impersonation...
     $router->get('/spark/kiosk/users/impersonate/{id}', 'Kiosk\ImpersonationController@impersonate');
     $router->get('/spark/kiosk/users/stop-impersonating', 'Kiosk\ImpersonationController@stopImpersonating');
+});
+
+$router->group(['middleware' => 'web'], function ($router) {
+    // Terms Of Service...
+    $router->get('/terms', 'TermsController@show')->name('terms');
 
     // Authentication...
     $router->get('/login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -179,6 +180,11 @@ $router->group(['middleware' => 'web'], function ($router) {
     $router->get('/password/reset/{token?}', 'Auth\PasswordController@showResetForm')->name('password.reset');
     $router->post('/password/email', 'Auth\PasswordController@sendResetLinkEmail');
     $router->post('/password/reset', 'Auth\PasswordController@reset');
+
+    // Email Verification...
+    $router->get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
+    $router->get('email/verify/{id}', 'Auth\VerificationController@verify')->name('verification.verify');
+    $router->get('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
 });
 
 // Tax Rates...

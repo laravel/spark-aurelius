@@ -10,8 +10,8 @@ class SupportController extends Controller
     /**
      * Send a customer support request e-mail.
      *
-     * @param  Request  $request
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function sendEmail(Request $request)
     {

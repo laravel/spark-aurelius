@@ -13,8 +13,8 @@ class CreateTeamUsersTable extends Migration
     public function up()
     {
         Schema::create('team_users', function (Blueprint $table) {
-            $table->integer('team_id');
-            $table->integer('user_id');
+            $table->unsignedInteger('team_id');
+            $table->unsignedInteger('user_id');
             $table->string('role', 20);
 
             $table->unique(['team_id', 'user_id']);

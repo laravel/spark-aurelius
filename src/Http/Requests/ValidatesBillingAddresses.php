@@ -54,7 +54,8 @@ trait ValidatesBillingAddresses
      */
     protected function validateLocation($validator)
     {
-        if (! app(StripeService::class)->tokenIsForCountry($this->stripe_token, $this->country)) {
+        if ($this->stripe_token &&
+            ! app(StripeService::class)->tokenIsForCountry($this->stripe_token, $this->country)) {
             $validator->errors()->add(
                 'country', __('This country does not match the origin country of your card.')
             );

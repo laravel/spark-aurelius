@@ -23,9 +23,9 @@ class VatIdController extends Controller
     /**
      * Update the VAT ID for the team.
      *
-     * @param  Request  $request
-     * @param  Team  $team
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Laravel\Spark\Team  $team
+     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Team $team)
     {

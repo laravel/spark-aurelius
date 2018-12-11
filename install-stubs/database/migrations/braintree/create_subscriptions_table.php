@@ -12,9 +12,9 @@ class CreateSubscriptionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('subscriptions', function ($table) {
+        Schema::create('subscriptions', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
+            $table->unsignedInteger('user_id');
             $table->string('name');
             $table->string('braintree_id');
             $table->string('braintree_plan');
@@ -24,9 +24,9 @@ class CreateSubscriptionsTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('team_subscriptions', function ($table) {
+        Schema::create('team_subscriptions', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('team_id');
+            $table->unsignedInteger('team_id');
             $table->string('name');
             $table->string('braintree_id');
             $table->string('braintree_plan');

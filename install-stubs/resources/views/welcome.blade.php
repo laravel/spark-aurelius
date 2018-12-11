@@ -59,7 +59,7 @@
             border-radius: 4px;
             color: white;
             cursor: pointer;
-            font-family: 'Open Sans';
+            font-family: 'Open Sans', sans-serif;
             font-size: 14px;
             font-weight: 600;
             padding: 15px;
@@ -86,7 +86,7 @@
 
         <div class="flex-fill flex-center">
             <h1 class="text-center">
-                <img src="/img/color-logo.png">
+                <img src="/img/color-logo.png" alt="{{__('Logo')}}" />
             </h1>
         </div>
     </div>

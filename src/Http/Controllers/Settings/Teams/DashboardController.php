@@ -20,9 +20,9 @@ class DashboardController extends Controller
     /**
      * Show the team settings dashboard.
      *
-     * @param  Request  $request
-     * @param  Team  $team
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Laravel\Spark\Team  $team
+     * @return \Illuminate\Http\Response
      */
     public function show(Request $request, $team)
     {

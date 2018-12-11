@@ -19,8 +19,8 @@ class BraintreeWebhookController extends WebhookController
      *
      * By default, this e-mails a copy of the invoice to the customer.
      *
-     * @param  WebhookNotification  $webhook
-     * @return Response
+     * @param  \Braintree\WebhookNotification  $webhook
+     * @return \Illuminate\Http\Response
      */
     protected function handleSubscriptionChargedSuccessfully($webhook)
     {
@@ -44,8 +44,8 @@ class BraintreeWebhookController extends WebhookController
     /**
      * Handle a successful invoice payment from a Braintree subscription.
      *
-     * @param  WebhookNotification  $webhook
-     * @return Response
+     * @param  \Braintree\WebhookNotification  $webhook
+     * @return \Illuminate\Http\Response
      */
     protected function teamSubscriptionChargedSuccessfully($webhook)
     {
@@ -72,7 +72,7 @@ class BraintreeWebhookController extends WebhookController
      * Handle a subscription cancellation notification from Braintree.
      *
      * @param  string  $subscriptionId
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     protected function cancelSubscription($subscriptionId)
     {
@@ -93,7 +93,7 @@ class BraintreeWebhookController extends WebhookController
      * Handle a subscription cancellation notification from Braintree.
      *
      * @param  string  $subscriptionId
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     protected function cancelTeamSubscription($subscriptionId)
     {

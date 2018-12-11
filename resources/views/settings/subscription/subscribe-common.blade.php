@@ -57,7 +57,7 @@
                     <!-- Plan Features Button -->
                     <td>
                         <button class="btn btn-default" @click="showPlanDetails(plan)">
-                            {{__('Features')}}
+                            <i class="fa fa-btn fa-star-o"></i> {{__('Features')}}
                         </button>
                     </td>
 
@@ -70,7 +70,7 @@
                             @{{ plan.type == 'team' && spark.chargesTeamsPerSeat ? '/ '+ spark.teamSeatName : '' }}
                             @{{ plan.type == 'team' && spark.chargesTeamsPerMember ? '/ '+ __('teams.member') : '' }}
                             / @{{ __(plan.interval) | capitalize }}
-                        </div>
+                        </span>
                     </td>
 
                     <!-- Trial Days -->

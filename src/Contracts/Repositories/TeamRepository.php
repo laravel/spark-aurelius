@@ -10,7 +10,7 @@ interface TeamRepository
      * Get the team matching the given ID.
      *
      * @param  string|int  $id
-     * @return Team
+     * @return \Laravel\Spark\Team
      */
     public function find($id);
 
@@ -27,7 +27,7 @@ interface TeamRepository
      *
      * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
      * @param  array  $data
-     * @return Team
+     * @return \Laravel\Spark\Team
      */
     public function create($user, array $data);
 

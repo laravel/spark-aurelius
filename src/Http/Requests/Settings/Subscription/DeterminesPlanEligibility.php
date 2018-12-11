@@ -104,7 +104,7 @@ trait DeterminesPlanEligibility
     {
         try {
             if (! Spark::eligibleForPlan($this->user(), $plan)) {
-                $validator->errors()->add('plan', 'You are not eligible for this plan.');
+                $validator->errors()->add('plan', __('You are not eligible for this plan.'));
             }
         } catch (IneligibleForPlan $e) {
             $validator->errors()->add('plan', $e->getMessage());

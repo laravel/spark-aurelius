@@ -64,6 +64,6 @@ class InstallCommand extends Command
     {
         $composer = json_decode(file_get_contents(base_path('composer.json')), true);
 
-        return isset($composer['require']['laravel/spark']);
+        return isset($composer['require']['laravel/spark-aurelius']);
     }
 }

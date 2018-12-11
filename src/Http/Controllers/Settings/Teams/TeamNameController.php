@@ -20,9 +20,9 @@ class TeamNameController extends Controller
     /**
      * Update the given team's name.
      *
-     * @param  Request  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  \Laravel\Spark\Team  $team
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $team)
     {

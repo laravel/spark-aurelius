@@ -77,7 +77,17 @@ trait Billable
      */
     public function addSeat($count = 1, $subscription = 'default')
     {
-        $subscription = $this->subscription($subscription);
+        if (! $subscription = $this->subscription($subscription)) {
+            return;
+        }
+
+        if ($subscription->onGracePeriod()) {
+            $subscription->update([
+                'quantity' => $subscription->quantity + $count
+            ]);
+
+            return;
+        }
 
         if (Spark::prorates()) {
             $subscription->incrementQuantity($count);
@@ -95,7 +105,17 @@ trait Billable
      */
     public function removeSeat($count = 1, $subscription = 'default')
     {
-        $subscription = $this->subscription($subscription);
+        if (! $subscription = $this->subscription($subscription)) {
+            return;
+        }
+
+        if ($subscription->onGracePeriod()) {
+            $subscription->update([
+                'quantity' => max(1, $subscription->quantity - $count)
+            ]);
+
+            return;
+        }
 
         if (Spark::prorates()) {
             $subscription->decrementQuantity($count);
@@ -113,7 +133,17 @@ trait Billable
      */
     public function updateSeats($count, $subscription = 'default')
     {
-        $subscription = $this->subscription($subscription);
+        if (! $subscription = $this->subscription($subscription)) {
+            return;
+        }
+
+        if ($subscription->onGracePeriod()) {
+            $subscription->update([
+                'quantity' => $count
+            ]);
+
+            return;
+        }
 
         if (Spark::prorates()) {
             $subscription->updateQuantity($count);
@@ -155,8 +185,14 @@ trait Billable
 
         $vatCalculator->setBusinessCountryCode(Spark::homeCountry());
 
-        return $vatCalculator->getTaxRateForCountry(
-            $this->card_country, ! empty($this->vat_id)
+        try {
+            $isValidVAT = ! empty($this->vat_id) && $vatCalculator->isValidVATNumber($this->vat_id);
+        } catch (VatCalculator\Exceptions\VATCheckUnavailableException $e) {
+            $isValidVAT = false;
+        }
+
+        return $vatCalculator->getTaxRateForLocation(
+            $this->billing_country, $this->billing_zip, $isValidVAT
         ) * 100;
     }
 }

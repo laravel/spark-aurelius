@@ -24,6 +24,16 @@ module.exports = {
     },
 
 
+    computed: {
+        /**
+         * Get the URL for leaving a team.
+         */
+        urlForLeaving() {
+            return `/settings/${Spark.teamsPrefix}/${this.leavingTeam.id}/members/${this.user.id}`;
+        }
+    },
+
+
     methods: {
         /**
          * Approve leaving the given team.
@@ -70,16 +80,6 @@ module.exports = {
 
                     $('#modal-delete-team').modal('hide');
                 });
-        }
-    },
-
-
-    computed: {
-        /**
-         * Get the URL for leaving a team.
-         */
-        urlForLeaving() {
-            return `/settings/${Spark.teamsPrefix}/${this.leavingTeam.id}/members/${this.user.id}`;
         }
     }
 };

@@ -14,8 +14,8 @@ class CreateInvitationsTable extends Migration
     {
         Schema::create('invitations', function (Blueprint $table) {
             $table->string('id')->primary();
-            $table->integer('team_id')->index();
-            $table->integer('user_id')->nullable()->index();
+            $table->unsignedInteger('team_id')->index();
+            $table->unsignedInteger('user_id')->nullable()->index();
             $table->string('role')->nullable();
             $table->string('email');
             $table->string('token', 40)->unique();

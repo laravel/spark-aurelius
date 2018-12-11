@@ -40,6 +40,13 @@ trait ManagesAppOptions
     public static $minimumPasswordLength = 6;
 
     /**
+     * Indicates that the user must verify email to have access.
+     *
+     * @var bool
+     */
+    public static $mustVerifyEmail = false;
+
+    /**
      * Indicates that the application should use the right-to-left theme.
      *
      * @var bool
@@ -59,6 +66,7 @@ trait ManagesAppOptions
     /**
      * Set the path to redirect to after authentication.
      *
+     * @param  string $path
      * @return void
      */
     public static function afterLoginRedirectTo($path)
@@ -166,6 +174,26 @@ trait ManagesAppOptions
 
             return new static;
         }
+    }
+
+    /**
+     * Determine if the user must verify his email.
+     *
+     * @return bool
+     */
+    public static function mustVerifyEmail()
+    {
+        return static::$mustVerifyEmail;
+    }
+
+    /**
+     * Indication that the user must verify his email.
+     *
+     * @return void
+     */
+    public static function ensureEmailIsVerified()
+    {
+        static::$mustVerifyEmail = true;
     }
 
     /**

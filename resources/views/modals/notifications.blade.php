@@ -38,7 +38,7 @@
 
                                 <!-- Notification Icon -->
                                 <figure>
-                                    <img v-if="notification.creator" :src="notification.creator.photo_url" class="spark-profile-photo">
+                                    <img v-if="notification.creator" :src="notification.creator.photo_url" class="spark-profile-photo" alt="{{__('Creator Photo')}}" />
 
                                     <span v-else class="fa-stack fa-2x">
                                         <i class="fa fa-circle fa-stack-2x"></i>
@@ -81,7 +81,7 @@
 
                                 <!-- Notification Icon -->
                                 <figure>
-                                    <img :src="announcement.creator.photo_url" class="spark-profile-photo">
+                                    <img :src="announcement.creator.photo_url" class="spark-profile-photo" alt="{{__('Creator Photo')}}" />
                                 </figure>
 
                                 <!-- Announcement -->

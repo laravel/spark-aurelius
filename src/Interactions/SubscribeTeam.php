@@ -49,6 +49,10 @@ class SubscribeTeam implements Contract
             );
         }
 
+        if (Spark::chargesTeamsPerMember() || Spark::chargesTeamsPerSeat()) {
+            $subscription->quantity(Spark::teamSeatsCount($team));
+        }
+
         // Here we will create the actual subscription on the service and fire off the event
         // letting other listeners know a team has subscribed, which will allow any hooks
         // to fire that need to send the subscription data to any external metrics app.

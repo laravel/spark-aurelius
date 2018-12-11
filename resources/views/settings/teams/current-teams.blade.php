@@ -16,7 +16,7 @@
                         <tr  v-for="team in teams">
                             <!-- Photo -->
                             <td>
-                                <img :src="team.photo_url" class="spark-profile-photo">
+                                <img :src="team.photo_url" class="spark-profile-photo" alt="{{__('Team Photo')}}" />
                             </td>
 
                             <!-- Team Name -->
@@ -48,7 +48,7 @@
                                 </a>
 
                                 <button class="btn btn-outline-warning" @click="approveLeavingTeam(team)"
-                                        data-toggle="tooltip" title="Leave Team"
+                                        data-toggle="tooltip" title="{{__('teams.leave_team')}}"
                                         v-if="user.id !== team.owner_id">
                                     <i class="fa fa-sign-out"></i>
                                 </button>

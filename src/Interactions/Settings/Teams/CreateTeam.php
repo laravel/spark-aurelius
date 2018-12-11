@@ -16,11 +16,9 @@ class CreateTeam implements Contract
      */
     public function validator($user, array $data)
     {
-        $validator = Validator::make($data, [
-            'name' => 'required',
-        ]);
+        $validator = Validator::make($data, Spark::call(static::class.'@rules'));
 
-        $validator->sometimes('slug', 'required|alpha_dash|unique:teams,slug', function () {
+        $validator->sometimes('slug', 'required|alpha_dash|max:255|unique:teams,slug', function () {
             return Spark::teamsIdentifiedByPath();
         });
 
@@ -49,10 +47,22 @@ class CreateTeam implements Contract
         }
 
         if ($plan->teams <= $user->ownedTeams()->count()) {
-            $validator->errors()->add('name',
-                __('teams.please_upgrade_to_create_more_teams')
+            $validator->errors()->add(
+                'name', __('teams.please_upgrade_to_create_more_teams')
             );
         }
+    }
+
+    /**
+     * Get the basic validation rules for creating a new team.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        return [
+            'name' => 'required|max:255',
+        ];
     }
 
     /**

@@ -126,6 +126,16 @@ trait CanJoinTeams
     }
 
     /**
+     * Determine if the user owns the current team.
+     *
+     * @return bool
+     */
+    public function ownsCurrentTeam()
+    {
+        return $this->currentTeam() && $this->currentTeam()->owner_id == $this->id;
+    }
+
+    /**
      * Switch the current team for the user.
      *
      * @param  \Laravel\Spark\Team  $team
@@ -145,7 +155,7 @@ trait CanJoinTeams
     /**
      * Refresh the current team for the user.
      *
-     * @return  \Laravel\Spark\Team
+     * @return \Laravel\Spark\Team
      */
     public function refreshCurrentTeam()
     {

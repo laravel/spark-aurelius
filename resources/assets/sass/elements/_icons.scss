@@ -6,17 +6,17 @@
 }
 
 .fill-gray {
-  fill: #95a2ae;
+  fill: $gray-500;
 }
 
 .radio-select {
   display: inline-block;
-  background-image: url('../../img/radio-select-default.svg');
+  background-image: url('../img/radio-select-default.svg');
   height: 28px;
   width: 28px;
   cursor: pointer;
 }
 
 .radio-select-selected {
-  background-image: url('../../img/radio-select-is-selected.svg');
+  background-image: url('../img/radio-select-is-selected.svg');
 }

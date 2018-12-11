@@ -24,7 +24,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label text-md-right">{{__('Type')}}</label>
 
-                                <div class="col-sm-8">
+                                <div class="col-sm-8 pt-2">
                                     <div class="radio">
                                         <label>
                                             <input type="radio" value="amount" v-model="form.type">&nbsp;&nbsp;{{__('Amount')}}
@@ -64,7 +64,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label text-md-right">{{__('Duration')}}</label>
 
-                                <div class="col-sm-8">
+                                <div class="col-sm-8 pt-2">
                                     <div class="radio">
                                         <label>
                                             <input type="radio" value="once" v-model="form.duration">&nbsp;&nbsp;{{__('Once')}}

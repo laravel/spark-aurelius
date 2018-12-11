@@ -13,7 +13,7 @@
 
             <!-- Billing Information -->
             <div class="row justify-content-center" v-show="selectedPlan && selectedPlan.price > 0">
-                <div class="col-md-8">
+                <div class="col-lg-8">
                     <div class="card card-default">
                         <div class="card-header"><i class="fa fa-btn fa-credit-card"></i> {{__('Billing')}}</div>
 

@@ -15,7 +15,7 @@ class UpdateOwnerSubscriptionQuantity
      */
     public function handle($event)
     {
-        if (! Spark::chargesUsersPerTeam()) {
+        if (! Spark::chargesUsersPerTeam() || ! $event->team->owner->subscription()) {
             return;
         }
 

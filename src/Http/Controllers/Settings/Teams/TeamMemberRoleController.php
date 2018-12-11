@@ -20,7 +20,7 @@ class TeamMemberRoleController extends Controller
     /**
      * Get the available team member roles.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function all()
     {

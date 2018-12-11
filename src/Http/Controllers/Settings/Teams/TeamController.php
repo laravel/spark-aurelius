@@ -24,8 +24,8 @@ class TeamController extends Controller
     /**
      * Create a new team.
      *
-     * @param  Request  $request
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -41,9 +41,9 @@ class TeamController extends Controller
     /**
      * Delete the given team.
      *
-     * @param  Request  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  \Laravel\Spark\Team  $team
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, $team)
     {

@@ -27,9 +27,9 @@ class PlanController extends Controller
     /**
      * Create the subscription for the team.
      *
-     * @param  CreateSubscriptionRequest  $request
-     * @param  Team  $team
-     * @return Response
+     * @param  \Laravel\Spark\Contracts\Http\Requests\Settings\Teams\Subscription\CreateSubscriptionRequest  $request
+     * @param  \Laravel\Spark\Team  $team
+     * @return \Illuminate\Http\Response
      */
     public function store(CreateSubscriptionRequest $request, Team $team)
     {
@@ -41,9 +41,9 @@ class PlanController extends Controller
     /**
      * Update the subscription for the team.
      *
-     * @param  UpdateSubscriptionRequest  $request
-     * @param  Team  $team
-     * @return Response
+     * @param  \Laravel\Spark\Http\Requests\Settings\Teams\Subscription\UpdateSubscriptionRequest  $request
+     * @param  \Laravel\Spark\Team  $team
+     * @return \Illuminate\Http\Response
      */
     public function update(UpdateSubscriptionRequest $request, Team $team)
     {
@@ -56,6 +56,12 @@ class PlanController extends Controller
             return $this->destroy($request, $team);
         } else {
             $subscription = $team->subscription();
+
+            if (Spark::chargesTeamsPerMember() || Spark::chargesTeamsPerSeat()) {
+                $subscription->forceFill([
+                    'quantity' => Spark::teamSeatsCount($team)
+                ])->save();
+            }
 
             if (Spark::prorates()) {
                 $subscription->swap($request->plan);
@@ -72,9 +78,9 @@ class PlanController extends Controller
     /**
      * Cancel the team's subscription.
      *
-     * @param  Request  $request
-     * @param  Team  $team
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Laravel\Spark\Team  $team
+     * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, Team $team)
     {

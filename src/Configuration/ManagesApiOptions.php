@@ -28,6 +28,13 @@ trait ManagesApiOptions
     public static $tokenDefaults = [];
 
     /**
+     * Indicates if Spark should unserializes cookies.
+     *
+     * @var bool
+     */
+    public static $unserializesCookies = false;
+
+    /**
      * Determines if the application is exposing an API.
      *
      * @return bool
@@ -69,8 +76,7 @@ trait ManagesApiOptions
     /**
      * Get the default token abilities to "check" in the UI.
      *
-     * @param  array  $defaults
-     * @return array|null
+     * @return array
      */
     public static function tokenDefaults()
     {
@@ -81,10 +87,20 @@ trait ManagesApiOptions
      * Set the default token abilities to "check" in the UI.
      *
      * @param  array  $defaults
-     * @return array|null
+     * @return void
      */
     public static function byDefaultTokensCan(array $defaults)
     {
         static::$tokenDefaults = $defaults;
+    }
+
+    /**
+     * Instruct Spark to enable cookie serialization.
+     *
+     * @return void
+     */
+    public static function withCookieSerialization()
+    {
+        static::$unserializesCookies = true;
     }
 }

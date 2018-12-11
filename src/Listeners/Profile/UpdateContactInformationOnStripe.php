@@ -11,14 +11,35 @@ class UpdateContactInformationOnStripe
      */
     public function handle($event)
     {
-        if (! $event->user->hasBillingProvider()) {
-            return;
+        if ($event->user->hasBillingProvider()) {
+            $customer = $event->user->asStripeCustomer();
+
+            $customer->email = $event->user->email;
+
+            $customer->save();
         }
 
-        $customer = $event->user->asStripeCustomer();
+        if (isset($event->user->ownedTeams)) {
+            $this->updateForTeams($event->user);
+        }
+    }
 
-        $customer->email = $event->user->email;
+    /**
+     * Update contact information for owned teams.
+     *
+     * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
+     * @return void
+     */
+    private function updateForTeams($user)
+    {
+        foreach ($user->ownedTeams as $team) {
+            if ($team->hasBillingProvider()) {
+                $customer = $team->asStripeCustomer();
 
-        $customer->save();
+                $customer->email = $user->email;
+
+                $customer->save();
+            }
+        }
     }
 }

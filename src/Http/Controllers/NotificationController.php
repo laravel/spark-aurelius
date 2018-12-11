@@ -12,22 +12,22 @@ class NotificationController extends Controller
     /**
      * The announcements repository.
      *
-     * @var AnnouncementRepository
+     * @var \Laravel\Spark\Contracts\Repositories\AnnouncementRepository
      */
     protected $announcements;
 
     /**
      * The notifications repository.
      *
-     * @var NotificationRepository
+     * @var \Laravel\Spark\Contracts\Repositories\NotificationRepository
      */
     protected $notifications;
 
     /**
      * Create a new controller instance.
      *
-     * @param  AnnouncementRepository  $announcements
-     * @param  NotificationRepository  $notifications
+     * @param  \Laravel\Spark\Contracts\Repositories\AnnouncementRepository  $announcements
+     * @param  \Laravel\Spark\Contracts\Repositories\NotificationRepository  $notifications
      * @return void
      */
     public function __construct(AnnouncementRepository $announcements,
@@ -42,8 +42,8 @@ class NotificationController extends Controller
     /**
      * Get the recent notifications and announcements for the user.
      *
-     * @param  Request  $request
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function recent(Request $request)
     {
@@ -56,8 +56,8 @@ class NotificationController extends Controller
     /**
      * Mark the given notifications as read.
      *
-     * @param  Request  $request
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function markAsRead(Request $request)
     {

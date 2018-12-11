@@ -20,7 +20,7 @@ class DashboardController extends Controller
     /**
      * Show the kiosk dashboard.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function show()
     {

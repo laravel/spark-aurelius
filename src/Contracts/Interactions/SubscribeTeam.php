@@ -9,7 +9,7 @@ interface SubscribeTeam
      *
      * @param  \Laravel\Spark\Team  $team
      * @param  \Laravel\Spark\Plan  $plan
-     * @param  bool $fromRegistration
+     * @param  bool  $fromRegistration
      * @param  array  $data
      * @return \Laravel\Spark\Team
      */

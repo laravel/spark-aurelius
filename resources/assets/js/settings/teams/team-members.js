@@ -29,6 +29,24 @@ module.exports = {
     },
 
 
+    computed: {
+        /**
+         * Get the URL for updating a team member.
+         */
+        urlForUpdating: function () {
+            return `/settings/${Spark.teamsPrefix}/${this.team.id}/members/${this.updatingTeamMember.id}`;
+        },
+
+
+        /**
+         * Get the URL for deleting a team member.
+         */
+        urlForDeleting() {
+            return `/settings/${Spark.teamsPrefix}/${this.team.id}/members/${this.deletingTeamMember.id}`;
+        },
+    },
+
+
     methods: {
         /**
          * Get the available team member roles.
@@ -121,24 +139,6 @@ module.exports = {
             if (typeof role !== 'undefined') {
                 return role.text;
             }
-        }
-    },
-
-
-    computed: {
-        /**
-         * Get the URL for updating a team member.
-         */
-        urlForUpdating: function () {
-            return `/settings/${Spark.teamsPrefix}/${this.team.id}/members/${this.updatingTeamMember.id}`;
-        },
-
-
-        /**
-         * Get the URL for deleting a team member.
-         */
-        urlForDeleting() {
-            return `/settings/${Spark.teamsPrefix}/${this.team.id}/members/${this.deletingTeamMember.id}`;
         }
     }
 };

@@ -14,7 +14,7 @@ interface UpdateTeamPhoto
     public function validator($team, array $data);
 
     /**
-     * Update the teams's photo.
+     * Update the team's photo.
      *
      * @param  \Laravel\Spark\Team  $team
      * @param  array  $data

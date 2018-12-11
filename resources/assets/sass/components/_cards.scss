@@ -1,31 +1,27 @@
 // Cards
 // -------------------------------------------------------------------------- */
-.card{
+.card {
   margin-bottom: 2rem;
-}
 
-.card-default {
-  background-color: #f5f8f9;
   box-shadow: 0 2px 3px rgba($black, 0.16);
-  border-radius: 5px;
   .card-header {
-    background-color: $white;
     padding: 1rem 1.25rem;
+    // font-weight: 500;
+    // color: $gray-700;
   }
   .card-footer {
+    border-top: 1px solid $gray-300;
     background-color: transparent;
-    border-top: 1px solid #cddadf;
   }
 }
 
 .card-header:first-child {
-  border-radius: 5px;
+  border-radius: $card-border-radius;
 }
 
 .card-title {
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 300;
-  color: #252d34;
 }
 
 .card-flush {
@@ -51,13 +47,11 @@
 }
 
 .intro-headline {
-  color: #424c55;
   font-size: 1.25rem;
   font-weight: 300;
 }
 
 .intro-copy {
-  color: #424c55;
 }
 
 .intro-btn {

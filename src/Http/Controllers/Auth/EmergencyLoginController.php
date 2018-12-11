@@ -29,8 +29,8 @@ class EmergencyLoginController extends Controller
     /**
      * Show the form to login via the emergency token.
      *
-     * @param  Request  $request
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function showLoginForm(Request $request)
     {
@@ -42,8 +42,8 @@ class EmergencyLoginController extends Controller
     /**
      * Login via the emergency token.
      *
-     * @param  Request  $request
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function login(Request $request)
     {

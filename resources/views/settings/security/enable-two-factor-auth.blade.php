@@ -5,13 +5,13 @@
         <div class="card-body">
             <!-- Information Message -->
             <div class="alert alert-info">
-                {{__('In order to use two-factor authentication, you must install the :authyLink application on your smartphone. Authy is available for iOS and Android.', ['authyLink' => '<strong><a href="https://authy.com" target="_blank">Authy</a></strong>'])}}
+                {!! __('In order to use two-factor authentication, you must install the :authyLink application on your smartphone. Authy is available for iOS and Android.', ['authyLink' => '<strong><a href="https://authy.com" target="_blank">Authy</a></strong>']) !!}
             </div>
 
             <form role="form">
                 <!-- Country Code -->
                 <div class="form-group row">
-                    <label class="col-md-4 col-form-label">{{__('Country Code')}}</label>
+                    <label class="col-md-4 col-form-label text-md-right">{{__('Country Code')}}</label>
 
                     <div class="col-md-6">
                         <input type="number" class="form-control" name="country_code" v-model="form.country_code" :class="{'is-invalid': form.errors.has('country_code')}">
@@ -24,7 +24,7 @@
 
                 <!-- Phone Number -->
                 <div class="form-group row">
-                    <label class="col-md-4 col-form-label">{{__('Phone Number')}}</label>
+                    <label class="col-md-4 col-form-label text-md-right">{{__('Phone Number')}}</label>
 
                     <div class="col-md-6">
                         <input type="tel" class="form-control" name="phone" v-model="form.phone" :class="{'is-invalid': form.errors.has('phone')}">

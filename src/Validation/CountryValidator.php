@@ -9,14 +9,14 @@ class CountryValidator
     /**
      * The country repository implementation.
      *
-     * @var CountryRepository
+     * @var \Laravel\Spark\Contracts\Repositories\Geography\CountryRepository
      */
     protected $countries;
 
     /**
      * Create a new country validator instance.
      *
-     * @param  CountryRepository  $countries
+     * @param  \Laravel\Spark\Contracts\Repositories\Geography\CountryRepository  $countries
      * @return void
      */
     public function __construct(CountryRepository $countries)

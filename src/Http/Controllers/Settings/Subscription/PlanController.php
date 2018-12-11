@@ -26,8 +26,8 @@ class PlanController extends Controller
     /**
      * Create the subscription for the user.
      *
-     * @param  CreateSubscriptionRequest  $request
-     * @return Response
+     * @param  \Laravel\Spark\Contracts\Http\Requests\Settings\Subscription\CreateSubscriptionRequest  $request
+     * @return \Illuminate\Http\Response
      */
     public function store(CreateSubscriptionRequest $request)
     {
@@ -42,7 +42,7 @@ class PlanController extends Controller
      * Update the subscription for the user.
      *
      * @param  \Laravel\Spark\Http\Requests\Settings\Subscription\UpdateSubscriptionRequest  $request
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function update(UpdateSubscriptionRequest $request)
     {
@@ -55,6 +55,12 @@ class PlanController extends Controller
             return $this->destroy($request);
         } else {
             $subscription = $request->user()->subscription();
+
+            if (Spark::chargesUsersPerTeam() || Spark::chargesUsersPerSeat()) {
+                $subscription->forceFill([
+                    'quantity' => Spark::seatsCount($request->user())
+                ])->save();
+            }
 
             if (Spark::prorates()) {
                 $subscription->swap($request->plan);
@@ -71,8 +77,8 @@ class PlanController extends Controller
     /**
      * Cancel the user's subscription.
      *
-     * @param  Request  $request
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request)
     {

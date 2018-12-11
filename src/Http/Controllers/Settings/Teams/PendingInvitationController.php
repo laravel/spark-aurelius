@@ -23,8 +23,8 @@ class PendingInvitationController extends Controller
     /**
      * Get all of the pending invitations for the user.
      *
-     * @param  Request  $request
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function all(Request $request)
     {
@@ -34,16 +34,16 @@ class PendingInvitationController extends Controller
     /**
      * Accept the given invitations.
      *
-     * @param  Request  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  \Laravel\Spark\Invitation  $invitation
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function accept(Request $request, Invitation $invitation)
     {
         abort_unless($request->user()->id == $invitation->user_id, 404);
 
         Spark::interact(AddTeamMember::class, [
-            $invitation->team, $request->user()
+            $invitation->team, $request->user(), $invitation->role
         ]);
 
         $invitation->delete();
@@ -52,9 +52,9 @@ class PendingInvitationController extends Controller
     /**
      * Reject the given invitations.
      *
-     * @param  Request  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  \Laravel\Spark\Invitation  $invitation
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function reject(Request $request, Invitation $invitation)
     {

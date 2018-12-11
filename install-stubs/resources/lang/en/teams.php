@@ -5,6 +5,7 @@ return [
     "team_name" => " Team Name",
     "team_slug" => "Team Slug",
     "team_members" => "Team Members",
+    "team_trial" => "Team Trial",
     "member" => " Member",
     "you_have_x_teams_remaining" => "You currently have :teamCount teams remaining.",
     "slug_input_explanation" => "This slug is used to identify your team in URLs.",

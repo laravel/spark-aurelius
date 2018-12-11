@@ -94,7 +94,7 @@ class UserRepository implements UserRepositoryContract
     public function updateBillingAddress($user, array $data)
     {
         $user->forceFill([
-            'card_country' => array_get($data, 'card_country'),
+            'card_country' => array_get($data, 'card_country', $user->card_country),
             'billing_address' => array_get($data, 'address'),
             'billing_address_line_2' => array_get($data, 'address_line_2'),
             'billing_city' => array_get($data, 'city'),

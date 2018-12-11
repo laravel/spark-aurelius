@@ -1,54 +1,41 @@
 <!-- NavBar For Authenticated Users -->
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-light navbar-expand-md navbar-spark">
     <div class="container" v-if="user">
-        <div class="navbar-header">
-            <!-- Collapsed Hamburger -->
-            <div class="hamburger">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#spark-navbar-collapse">
-                    <span class="sr-only">{{__('Toggle Navigation')}}</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
+        <!-- Branding Image -->
+        @include('spark::nav.brand')
 
-            <!-- Branding Image -->
-            <a class="navbar-brand" href="/home">
-                <!-- Spark -->
-                <img src="/img/mono-logo.png" style="height: 32px;">
-            </a>
-        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-        <div class="collapse navbar-collapse" id="spark-navbar-collapse">
+        <div id="navbarSupportedContent" class="collapse navbar-collapse">
             <!-- Left Side Of Navbar -->
-            <ul class="nav navbar-nav">
+            <ul class="navbar-nav mr-auto">
                 @includeIf('spark::nav.user-left')
             </ul>
 
             <!-- Right Side Of Navbar -->
-            <ul class="nav navbar-nav navbar-right">
-                @includeIf('spark::nav.user-right')
-
-                <li class="dropdown">
+            <ul class="navbar-nav ml-4">
+                <li class="nav-item dropdown">
                     <!-- User Photo / Name -->
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                        <img src="{{ Auth::user()->photo_url }}" class="spark-nav-profile-photo m-r-xs">
-                        <span class="caret"></span>
+                    <a href="#" class="d-block d-md-flex text-center nav-link dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        <img src="{{ Auth::user()->photo_url }}" class="dropdown-toggle-image spark-nav-profile-photo" alt="{{__('User Photo')}}" />
+                        <span class="d-none d-md-block">{{ auth()->user()->name }}</span>
                     </a>
 
-                    <ul class="dropdown-menu" role="menu">
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                         <!-- Impersonation -->
                         @if (session('spark:impersonator'))
-                            <li class="dropdown-header">{{__('Impersonation')}}</li>
+                            <h6 class="dropdown-header">{{__('Impersonation')}}</h6>
 
                             <!-- Stop Impersonating -->
-                            <li>
-                                <a href="/spark/kiosk/users/stop-impersonating">
-                                    <i class="fa fa-fw text-left fa-btn fa-user-secret"></i> {{__('Back To My Account')}}
-                                </a>
-                            </li>
+                            <a class="dropdown-item" href="/spark/kiosk/users/stop-impersonating">
+                                <i class="fa fa-fw text-left fa-btn fa-user-secret"></i> {{__('Back To My Account')}}
+                            </a>
 
-                            <li class="divider"></li>
+                            <div class="dropdown-divider"></div>
                         @endif
 
                         <!-- Developer -->
@@ -60,29 +47,25 @@
                         @include('spark::nav.subscriptions')
 
                         <!-- Settings -->
-                        <li class="dropdown-header">{{__('Settings')}}</li>
+                        <h6 class="dropdown-header">{{__('Settings')}}</h6>
 
                         <!-- Your Settings -->
-                        <li>
-                            <a href="/settings">
-                                <i class="fa fa-fw text-left fa-btn fa-cog"></i> {{__('Your Settings')}}
-                            </a>
-                        </li>
+                        <a class="dropdown-item" href="/settings">
+                            <i class="fa fa-fw text-left fa-btn fa-cog"></i> {{__('Your Settings')}}
+                        </a>
 
                         @if (Spark::usesTeams() && (Spark::createsAdditionalTeams() || Spark::showsTeamSwitcher()))
                             <!-- Team Settings -->
                             @include('spark::nav.blade.teams')
                         @endif
 
-                        <li class="divider"></li>
+                        <div class="dropdown-divider"></div>
 
                         <!-- Logout -->
-                        <li>
-                            <a href="/logout">
-                                <i class="fa fa-fw text-left fa-btn fa-sign-out"></i> {{__('Logout')}}
-                            </a>
-                        </li>
-                    </ul>
+                        <a class="dropdown-item" href="/logout">
+                            <i class="fa fa-fw text-left fa-btn fa-sign-out"></i> {{__('Logout')}}
+                        </a>
+                    </div>
                 </li>
             </ul>
         </div>

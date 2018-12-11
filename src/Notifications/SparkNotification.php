@@ -81,7 +81,7 @@ class SparkNotification
     /**
      * Set the message author.
      *
-     * @param  SparkUser  $from
+     * @param  \Laravel\Spark\User  $from
      * @return $this
      */
     public function from(SparkUser $from)

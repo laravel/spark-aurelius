@@ -21,9 +21,9 @@ class TeamPhotoController extends Controller
     /**
      * Update the given team's photo.
      *
-     * @param  UpdateTeamPhotoRequest  $request
+     * @param  \Laravel\Spark\Http\Requests\Settings\Teams\UpdateTeamPhotoRequest  $request
      * @param  \Laravel\Spark\Team  $team
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function update(UpdateTeamPhotoRequest $request, $team)
     {

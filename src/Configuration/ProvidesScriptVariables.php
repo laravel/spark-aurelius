@@ -18,9 +18,9 @@ trait ProvidesScriptVariables
     public static function scriptVariables()
     {
         return [
-            'translations' => (array) json_decode(file_get_contents(resource_path('lang/'.app()->getLocale().'.json'))) + ['teams.team' => trans('teams.team'), 'teams.member' => trans('teams.member')],
+            'translations' => static::getTranslations() + ['teams.team' => trans('teams.team'), 'teams.member' => trans('teams.member')],
             'braintreeMerchantId' => config('services.braintree.merchant_id'),
-            'braintreeToken' => Spark::billsUsingBraintree() ? BraintreeClientToken::generate() : null,
+            'braintreeToken' => Spark::needsBraintreeToken(request()) && Spark::billsUsingBraintree() ? BraintreeClientToken::generate() : null,
             'cardUpFront' => Spark::needsCardUpFront(),
             'collectsBillingAddress' => Spark::collectsBillingAddress(),
             'collectsEuropeanVat' => Spark::collectsEuropeanVat(),
@@ -32,6 +32,7 @@ trait ProvidesScriptVariables
             'state' => Spark::call(InitialFrontendState::class.'@forUser', [Auth::user()]),
             'stripeKey' => config('services.stripe.key'),
             'teamsPrefix' => Spark::teamsPrefix(),
+            'teamsIdentifiedByPath' => Spark::teamsIdentifiedByPath(),
             'userId' => Auth::id(),
             'usesApi' => Spark::usesApi(),
             'usesBraintree' => Spark::billsUsingBraintree(),
@@ -44,5 +45,21 @@ trait ProvidesScriptVariables
             'chargesUsersPerTeam' => Spark::chargesUsersPerTeam(),
             'chargesTeamsPerMember' => Spark::chargesTeamsPerMember(),
         ];
+    }
+
+    /**
+     * Get the translation keys from file.
+     *
+     * @return array
+     */
+    private static function getTranslations()
+    {
+        $translationFile = resource_path('lang/'.app()->getLocale().'.json');
+
+        if (! is_readable($translationFile)) {
+            $translationFile = resource_path('lang/'.app('translator')->getFallback().'.json');
+        }
+
+        return json_decode(file_get_contents($translationFile), true);
     }
 }

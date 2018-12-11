@@ -43,7 +43,7 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         if ($request->filled('remember')) {
-            $request->session()->put('spark:auth-remember', $request->remember);
+            $request->session()->put('spark:auth:remember', $request->remember);
         }
 
         $user = Spark::user()->where('email', $request->email)->first();
@@ -58,9 +58,9 @@ class LoginController extends Controller
     /**
      * Handle a successful authentication attempt.
      *
-     * @param  Request  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function authenticated(Request $request, $user)
     {
@@ -74,9 +74,9 @@ class LoginController extends Controller
     /**
      * Redirect the user for two-factor authentication.
      *
-     * @param  Request  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     protected function redirectForTwoFactorAuth(Request $request, $user)
     {
@@ -87,7 +87,6 @@ class LoginController extends Controller
         // be able to get it back out and log in the correct user after verification.
         $request->session()->put([
             'spark:auth:id' => $user->id,
-            'spark:auth:remember' => $request->remember,
         ]);
 
         return redirect('login/token');
@@ -96,8 +95,8 @@ class LoginController extends Controller
     /**
      * Show the two-factor authentication token form.
      *
-     * @param  Request  $request
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function showTokenForm(Request $request)
     {
@@ -108,8 +107,8 @@ class LoginController extends Controller
     /**
      * Verify the given authentication token.
      *
-     * @param  Request  $request
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function verifyToken(Request $request)
     {

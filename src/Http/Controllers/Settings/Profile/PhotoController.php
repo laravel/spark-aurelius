@@ -21,8 +21,8 @@ class PhotoController extends Controller
     /**
      * Store the user's profile photo.
      *
-     * @param  Request  $request
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {

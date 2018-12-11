@@ -1,9 +1,11 @@
 // Form Controls
 // -------------------------------------------------------------------------- */
 .form-control {
-  box-shadow: 0 1px 2px #dde4e7;
-  font-size: 0.9375rem;
-  padding: 0.35rem 0.75rem;
+  box-shadow: 0 1px 2px $gray-200;
+
+  &::placeholder {
+    color: $gray-300;
+  }
 }
 
 .col-form-label {
@@ -12,7 +14,7 @@
 
 .form-check-label {
   font-size: 0.9375rem;
-  color: #424c55;
+  color: $gray-800;
 }
 
 .form-check-input {
@@ -20,12 +22,16 @@
 }
 
 .StripeElement {
-  box-shadow: 0 1px 2px #dde4e7;
-  background-color: white;
-  height: 40px;
-  padding: 10px 12px;
-  border-radius: 0.25rem;
-  border: 1px solid #ced4da;
-  font-size: 0.9375rem;
-  color: #495057;
+  @extend .form-control;
+
+  padding: 9px 12px;
+
+  &--focus {
+    border-color: $input-focus-border-color;
+    box-shadow: $input-focus-box-shadow;
+  }
+
+  &--invalid {
+    border-color: $red;
+  }
 }

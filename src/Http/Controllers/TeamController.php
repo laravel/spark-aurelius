@@ -21,8 +21,8 @@ class TeamController extends Controller
     /**
      * Get all of the teams for the current user.
      *
-     * @param  Request  $request
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function all(Request $request)
     {
@@ -34,8 +34,8 @@ class TeamController extends Controller
     /**
      * Get the current team for the user.
      *
-     * @param  Request  $request
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function current(Request $request)
     {
@@ -49,9 +49,9 @@ class TeamController extends Controller
     /**
      * Get the team matching the given ID.
      *
-     * @param  Request  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  string  $teamId
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function show(Request $request, $teamId)
     {
@@ -71,9 +71,9 @@ class TeamController extends Controller
     /**
      * Switch the current team the user is viewing.
      *
-     * @param  Request  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  \Laravel\Spark\Team  $team
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function switchCurrentTeam(Request $request, $team)
     {

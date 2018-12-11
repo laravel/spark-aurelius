@@ -1,5 +1,5 @@
 <div class="row justify-content-center">
-    <div class="col-md-8">
+    <div class="col-lg-8">
         <!-- Coupon -->
         <div class="alert alert-success" v-if="coupon">
             <?php echo __('The coupon :value discount will be applied to your subscription!', ['value' => '{{ discount }}']); ?>
@@ -23,8 +23,8 @@
 </div>
 
 <!-- Plan Selection -->
-<div class="row justify-content-center" v-if="paidPlans.length > 0">
-    <div class="col-md-8">
+<div class="row justify-content-center" v-if="paidPlans.length > 0 && !registerForm.invitation">
+    <div class="col-lg-8">
         <div class="card card-default">
             <div class="card-header">
                 <div class="float-left" :class="{'btn-table-align': hasMonthlyAndYearlyPlans}">
@@ -84,7 +84,7 @@
                             <!-- Plan Features Button -->
                             <td>
                                 <button class="btn btn-default" @click="showPlanDetails(plan)">
-                                {{__('Features')}}
+                                    <i class="fa fa-btn fa-star-o"></i> {{__('Features')}}
                                 </button>
                             </td>
 
@@ -106,7 +106,7 @@
 
                             <!-- Trial Days -->
                             <td class="table-plan-price table-plane-text text-right">
-                                <span v-if="plan.trialDays && ! hasSubscribed(plan)">
+                                <span v-if="plan.trialDays">
                                     <?php echo __(':trialDays Day Trial', ['trialDays' => '{{ plan.trialDays }}']); ?>
                                 </span>
                             </td>
@@ -120,7 +120,7 @@
 
 <!-- Basic Profile -->
 <div class="row justify-content-center">
-    <div class="col-md-8">
+    <div class="col-lg-8">
         <div class="card card-default">
             <div class="card-header">
                 <span v-if="paidPlans.length > 0">

@@ -9,7 +9,7 @@ class TermsController extends Controller
     /**
      * Show the terms of service for the application.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function show()
     {

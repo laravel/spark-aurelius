@@ -12,14 +12,14 @@ class UpdateTeamPhoto implements Contract
     /**
      * The image manager instance.
      *
-     * @var ImageManager
+     * @var \Intervention\Image\ImageManager
      */
     protected $images;
 
     /**
      * Create a new interaction instance.
      *
-     * @param  ImageManager  $images
+     * @param  \Intervention\Image\ImageManager  $images
      * @return void
      */
     public function __construct(ImageManager $images)
@@ -48,7 +48,7 @@ class UpdateTeamPhoto implements Contract
 
         // We will store the profile photos on the "public" disk, which is a convention
         // for where to place assets we want to be publicly accessible. Then, we can
-        // grab the URL for the image to store with this user in the database row.
+        // grab the URL for the image to store with this team in the database row.
         $disk = Storage::disk('public');
 
         $disk->put(
@@ -57,6 +57,9 @@ class UpdateTeamPhoto implements Contract
 
         $oldPhotoUrl = $team->photo_url;
 
+        // Next, we'll update this URL on the local team instance and save it to the DB
+        // so we can access it later. Then we will delete the old photo from storage
+        // since we'll no longer need to access it for this specific team profile.
         $team->forceFill([
             'photo_url' => $disk->url($path),
         ])->save();

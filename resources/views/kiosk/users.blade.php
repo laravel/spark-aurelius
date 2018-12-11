@@ -8,7 +8,7 @@
                         <!-- Search Field -->
                         <input type="text" id="kiosk-users-search" class="form-control"
                                 name="search"
-                                placeholder="__('Search By Name Or E-Mail Address...')"
+                                placeholder="{{__('Search By Name Or E-Mail Address...')}}"
                                 v-model="searchForm.query"
                                 @keyup.enter="search">
                     </form>
@@ -50,7 +50,7 @@
                             <tr v-for="searchUser in searchResults">
                                 <!-- Profile Photo -->
                                 <td>
-                                    <img :src="searchUser.photo_url" class="spark-profile-photo">
+                                    <img :src="searchUser.photo_url" class="spark-profile-photo" alt="{{__('User Photo')}}" />
                                 </td>
 
                                 <!-- Name -->

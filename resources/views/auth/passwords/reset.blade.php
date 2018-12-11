@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-lg-8">
             <div class="card card-default">
                 <div class="card-header">{{__('Reset Password')}}</div>
 
@@ -18,7 +18,7 @@
                             <label class="col-md-4 col-form-label text-md-right">{{__('E-Mail Address')}}</label>
 
                             <div class="col-md-6">
-                                <input type="email" class="form-control" name="email" value="{{ $email or old('email') }}" autofocus>
+                                <input type="email" class="form-control" name="email" value="{{ $email ?? old('email') }}" autofocus>
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback">
@@ -30,7 +30,7 @@
 
                         <!-- Password -->
                         <div class="form-group row{{ $errors->has('password') ? ' is-invalid' : '' }}">
-                            <label class="col-md-4 col-form-label text-md-right">{{__('E-Mail Address')}}</label>
+                            <label class="col-md-4 col-form-label text-md-right">{{__('Password')}}</label>
 
                             <div class="col-md-6">
                                 <input type="password" class="form-control" name="password">

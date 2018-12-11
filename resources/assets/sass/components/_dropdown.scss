@@ -20,7 +20,7 @@
 .spark-dropdown-label {
   font-size: 0.9375rem;
   font-weight: 600;
-  color: #3d454b;
+  color: $black;
 }
 
 .notification-pill {
@@ -31,8 +31,8 @@
   border-radius: 99px;
   width: 4.4375rem;
   height: 2.125rem;
-  background-color: #edf0f1;
-  color: #405263;
+  background-color: $gray-100;
+  color: $gray-900;
   font-weight: 600;
   font-size: 0.9375rem;
 }

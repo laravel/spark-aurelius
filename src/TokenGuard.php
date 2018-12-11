@@ -13,14 +13,14 @@ class TokenGuard
     /**
      * The token repository implementation.
      *
-     * @var TokenRepository
+     * @var \Laravel\Spark\Contracts\Repositories\TokenRepository
      */
     protected $tokens;
 
     /**
      * Create a new token guard instance.
      *
-     * @param  TokenRepository  $tokens
+     * @param  \Laravel\Spark\Contracts\Repositories\TokenRepository  $tokens
      * @return void
      */
     public function __construct(TokenRepository $tokens)
@@ -31,7 +31,7 @@ class TokenGuard
     /**
      * Get the authenticated user for the given request.
      *
-     * @param  Request  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Auth\Authenticatable|null
      */
     public function user(Request $request)
@@ -69,8 +69,8 @@ class TokenGuard
     /**
      * Get the token instance from the database.
      *
-     * @param  Request  $request
-     * @return Token
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Laravel\Spark\Token|null
      */
     protected function getToken(Request $request)
     {
@@ -86,8 +86,8 @@ class TokenGuard
     /**
      * Get the token for the given request.
      *
-     * @param  Request  $request
-     * @return Token|string
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Laravel\Spark\Token|string
      */
     protected function getTokenFromRequest(Request $request)
     {
@@ -108,8 +108,8 @@ class TokenGuard
     /**
      * Get the token for the given request cookie.
      *
-     * @param  Request  $request
-     * @return Token
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Laravel\Spark\Token|null
      */
     protected function getTokenFromCookie($request)
     {
@@ -117,7 +117,7 @@ class TokenGuard
         // first decrypt the cookie and then attempt to find the token value within the
         // database. If we can't decrypt the value we'll bail out with a null return.
         try {
-            $token = JWT::decode(decrypt($request->cookie('spark_token')));
+            $token = JWT::decode(decrypt($request->cookie('spark_token'), Spark::$unserializesCookies));
         } catch (Exception $e) {
             return;
         }
@@ -143,8 +143,8 @@ class TokenGuard
      * Create a new transient token instance for the given user.
      *
      * @param  int  $userId
-     * @param  Carbon  $expiration
-     * @return Token
+     * @param  \Carbon\Carbon  $expiration
+     * @return \Laravel\Spark\Token
      */
     protected function createTransientToken($userId, Carbon $expiration)
     {
@@ -159,7 +159,7 @@ class TokenGuard
      * Determine if the XSRF / header are valid and match.
      *
      * @param  array  $token
-     * @param  Request  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return bool
      */
     protected function validXsrf($token, $request)
@@ -172,13 +172,13 @@ class TokenGuard
     /**
      * Decrypt the XSRF header on the given request.
      *
-     * @param  Request  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return string|null
      */
     protected function decryptXsrfHeader($request)
     {
         try {
-            return decrypt($request->header('X-XSRF-TOKEN'));
+            return decrypt($request->header('X-XSRF-TOKEN'), Spark::$unserializesCookies);
         } catch (Exception $e) {
         }
     }

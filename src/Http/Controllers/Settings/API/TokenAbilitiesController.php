@@ -20,7 +20,7 @@ class TokenAbilitiesController extends Controller
     /**
      * Get all of the available token abilities.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function all()
     {
