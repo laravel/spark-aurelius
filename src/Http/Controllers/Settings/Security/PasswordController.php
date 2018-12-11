@@ -22,8 +22,8 @@ class PasswordController extends Controller
     /**
      * Update the user's password.
      *
-     * @param  Request  $request
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
     {

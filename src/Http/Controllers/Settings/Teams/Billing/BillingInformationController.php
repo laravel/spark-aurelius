@@ -21,9 +21,9 @@ class BillingInformationController extends Controller
     /**
      * Update the team's extra billing information.
      *
-     * @param  Request  $request
-     * @param  Team  $team
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Laravel\Spark\Team  $team
+     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Team $team)
     {

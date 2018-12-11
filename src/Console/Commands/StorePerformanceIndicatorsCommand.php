@@ -26,7 +26,7 @@ class StorePerformanceIndicatorsCommand extends Command
     /**
      * Execute the console command.
      *
-     * @param  PerformanceIndicatorsRepository  $indicators
+     * @param  \Laravel\Spark\Contracts\Repositories\PerformanceIndicatorsRepository  $indicators
      * @return mixed
      */
     public function handle(PerformanceIndicatorsRepository $indicators)

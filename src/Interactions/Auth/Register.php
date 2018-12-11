@@ -35,7 +35,7 @@ class Register implements Contract
     /**
      * Create the user for the new registration.
      *
-     * @param  RegisterRequest  $request
+     * @param  \Laravel\Spark\Contracts\Http\Requests\Auth\RegisterRequest  $request
      * @return \Illuminate\Contracts\Auth\Authenticatable
      */
     protected function createUser(RegisterRequest $request)
@@ -52,7 +52,7 @@ class Register implements Contract
     /**
      * Attach the user to a team if an invitation exists, or create a new team.
      *
-     * @param  RegisterRequest  $request
+     * @param  \Laravel\Spark\Contracts\Http\Requests\Auth\RegisterRequest  $request
      * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
      * @return void
      */
@@ -76,7 +76,7 @@ class Register implements Contract
     /**
      * Subscribe the given user to a subscription plan.
      *
-     * @param  RegisterRequest  $request
+     * @param  \Laravel\Spark\Contracts\Http\Requests\Auth\RegisterRequest  $request
      * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
      * @return \Illuminate\Contracts\Auth\Authenticatable
      */

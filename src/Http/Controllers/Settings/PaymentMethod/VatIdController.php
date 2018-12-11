@@ -22,8 +22,8 @@ class VatIdController extends Controller
     /**
      * Update the VAT ID for the user.
      *
-     * @param  Request  $request
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
     {

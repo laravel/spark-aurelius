@@ -24,9 +24,9 @@ class DiscountController extends Controller
     /**
      * Create a discount for the given user.
      *
-     * @param  Request  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  string  $userId
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request, $userId)
     {

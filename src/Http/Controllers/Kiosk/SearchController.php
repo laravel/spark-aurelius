@@ -23,8 +23,8 @@ class SearchController extends Controller
     /**
      * Get the users based on the incoming search query.
      *
-     * @param  Request  $request
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function performBasicSearch(Request $request)
     {

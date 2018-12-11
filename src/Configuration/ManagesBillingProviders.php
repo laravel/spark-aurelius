@@ -54,14 +54,14 @@ trait ManagesBillingProviders
     /**
      * The callback used to count the number of seats for a user subscription.
      *
-     * @var Closure
+     * @var \Closure
      */
     public static $seatsCountCallback;
 
     /**
      * The callback used to count the number of seats for a team subscription.
      *
-     * @var Closure
+     * @var \Closure
      */
     public static $teamSeatsCountCallback;
 
@@ -113,7 +113,7 @@ trait ManagesBillingProviders
      * Indicate that the application should charge users per seat.
      *
      * @param  string  $name
-     * @param  Closure  $callback
+     * @param  \Closure  $callback
      * @return void
      */
     public static function chargePerSeat($name, $callback)
@@ -148,7 +148,7 @@ trait ManagesBillingProviders
      * Indicate that the application should charge teams per seat.
      *
      * @param  string  $name
-     * @param  Closure  $callback
+     * @param  \Closure  $callback
      * @return void
      */
     public static function chargeTeamsPerSeat($name, $callback)

@@ -23,9 +23,9 @@ class PaymentMethodController extends Controller
     /**
      * Update the payment method for the user.
      *
-     * @param  UpdatePaymentMethodRequest  $request
-     * @param  Team  $team
-     * @return Response
+     * @param  \Laravel\Spark\Contracts\Http\Requests\Settings\PaymentMethod\UpdatePaymentMethodRequest  $request
+     * @param  \Laravel\Spark\Team  $team
+     * @return \Illuminate\Http\Response
      */
     public function update(UpdatePaymentMethodRequest $request, Team $team)
     {

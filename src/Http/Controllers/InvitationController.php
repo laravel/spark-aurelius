@@ -12,7 +12,7 @@ class InvitationController extends Controller
      * This is used during registration to show the invitation.
      *
      * @param  string  $token
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function show($token)
     {

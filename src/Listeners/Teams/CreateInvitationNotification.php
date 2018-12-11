@@ -11,14 +11,14 @@ class CreateInvitationNotification
     /**
      * The notification repository instance.
      *
-     * @var NotificationRepository
+     * @var \Laravel\Spark\Contracts\Repositories\NotificationRepository
      */
     protected $notifications;
 
     /**
      * Create a new listener instance.
      *
-     * @param  NotificationRepository  $notifications
+     * @param  \Laravel\Spark\Contracts\Repositories\NotificationRepository  $notifications
      * @return void
      */
     public function __construct(NotificationRepository $notifications)
@@ -29,7 +29,7 @@ class CreateInvitationNotification
     /**
      * Handle the event.
      *
-     * @param  UserInvitedToTeam  $event
+     * @param  \Laravel\Spark\Events\Teams\UserInvitedToTeam  $event
      * @return void
      */
     public function handle(UserInvitedToTeam $event)

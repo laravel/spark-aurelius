@@ -34,7 +34,7 @@ class CouponController extends Controller
      * This is used during registration to show the discount.
      *
      * @param  string  $code
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function show($code)
     {
@@ -46,9 +46,9 @@ class CouponController extends Controller
     /**
      * Get the current discount for the given user.
      *
-     * @param  Request  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  string  $userId
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function current(Request $request, $userId)
     {

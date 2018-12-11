@@ -9,7 +9,7 @@ class PlanController extends Controller
     /**
      * Get the all of the regular plans defined for the application.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function all()
     {

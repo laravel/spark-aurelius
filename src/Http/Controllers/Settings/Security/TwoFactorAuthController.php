@@ -26,8 +26,8 @@ class TwoFactorAuthController extends Controller
     /**
      * Enable two-factor authentication for the user.
      *
-     * @param  EnableTwoFactorAuthRequest  $request
-     * @return Response
+     * @param  \Laravel\Spark\Http\Requests\Settings\Security\EnableTwoFactorAuthRequest  $request
+     * @return \Illuminate\Http\Response
      */
     public function enable(EnableTwoFactorAuthRequest $request)
     {
@@ -53,7 +53,7 @@ class TwoFactorAuthController extends Controller
     /**
      * Store the two-factor authentication information on the user instance.
      *
-     * @param  EnableTwoFactorAuthRequest  $request
+     * @param  \Laravel\Spark\Http\Requests\Settings\Security\EnableTwoFactorAuthRequest  $request
      * @return string
      */
     protected function storeTwoFactorInformation($request)
@@ -71,8 +71,8 @@ class TwoFactorAuthController extends Controller
     /**
      * Disable two-factor authentication for the user.
      *
-     * @param  Request  $request
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function disable(Request $request)
     {

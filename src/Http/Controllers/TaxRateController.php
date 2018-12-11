@@ -10,8 +10,8 @@ class TaxRateController extends Controller
     /**
      * Attempt to calculate the tax rate for the billing address.
      *
-     * @param  Request  $request
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function calculate(Request $request)
     {

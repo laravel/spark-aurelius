@@ -20,8 +20,8 @@ class BillingInformationController extends Controller
     /**
      * Update the user's extra billing information.
      *
-     * @param  Request  $request
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
     {

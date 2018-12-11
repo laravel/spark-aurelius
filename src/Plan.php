@@ -23,7 +23,7 @@ class Plan implements JsonSerializable
     /**
      * The plan's price.
      *
-     * @var integer
+     * @var int
      */
     public $price = 0;
 

@@ -31,9 +31,9 @@ class TeamCouponController extends Controller
     /**
      * Get the current discount for the given team.
      *
-     * @param  Request  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  string  $teamId
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function current(Request $request, $teamId)
     {

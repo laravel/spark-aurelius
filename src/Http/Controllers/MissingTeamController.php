@@ -7,7 +7,7 @@ class MissingTeamController extends Controller
     /**
      * Show the missing team notice.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function show()
     {

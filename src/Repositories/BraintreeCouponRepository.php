@@ -56,8 +56,8 @@ class BraintreeCouponRepository implements CouponRepository
     /**
      * Convert the given Braintree discount into a Coupon instance.
      *
-     * @param  BraintreeDiscount  $discount
-     * @return Coupon
+     * @param  \Braintree\Discount  $discount
+     * @return \Laravel\Spark\Coupon
      */
     protected function toCoupon($discount)
     {
