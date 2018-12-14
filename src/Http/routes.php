@@ -95,9 +95,6 @@ $router->group(['middleware' => Laravel\Spark\Spark::mustVerifyEmail() ? ['web',
     $router->get('/settings/api/token/abilities', 'Settings\API\TokenAbilitiesController@all');
     $router->delete('/settings/api/token/{token_id}', 'Settings\API\TokenController@destroy');
 
-    // Plans...
-    $router->get('/spark/plans', 'PlanController@all');
-
     // Subscription Settings...
     $router->post('/settings/subscription', 'Settings\Subscription\PlanController@store');
     $router->put('/settings/subscription', 'Settings\Subscription\PlanController@update');
@@ -186,6 +183,9 @@ $router->group(['middleware' => 'web'], function ($router) {
     $router->get('email/verify/{id}', 'Auth\VerificationController@verify')->name('verification.verify');
     $router->get('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
 });
+
+// Plans...
+$router->get('/spark/plans', 'PlanController@all');
 
 // Tax Rates...
 $router->post('/tax-rate', 'TaxRateController@calculate');
