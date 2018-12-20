@@ -48,7 +48,6 @@ $router->group(['middleware' => Laravel\Spark\Spark::mustVerifyEmail() ? ['web',
         $router->post('/settings/'.Spark::teamsPrefix(), 'Settings\Teams\TeamController@store');
 
         $router->get('/settings/invitations/pending', 'Settings\Teams\PendingInvitationController@all');
-        $router->get('/invitations/{invitation}', 'InvitationController@show');
         $router->post('/settings/invitations/{invitation}/accept', 'Settings\Teams\PendingInvitationController@accept');
         $router->post('/settings/invitations/{invitation}/reject', 'Settings\Teams\PendingInvitationController@reject');
         $router->delete('/settings/invitations/{invitation}', 'Settings\Teams\MailedInvitationController@destroy');
@@ -186,6 +185,9 @@ $router->group(['middleware' => 'web'], function ($router) {
 
 // Plans...
 $router->get('/spark/plans', 'PlanController@all');
+
+// Invitation
+$router->get('/invitations/{invitation}', 'InvitationController@show');
 
 // Tax Rates...
 $router->post('/tax-rate', 'TaxRateController@calculate');
