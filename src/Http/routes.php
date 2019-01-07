@@ -1,12 +1,6 @@
 <?php
 
 $router->group(['middleware' => Laravel\Spark\Spark::mustVerifyEmail() ? ['web', 'verified'] : 'web'], function ($router) {
-    // Customer Support...
-    $router->post('/support/email', 'SupportController@sendEmail');
-
-    // API Token Refresh...
-    $router->put('/spark/token', 'TokenController@refresh');
-
     // Users...
     $router->get('/user/current', 'UserController@current');
     $router->put('/user/last-read-announcements-at', 'UserController@updateLastReadAnnouncementsTimestamp');
@@ -152,6 +146,12 @@ $router->group(['middleware' => Laravel\Spark\Spark::mustVerifyEmail() ? ['web',
 });
 
 $router->group(['middleware' => 'web'], function ($router) {
+    // Customer Support...
+    $router->post('/support/email', 'SupportController@sendEmail');
+
+    // API Token Refresh...
+    $router->put('/spark/token', 'TokenController@refresh');
+
     // Terms Of Service...
     $router->get('/terms', 'TermsController@show')->name('terms');
 
