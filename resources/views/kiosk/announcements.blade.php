@@ -10,11 +10,11 @@
 
                 <form role="form">
                     <!-- Announcement -->
-                    <div class="form-group row" :class="{'is-invalid': createForm.errors.has('body')}">
+                    <div class="form-group row">
                         <label class="col-md-4 col-form-label text-md-right">{{__('Announcement')}}</label>
 
                         <div class="col-md-6">
-                            <textarea class="form-control" name="announcement" rows="7" v-model="createForm.body" style="font-family: monospace;">
+                            <textarea class="form-control" name="announcement" rows="7" v-model="createForm.body" style="font-family: monospace;" :class="{'is-invalid': createForm.errors.has('body')}">
                             </textarea>
 
                             <span class="invalid-feedback" v-show="createForm.errors.has('body')">
@@ -24,11 +24,11 @@
                     </div>
 
                     <!-- Action Text -->
-                    <div class="form-group row" :class="{'is-invalid': createForm.errors.has('action_text')}">
+                    <div class="form-group row">
                         <label class="col-md-4 col-form-label text-md-right">{{__('Action Button Text')}}</label>
 
                         <div class="col-md-6">
-                            <input type="text" class="form-control" name="action_text" v-model="createForm.action_text">
+                            <input type="text" class="form-control" name="action_text" v-model="createForm.action_text" :class="{'is-invalid': createForm.errors.has('action_text')}">
 
                             <span class="invalid-feedback" v-show="createForm.errors.has('action_text')">
                                 @{{ createForm.errors.get('action_text') }}
@@ -37,11 +37,11 @@
                     </div>
 
                     <!-- Action URL -->
-                    <div class="form-group row" :class="{'is-invalid': createForm.errors.has('action_url')}">
+                    <div class="form-group row">
                         <label class="col-md-4 col-form-label text-md-right">{{__('Action Button URL')}}</label>
 
                         <div class="col-md-6">
-                            <input type="text" class="form-control" name="action_url" v-model="createForm.action_url">
+                            <input type="text" class="form-control" name="action_url" v-model="createForm.action_url" :class="{'is-invalid': createForm.errors.has('action_url')}">
 
                             <span class="invalid-feedback" v-show="createForm.errors.has('action_url')">
                                 @{{ createForm.errors.get('action_url') }}
