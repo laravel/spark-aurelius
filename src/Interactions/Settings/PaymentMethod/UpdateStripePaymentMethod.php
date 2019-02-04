@@ -25,14 +25,11 @@ class UpdateStripePaymentMethod implements UpdatePaymentMethod
             );
         }
 
-        // If a billable entity already has a Stripe ID, we will just update their card then
-        // return, but if entities do not have a Stripe ID, we'll need to create a Stripe
-        // customer with this given token so that they really exist in Stripe's system.
-        if ($billable->stripe_id) {
-            $billable->updateCard($data['stripe_token']);
-        } else {
-            $billable->createAsStripeCustomer($data['stripe_token']);
+        if (! $billable->stripe_id) {
+            $billable->createAsStripeCustomer();
         }
+
+        $billable->updateCard($data['stripe_token']);
     }
 
     /**
