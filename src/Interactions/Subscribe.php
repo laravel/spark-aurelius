@@ -3,6 +3,7 @@
 namespace Laravel\Spark\Interactions;
 
 use Laravel\Spark\Spark;
+use Illuminate\Support\Arr;
 use Laravel\Spark\Events\Subscription\UserSubscribed;
 use Laravel\Spark\Contracts\Repositories\UserRepository;
 use Laravel\Spark\Contracts\Interactions\Subscribe as Contract;
@@ -45,7 +46,7 @@ class Subscribe implements Contract
         if (Spark::collectsEuropeanVat()) {
             Spark::call(
                 UserRepository::class.'@updateVatId',
-                [$user, array_get($data, 'vat_id')]
+                [$user, Arr::get($data, 'vat_id')]
             );
         }
 

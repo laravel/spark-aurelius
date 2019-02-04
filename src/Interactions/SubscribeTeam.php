@@ -3,6 +3,7 @@
 namespace Laravel\Spark\Interactions;
 
 use Laravel\Spark\Spark;
+use Illuminate\Support\Arr;
 use Laravel\Spark\Contracts\Repositories\TeamRepository;
 use Laravel\Spark\Events\Teams\Subscription\TeamSubscribed;
 use Laravel\Spark\Contracts\Interactions\SubscribeTeam as Contract;
@@ -45,7 +46,7 @@ class SubscribeTeam implements Contract
         if (Spark::collectsEuropeanVat()) {
             Spark::call(
                 TeamRepository::class.'@updateVatId',
-                [$team, array_get($data, 'vat_id')]
+                [$team, Arr::get($data, 'vat_id')]
             );
         }
 

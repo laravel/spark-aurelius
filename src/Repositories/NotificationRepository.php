@@ -3,6 +3,7 @@
 namespace Laravel\Spark\Repositories;
 
 use Ramsey\Uuid\Uuid;
+use Illuminate\Support\Arr;
 use Laravel\Spark\Notification;
 use Laravel\Spark\Events\NotificationCreated;
 use Laravel\Spark\Contracts\Repositories\NotificationRepository as NotificationRepositoryContract;
@@ -47,7 +48,7 @@ class NotificationRepository implements NotificationRepositoryContract
      */
     public function create($user, array $data)
     {
-        $creator = array_get($data, 'from');
+        $creator = Arr::get($data, 'from');
 
         $notification = Notification::create([
             'id' => Uuid::uuid4(),
@@ -55,8 +56,8 @@ class NotificationRepository implements NotificationRepositoryContract
             'created_by' => $creator ? $creator->id : null,
             'icon' => $data['icon'],
             'body' => $data['body'],
-            'action_text' => array_get($data, 'action_text'),
-            'action_url' => array_get($data, 'action_url'),
+            'action_text' => Arr::get($data, 'action_text'),
+            'action_url' => Arr::get($data, 'action_url'),
         ]);
 
         event(new NotificationCreated($notification));

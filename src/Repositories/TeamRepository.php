@@ -4,6 +4,7 @@ namespace Laravel\Spark\Repositories;
 
 use Carbon\Carbon;
 use Laravel\Spark\Spark;
+use Illuminate\Support\Arr;
 use Laravel\Spark\Events\PaymentMethod\VatIdUpdated;
 use Laravel\Spark\Events\PaymentMethod\BillingAddressUpdated;
 use Laravel\Spark\Contracts\Repositories\TeamRepository as TeamRepositoryContract;
@@ -50,13 +51,13 @@ class TeamRepository implements TeamRepositoryContract
     public function updateBillingAddress($team, array $data)
     {
         $team->forceFill([
-            'card_country' => array_get($data, 'card_country'),
-            'billing_address' => array_get($data, 'address'),
-            'billing_address_line_2' => array_get($data, 'address_line_2'),
-            'billing_city' => array_get($data, 'city'),
-            'billing_state' => array_get($data, 'state'),
-            'billing_zip' => array_get($data, 'zip'),
-            'billing_country' => array_get($data, 'country'),
+            'card_country' => Arr::get($data, 'card_country'),
+            'billing_address' => Arr::get($data, 'address'),
+            'billing_address_line_2' => Arr::get($data, 'address_line_2'),
+            'billing_city' => Arr::get($data, 'city'),
+            'billing_state' => Arr::get($data, 'state'),
+            'billing_zip' => Arr::get($data, 'zip'),
+            'billing_country' => Arr::get($data, 'country'),
         ])->save();
 
         event(new BillingAddressUpdated($team));

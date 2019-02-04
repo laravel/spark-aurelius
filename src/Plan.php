@@ -3,6 +3,7 @@
 namespace Laravel\Spark;
 
 use JsonSerializable;
+use Illuminate\Support\Arr;
 
 class Plan implements JsonSerializable
 {
@@ -142,7 +143,7 @@ class Plan implements JsonSerializable
      */
     public function attribute($key, $default = null)
     {
-        return array_get($this->attributes, $key, $default);
+        return Arr::get($this->attributes, $key, $default);
     }
 
     /**

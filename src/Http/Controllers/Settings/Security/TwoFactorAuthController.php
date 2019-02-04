@@ -4,6 +4,7 @@ namespace Laravel\Spark\Http\Controllers\Settings\Security;
 
 use Exception;
 use Laravel\Spark\Spark;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Laravel\Spark\Http\Controllers\Controller;
 use Illuminate\Contracts\Debug\ExceptionHandler;
@@ -62,7 +63,7 @@ class TwoFactorAuthController extends Controller
             'uses_two_factor_auth' => true,
             'country_code' => $request->country_code,
             'phone' => $request->phone,
-            'two_factor_reset_code' => bcrypt($code = str_random(40)),
+            'two_factor_reset_code' => bcrypt($code = Str::random(40)),
         ])->save();
 
         return $code;

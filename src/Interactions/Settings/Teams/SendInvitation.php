@@ -4,6 +4,7 @@ namespace Laravel\Spark\Interactions\Settings\Teams;
 
 use Ramsey\Uuid\Uuid;
 use Laravel\Spark\Spark;
+use Illuminate\Support\Str;
 use Laravel\Spark\Invitation;
 use Illuminate\Support\Facades\Mail;
 use Laravel\Spark\Events\Teams\UserInvitedToTeam;
@@ -59,7 +60,7 @@ class SendInvitation implements Contract
             'user_id' => $invitedUser ? $invitedUser->id : null,
             'role' => $role,
             'email' => $email,
-            'token' => str_random(40),
+            'token' => Str::random(40),
         ]);
     }
 

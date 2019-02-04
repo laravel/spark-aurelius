@@ -4,6 +4,7 @@ namespace Laravel\Spark\Repositories;
 
 use Carbon\Carbon;
 use Laravel\Spark\Spark;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Spark\Events\PaymentMethod\VatIdUpdated;
 use Laravel\Spark\Events\PaymentMethod\BillingAddressUpdated;
@@ -94,13 +95,13 @@ class UserRepository implements UserRepositoryContract
     public function updateBillingAddress($user, array $data)
     {
         $user->forceFill([
-            'card_country' => array_get($data, 'card_country', $user->card_country),
-            'billing_address' => array_get($data, 'address'),
-            'billing_address_line_2' => array_get($data, 'address_line_2'),
-            'billing_city' => array_get($data, 'city'),
-            'billing_state' => array_get($data, 'state'),
-            'billing_zip' => array_get($data, 'zip'),
-            'billing_country' => array_get($data, 'country'),
+            'card_country' => Arr::get($data, 'card_country', $user->card_country),
+            'billing_address' => Arr::get($data, 'address'),
+            'billing_address_line_2' => Arr::get($data, 'address_line_2'),
+            'billing_city' => Arr::get($data, 'city'),
+            'billing_state' => Arr::get($data, 'state'),
+            'billing_zip' => Arr::get($data, 'zip'),
+            'billing_country' => Arr::get($data, 'country'),
         ])->save();
 
         event(new BillingAddressUpdated($user));
