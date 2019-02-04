@@ -1,9 +1,9 @@
 @extends('spark::layouts.app')
 
-@section('scripts')
+@push('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mousetrap/1.6.2/mousetrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
-@endsection
+@endpush
 
 @section('content')
 <spark-kiosk :user="user" inline-template>

@@ -85,8 +85,8 @@
                             {{__('teams.teams')}}
                         </div>
 
-                        <div class="card-body">
-                            <table class="table table-borderless m-b-none">
+                        <div class="table-responsive">
+                            <table class="table table-valign-middle mb-0">
                                 <thead>
                                     <th></th>
                                     <th>{{__('Name')}}</th>

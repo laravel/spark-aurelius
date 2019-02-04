@@ -99,7 +99,7 @@
                                 </span>
 
                                 <span v-if="isActivePlan(plan) && selectingPlan !== plan">
-                                    {{__('Resume')}}
+                                    {{__('Resume Subscription')}}
                                 </span>
                             </button>
                         </td>

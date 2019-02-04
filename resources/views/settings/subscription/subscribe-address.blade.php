@@ -52,7 +52,7 @@
 
     <!-- Zip Code -->
     <div class="col-sm-3">
-        <input type="text" class="form-control" v-model="form.zip" placeholder="{{__('Postal Code')}}">
+        <input type="text" class="form-control" v-model="form.zip" placeholder="{{__('Postal Code')}}" :class="{'is-invalid': form.errors.has('zip')}">
 
         <span class="invalid-feedback" v-show="form.errors.has('zip')">
             @{{ form.errors.get('zip') }}

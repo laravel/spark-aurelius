@@ -15,7 +15,7 @@ class TeamRepository implements TeamRepositoryContract
      */
     public function find($id)
     {
-        return Spark::team()->with('owner', 'users')->where('id', $id)->first();
+        return Spark::team()->with('owner')->where('id', $id)->first();
     }
 
     /**

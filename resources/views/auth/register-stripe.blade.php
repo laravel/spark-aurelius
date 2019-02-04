@@ -1,8 +1,8 @@
 @extends('spark::layouts.app')
 
-@section('scripts')
+@push('scripts')
     <script src="https://js.stripe.com/v3/"></script>
-@endsection
+@endpush
 
 @section('content')
 <spark-register-stripe inline-template>
