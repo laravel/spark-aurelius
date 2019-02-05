@@ -1,5 +1,9 @@
 # Change Log
 
+### Version 8.0.0
+
+- Provide compatibility with Laravel 5.8 and Cashier 9.0.
+
 ### Version 7.1.1
 
 - Various bug fixes.
