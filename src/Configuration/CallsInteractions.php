@@ -52,6 +52,10 @@ trait CallsInteractions
             return static::callSwappedInteraction($base.'@'.$method, $parameters, $class);
         }
 
+        if (isset(static::$interactions[$base])) {
+            return static::callSwappedInteraction($base, $parameters, $class);
+        }
+
         return call_user_func_array([app($class), $method], $parameters);
     }
 
