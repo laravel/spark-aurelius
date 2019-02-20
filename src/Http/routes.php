@@ -114,7 +114,6 @@ $router->group(['middleware' => Laravel\Spark\Spark::mustVerifyEmail() ? ['web',
 
     // Coupons...
     $router->get('/coupon/user/{id}', 'CouponController@current');
-    $router->get('/coupon/{code}', 'CouponController@show');
 
     // Kiosk...
     $router->get('/spark/kiosk', 'Kiosk\DashboardController@show')->name('kiosk');
@@ -181,6 +180,9 @@ $router->group(['middleware' => 'web'], function ($router) {
     $router->get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
     $router->get('email/verify/{id}', 'Auth\VerificationController@verify')->name('verification.verify');
     $router->get('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
+
+    // Coupons
+    $router->get('/coupon/{code}', 'CouponController@show');
 });
 
 // Plans...
