@@ -27,7 +27,7 @@ return [
     'between'              => [
         'numeric' => 'L\'attribut ":attribute" doit être entre :min et :max.',
         'file'    => 'L\'attribut ":attribute" doit peser entre :min et :max kilo-octets.',
-        'string'  => 'L\'attribut ":attribute" doit avoir :min et :max caractères.',
+        'string'  => 'L\'attribut ":attribute" doit avoir entre :min et :max caractères.',
         'array'   => 'L\'attribut ":attribute" doit avoir entre :min et :max éléments.',
     ],
     'boolean'              => 'L\'attribut ":attribute" doit valoir "true" ou "false".',
