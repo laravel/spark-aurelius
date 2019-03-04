@@ -21,7 +21,7 @@ mix
     .then(() => {
         exec('node_modules/rtlcss/bin/rtlcss.js public/css/app-rtl.css ./public/css/app-rtl.css');
     })
-    .version(['public/css/app-rtl.css'])
+    .version()
     .webpackConfig({
         resolve: {
             modules: [
