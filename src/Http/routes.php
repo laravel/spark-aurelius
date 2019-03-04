@@ -114,34 +114,6 @@ $router->group(['middleware' => Laravel\Spark\Spark::mustVerifyEmail() ? ['web',
 
     // Coupons...
     $router->get('/coupon/user/{id}', 'CouponController@current');
-
-    // Kiosk...
-    $router->get('/spark/kiosk', 'Kiosk\DashboardController@show')->name('kiosk');
-
-    // Kiosk Search...
-    $router->post('/spark/kiosk/users/search', 'Kiosk\SearchController@performBasicSearch');
-
-    // Kiosk Announcements...
-    $router->get('/spark/kiosk/announcements', 'Kiosk\AnnouncementController@all');
-    $router->post('/spark/kiosk/announcements', 'Kiosk\AnnouncementController@store');
-    $router->put('/spark/kiosk/announcements/{id}', 'Kiosk\AnnouncementController@update');
-    $router->delete('/spark/kiosk/announcements/{id}', 'Kiosk\AnnouncementController@destroy');
-
-    // Kiosk Metrics / Performance Indicators...
-    $router->get('/spark/kiosk/performance-indicators', 'Kiosk\PerformanceIndicatorsController@all');
-    $router->get('/spark/kiosk/performance-indicators/revenue', 'Kiosk\PerformanceIndicatorsController@revenue');
-    $router->get('/spark/kiosk/performance-indicators/plans', 'Kiosk\PerformanceIndicatorsController@subscribers');
-    $router->get('/spark/kiosk/performance-indicators/trialing', 'Kiosk\PerformanceIndicatorsController@trials');
-
-    // Kiosk User Profiles...
-    $router->get('/spark/kiosk/users/{id}/profile', 'Kiosk\ProfileController@show');
-
-    // Kiosk Discounts...
-    $router->post('/spark/kiosk/users/discount/{id}', 'Kiosk\DiscountController@store');
-
-    // Kiosk Impersonation...
-    $router->get('/spark/kiosk/users/impersonate/{id}', 'Kiosk\ImpersonationController@impersonate');
-    $router->get('/spark/kiosk/users/stop-impersonating', 'Kiosk\ImpersonationController@stopImpersonating');
 });
 
 $router->group(['middleware' => 'web'], function ($router) {
@@ -183,6 +155,34 @@ $router->group(['middleware' => 'web'], function ($router) {
 
     // Coupons
     $router->get('/coupon/{code}', 'CouponController@show');
+
+    // Kiosk...
+    $router->get('/spark/kiosk', 'Kiosk\DashboardController@show')->name('kiosk');
+
+    // Kiosk Search...
+    $router->post('/spark/kiosk/users/search', 'Kiosk\SearchController@performBasicSearch');
+
+    // Kiosk Announcements...
+    $router->get('/spark/kiosk/announcements', 'Kiosk\AnnouncementController@all');
+    $router->post('/spark/kiosk/announcements', 'Kiosk\AnnouncementController@store');
+    $router->put('/spark/kiosk/announcements/{id}', 'Kiosk\AnnouncementController@update');
+    $router->delete('/spark/kiosk/announcements/{id}', 'Kiosk\AnnouncementController@destroy');
+
+    // Kiosk Metrics / Performance Indicators...
+    $router->get('/spark/kiosk/performance-indicators', 'Kiosk\PerformanceIndicatorsController@all');
+    $router->get('/spark/kiosk/performance-indicators/revenue', 'Kiosk\PerformanceIndicatorsController@revenue');
+    $router->get('/spark/kiosk/performance-indicators/plans', 'Kiosk\PerformanceIndicatorsController@subscribers');
+    $router->get('/spark/kiosk/performance-indicators/trialing', 'Kiosk\PerformanceIndicatorsController@trials');
+
+    // Kiosk User Profiles...
+    $router->get('/spark/kiosk/users/{id}/profile', 'Kiosk\ProfileController@show');
+
+    // Kiosk Discounts...
+    $router->post('/spark/kiosk/users/discount/{id}', 'Kiosk\DiscountController@store');
+
+    // Kiosk Impersonation...
+    $router->get('/spark/kiosk/users/impersonate/{id}', 'Kiosk\ImpersonationController@impersonate');
+    $router->get('/spark/kiosk/users/stop-impersonating', 'Kiosk\ImpersonationController@stopImpersonating');
 });
 
 // Plans...
