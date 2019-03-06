@@ -21,6 +21,7 @@
 
     <!-- Global Spark Object -->
     <script>
+        window.Spark = <?php echo json_encode(array_merge(Spark::scriptVariables(), [])); ?>;
         window.Spark = @json(array_merge(Spark::scriptVariables(), []));
     </script>
 </head>
