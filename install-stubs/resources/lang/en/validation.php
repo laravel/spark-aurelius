@@ -131,7 +131,6 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
-        'otp' => 'This token is invalid',
     ],
 
     /*
