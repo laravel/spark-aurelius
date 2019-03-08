@@ -133,7 +133,6 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
-        'otp' => 'Ce jeton est n\'est pas valide',
     ],
 
     /*
