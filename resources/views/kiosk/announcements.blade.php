@@ -134,11 +134,11 @@
                         <!-- Update Announcement -->
                         <form role="form">
                             <!-- Announcement -->
-                            <div class="form-group row" :class="{'is-invalid': updateForm.errors.has('body')}">
+                            <div class="form-group row">
                                 <label class="col-md-4 col-form-label text-md-right">{{__('Announcement')}}</label>
 
                                 <div class="col-md-6">
-                                    <textarea class="form-control" rows="7" v-model="updateForm.body" style="font-family: monospace;">
+                                    <textarea class="form-control" rows="7" v-model="updateForm.body" style="font-family: monospace;" :class="{'is-invalid': updateForm.errors.has('body')}">
                                     </textarea>
 
                                     <span class="invalid-feedback" v-show="updateForm.errors.has('body')">
@@ -148,11 +148,11 @@
                             </div>
 
                             <!-- Action Text -->
-                            <div class="form-group row" :class="{'is-invalid': updateForm.errors.has('action_text')}">
+                            <div class="form-group row">
                                 <label class="col-md-4 col-form-label text-md-right">{{__('Action Button Text')}}</label>
 
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="action_text" v-model="updateForm.action_text">
+                                    <input type="text" class="form-control" name="action_text" v-model="updateForm.action_text" :class="{'is-invalid': updateForm.errors.has('action_text')}">
 
                                     <span class="invalid-feedback" v-show="updateForm.errors.has('action_text')">
                                         @{{ updateForm.errors.get('action_text') }}
@@ -161,11 +161,11 @@
                             </div>
 
                             <!-- Action URL -->
-                            <div class="form-group row" :class="{'is-invalid': updateForm.errors.has('action_url')}">
+                            <div class="form-group row">
                                 <label class="col-md-4 col-form-label text-md-right">{{__('Action Button URL')}}</label>
 
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="action_url" v-model="updateForm.action_url">
+                                    <input type="text" class="form-control" name="action_url" v-model="updateForm.action_url" :class="{'is-invalid': updateForm.errors.has('action_url')}">
 
                                     <span class="invalid-feedback" v-show="updateForm.errors.has('action_url')">
                                         @{{ updateForm.errors.get('action_url') }}
