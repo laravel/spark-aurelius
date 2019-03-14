@@ -23,7 +23,7 @@
                     <div class="modal-body">
                         <!-- Informational Messages -->
                         <div class="notification-container" v-if="loadingNotifications">
-                            <i class="fa fa-btn fa-spinner fa-spin"></i> {{__('Loading Notifications')}}
+                            <div><i class="fa fa-btn fa-spinner fa-spin"></i> {{__('Loading Notifications')}}</div>
                         </div>
 
                         <div class="notification-container" v-if=" ! loadingNotifications && activeNotifications.length == 0">
