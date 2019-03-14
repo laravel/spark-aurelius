@@ -6,8 +6,10 @@
             <div class="table-responsive">
                 <table class="table table-valign-middle mb-0">
                     <thead>
-                        <th>{{ __('teams.team') }}</th>
-                        <th>&nbsp;</th>
+                        <tr>
+                            <th>{{ __('teams.team') }}</th>
+                            <th>&nbsp;</th>
+                        </tr>
                     </thead>
 
                     <tbody>

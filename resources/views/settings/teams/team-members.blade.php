@@ -8,10 +8,12 @@
             <div class="table-responsive">
                 <table class="table table-valign-middle mb-0">
                     <thead>
-                        <th class="th-fit"></th>
-                        <th>{{__('Name')}}</th>
-                        <th v-if="roles.length > 1">{{__('Role')}}</th>
-                        <th>&nbsp;</th>
+                        <tr>
+                            <th class="th-fit"></th>
+                            <th>{{__('Name')}}</th>
+                            <th v-if="roles.length > 1">{{__('Role')}}</th>
+                            <th>&nbsp;</th>
+                        </tr>
                     </thead>
 
                     <tbody>
