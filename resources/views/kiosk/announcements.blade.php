@@ -88,14 +88,14 @@
 
                             <!-- Date -->
                             <td>
-                                <div class="btn-table-align">
+                                <div>
                                     @{{ announcement.created_at | datetime }}
                                 </div>
                             </td>
 
                             <!-- Body -->
                             <td>
-                                <div class="btn-table-align">
+                                <div>
                                     @{{ _.truncate(announcement.body, {length: 45}) }}
                                 </div>
                             </td>

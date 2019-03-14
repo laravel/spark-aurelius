@@ -23,14 +23,14 @@
 
                             <!-- Team Name -->
                             <td>
-                                <div class="btn-table-align">
+                                <div>
                                     @{{ team.name }}
                                 </div>
                             </td>
 
                             <!-- Owner Name -->
                             <td>
-                                <div class="btn-table-align">
+                                <div>
                                     <span v-if="user.id == team.owner.id">
                                         {{__('You')}}
                                     </span>

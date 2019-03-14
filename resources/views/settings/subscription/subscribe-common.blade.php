@@ -1,6 +1,6 @@
 <div class="card card-default">
     <div class="card-header">
-        <div class="float-left" :class="{'btn-table-align': hasMonthlyAndYearlyPlans}">
+        <div class="float-left">
             {{__('Subscribe')}}
         </div>
 

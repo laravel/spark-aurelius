@@ -57,14 +57,14 @@
 
                                 <!-- Name -->
                                 <td>
-                                    <div class="btn-table-align">
+                                    <div>
                                         @{{ searchUser.name }}
                                     </div>
                                 </td>
 
                                 <!-- E-Mail Address -->
                                 <td>
-                                    <div class="btn-table-align">
+                                    <div>
                                         @{{ searchUser.email }}
                                     </div>
                                 </td>

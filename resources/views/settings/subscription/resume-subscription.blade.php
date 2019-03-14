@@ -3,7 +3,7 @@
 
     <div class="card card-default">
         <div class="card-header">
-            <div class="float-left" :class="{'btn-table-align': hasMonthlyAndYearlyPlans}">
+            <div class="float-left">
                 {{__('Resume Subscription')}}
             </div>
 
@@ -73,7 +73,7 @@
 
                         <!-- Plan Price -->
                         <td>
-                            <div class="btn-table-align">
+                            <div>
                                 <strong class="table-plan-price">@{{ priceWithTax(plan) | currency }}</strong>
                                 @{{ plan.type == 'user' && spark.chargesUsersPerSeat ? '/ '+ spark.seatName : '' }}
                                 @{{ plan.type == 'user' && spark.chargesUsersPerTeam ? '/ '+ __('teams.team') : '' }}

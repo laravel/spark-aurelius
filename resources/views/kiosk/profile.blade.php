@@ -17,7 +17,7 @@
                 <div class="col-md-12">
                     <div class="card card-default">
                         <div class="card-header">
-                            <div class="btn-table-align">
+                            <div>
                                 <i class="fa fa-btn fa-times" style="cursor: pointer;" @click="showSearch"></i>
                                 @{{ profile.name }}
                             </div>
@@ -104,14 +104,14 @@
 
                                         <!-- Team Name -->
                                         <td>
-                                            <div class="btn-table-align">
+                                            <div>
                                                 @{{ team.name }}
                                             </div>
                                         </td>
 
                                         <!-- Subscription -->
                                         <td>
-                                            <div class="btn-table-align">
+                                            <div>
                                                 <span v-if="activePlan(team)">
                                                     <a :href="customerUrlOnBillingProvider(team)" target="_blank">
                                                         @{{ activePlan(team).name }} (@{{ __(activePlan(team).interval) | capitalize }})

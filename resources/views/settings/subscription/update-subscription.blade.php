@@ -3,7 +3,7 @@
     <div>
         <div class="card card-default">
             <div class="card-header">
-                <div class="float-left" :class="{'btn-table-align': hasMonthlyAndYearlyPlans}">
+                <div class="float-left">
                     {{__('Update Subscription')}}
                 </div>
 
@@ -77,7 +77,7 @@
 
                             <!-- Plan Price -->
                             <td>
-                                <div class="btn-table-align">
+                                <div>
                                     <span v-if="plan.price == 0">
                                         {{__('Free')}}
                                     </span>

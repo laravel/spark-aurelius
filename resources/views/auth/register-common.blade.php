@@ -27,7 +27,7 @@
     <div class="col-lg-8">
         <div class="card card-default">
             <div class="card-header">
-                <div class="float-left" :class="{'btn-table-align': hasMonthlyAndYearlyPlans}">
+                <div class="float-left">
                     {{__('Subscription')}}
                 </div>
 

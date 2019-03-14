@@ -16,7 +16,7 @@
                         <tr v-for="invitation in invitations">
                             <!-- Team Name -->
                             <td>
-                                <div class="btn-table-align">
+                                <div>
                                     @{{ invitation.team.name }}
                                 </div>
                             </td>

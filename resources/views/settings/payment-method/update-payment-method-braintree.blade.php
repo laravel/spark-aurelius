@@ -36,7 +36,7 @@
 
             <form role="form">
                 <!-- Braintree Container -->
-                <div id="braintree-payment-method-container" class="m-b-md"></div>
+                <div id="braintree-payment-method-container"></div>
 
                 <!-- Update Button -->
                 <div class="form-group">

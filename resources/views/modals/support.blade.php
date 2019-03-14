@@ -2,7 +2,7 @@
 <div class="modal fade" id="modal-support" tabindex="-1" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-body p-b-none">
+            <div class="modal-body">
                 <form role="form">
                     <!-- From -->
                     <div class="form-group" :class="{'is-invalid': supportForm.errors.has('from')}">
@@ -23,7 +23,7 @@
                     </div>
 
                     <!-- Message -->
-                    <div class="form-group m-b-none" :class="{'is-invalid': supportForm.errors.has('message')}">
+                    <div class="form-group" :class="{'is-invalid': supportForm.errors.has('message')}">
                         <textarea class="form-control" rows="7" v-model="supportForm.message" placeholder="{{__('Message')}}"></textarea>
 
                         <span class="invalid-feedback" v-show="supportForm.errors.has('message')">
