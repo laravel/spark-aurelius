@@ -4,9 +4,6 @@
             <div class="card-header">{{__('Create Announcement')}}</div>
 
             <div class="card-body">
-                <div class="alert alert-info">
-                    {{__('Announcements you create here will be sent to the "Product Announcements" section of the notifications modal window, informing your users about new features and improvements to your application.')}}
-                </div>
 
                 <form role="form">
                     <!-- Announcement -->
