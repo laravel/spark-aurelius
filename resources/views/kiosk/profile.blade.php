@@ -88,9 +88,11 @@
                         <div class="table-responsive">
                             <table class="table table-valign-middle mb-0">
                                 <thead>
-                                    <th></th>
-                                    <th>{{__('Name')}}</th>
-                                    <th>{{__('Subscription')}}</th>
+                                    <tr>
+                                        <th></th>
+                                        <th>{{__('Name')}}</th>
+                                        <th>{{__('Subscription')}}</th>
+                                    </tr>
                                 </thead>
 
                                 <tbody>

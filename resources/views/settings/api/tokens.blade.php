@@ -7,10 +7,12 @@
                 <div class="table-responsive">
                     <table class="table table-valign-middle mb-0">
                         <thead>
-                            <th>{{__('Name')}}</th>
-                            <th>{{__('Created')}}</th>
-                            <th>{{__('Last Used')}}</th>
-                            <th>&nbsp;</th>
+                            <tr>
+                                <th>{{__('Name')}}</th>
+                                <th>{{__('Created')}}</th>
+                                <th>{{__('Last Used')}}</th>
+                                <th>&nbsp;</th>
+                            </tr>
                         </thead>
 
                         <tbody>
