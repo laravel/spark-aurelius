@@ -31,7 +31,7 @@
                     <!-- Braintree Container -->
                     <div class="form-group row"  v-show="form.use_existing_payment_method != '1'">
                         <div class="col-md-6 offset-md-4">
-                            <div id="braintree-subscribe-container" class="m-b-md"></div>
+                            <div id="braintree-subscribe-container"></div>
                         </div>
                     </div>
 

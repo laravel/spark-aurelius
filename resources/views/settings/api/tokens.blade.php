@@ -19,21 +19,21 @@
                         <tr v-for="token in tokens">
                             <!-- Name -->
                             <td>
-                                <div class="btn-table-align">
+                                <div>
                                     @{{ token.name }}
                                 </div>
                             </td>
 
                             <!-- Created At -->
                             <td>
-                                <div class="btn-table-align">
+                                <div>
                                     @{{ token.created_at | datetime }}
                                 </div>
                             </td>
 
                             <!-- Last Used At -->
                             <td>
-                                <div class="btn-table-align">
+                                <div>
                                         <span v-if="token.last_used_at">
                                             @{{ token.last_used_at | datetime }}
                                         </span>

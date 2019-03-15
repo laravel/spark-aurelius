@@ -16,7 +16,7 @@
                         <tr class="reveal" v-for="invitation in invitations">
                             <!-- E-Mail Address -->
                             <td>
-                                <div class="btn-table-align">
+                                <div>
                                     @{{ invitation.email }}
                                 </div>
                             </td>
