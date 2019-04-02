@@ -46,10 +46,8 @@ class UpdateTeamPhoto implements Contract
 
         $path = $file->hashName('profiles');
 
-        // We will store the profile photos on the "public" disk, which is a convention
-        // for where to place assets we want to be publicly accessible. Then, we can
-        // grab the URL for the image to store with this team in the database row.
-        $disk = Storage::disk('public');
+        // We will store the profile photos on the "default" disk.
+        $disk = Storage::disk('default');
 
         $disk->put(
             $path, $this->formatImage($file)
