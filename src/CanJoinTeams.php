@@ -53,7 +53,7 @@ trait CanJoinTeams
      */
     public function ownsTeam($team)
     {
-        return $this->id && $team->owner_id && $this->id == $team->owner_id;
+        return $this->id && $team->owner_id && $this->id === $team->owner_id;
     }
 
     /**
@@ -132,7 +132,7 @@ trait CanJoinTeams
      */
     public function ownsCurrentTeam()
     {
-        return $this->currentTeam() && $this->currentTeam()->owner_id == $this->id;
+        return $this->currentTeam() && $this->currentTeam()->owner_id === $this->id;
     }
 
     /**

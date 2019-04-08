@@ -65,7 +65,7 @@ trait Billable
             return false;
         }
 
-        return $plan ? $subscription->provider_plan == $plan : true;
+        return $plan ? $subscription->provider_plan === $plan : true;
     }
 
     /**
