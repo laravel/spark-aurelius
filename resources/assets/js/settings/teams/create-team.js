@@ -25,7 +25,7 @@ module.exports = {
 
             const subscription = _.find(
                 this.$parent.billable.subscriptions,
-                subscription => subscription.name == 'default'
+                subscription => subscription.name === 'default'
             );
 
             if (typeof subscription !== 'undefined') {
@@ -40,7 +40,7 @@ module.exports = {
         activePlan() {
             if (this.activeSubscription) {
                 return _.find(this.plans, (plan) => {
-                    return plan.id == this.activeSubscription.provider_plan;
+                    return plan.id === this.activeSubscription.provider_plan;
                 });
             }
         },
@@ -97,8 +97,8 @@ module.exports = {
          * Watch the team name for changes.
          */
         'form.name': function (val, oldVal) {
-            if (this.form.slug == '' ||
-                this.form.slug == oldVal.toLowerCase().replace(/[\s\W-]+/g, '-')
+            if (this.form.slug === '' ||
+                this.form.slug === oldVal.toLowerCase().replace(/[\s\W-]+/g, '-')
             ) {
                 this.form.slug = val.toLowerCase().replace(/[\s\W-]+/g, '-');
             }

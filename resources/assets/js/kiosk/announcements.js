@@ -31,7 +31,7 @@ module.exports = {
         var self = this;
 
         Bus.$on('sparkHashChanged', function (hash, parameters) {
-            if (hash == 'announcements' && self.announcements.length === 0) {
+            if (hash === 'announcements' && self.announcements.length === 0) {
                 self.getAnnouncements();
             }
         });

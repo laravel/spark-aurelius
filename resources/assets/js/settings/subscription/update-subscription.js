@@ -64,7 +64,7 @@ module.exports = {
          * Select the active plan interval.
          */
         selectActivePlanInterval() {
-            if (this.activePlanIsMonthly || this.yearlyPlans.length == 0) {
+            if (this.activePlanIsMonthly || this.yearlyPlans.length === 0) {
                 this.showMonthlyPlans();
             } else {
                 this.showYearlyPlans();
