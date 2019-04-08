@@ -14,7 +14,7 @@ class BraintreeCouponRepository implements CouponRepository
      */
     public function valid($code)
     {
-        return $code == 'plan-credit' ? false : ! is_null($this->find($code));
+        return $code === 'plan-credit' ? false : ! is_null($this->find($code));
     }
 
     /**

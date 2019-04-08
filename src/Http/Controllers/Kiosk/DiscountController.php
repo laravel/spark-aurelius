@@ -41,8 +41,8 @@ class DiscountController extends Controller
 
         $coupon = StripeCoupon::create([
             'currency' => Cashier::usesCurrency(),
-            'amount_off' => $request->type == 'amount' ? $request->value * 100 : null,
-            'percent_off' => $request->type == 'percent' ? $request->value : null,
+            'amount_off' => $request->type === 'amount' ? $request->value * 100 : null,
+            'percent_off' => $request->type === 'percent' ? $request->value : null,
             'duration' => $request->duration,
             'duration_in_months' => $request->months,
             'max_redemptions' => 1,

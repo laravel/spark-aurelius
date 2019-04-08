@@ -79,7 +79,7 @@ class PerformanceIndicatorsRepository implements Contract
     {
         $total = 0;
 
-        $plans = $interval == 'monthly' ? Spark::allMonthlyPlans() : Spark::allYearlyPlans();
+        $plans = $interval === 'monthly' ? Spark::allMonthlyPlans() : Spark::allYearlyPlans();
 
         foreach ($plans as $plan) {
             $total += DB::table($plan instanceof TeamPlan ? 'team_subscriptions' : 'subscriptions')
