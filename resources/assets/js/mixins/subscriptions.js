@@ -36,7 +36,7 @@ module.exports = {
                     Bus.$emit('updateTeam');
                 })
                 .catch(errors => {
-                    if (errors.response.status == 422) {
+                    if (errors.response.status === 422) {
                         this.planForm.errors.set(errors.response.data.errors);
                     } else {
                         this.planForm.errors.set({plan: [__("We were unable to update your subscription. Please contact customer support.")]});
@@ -53,7 +53,7 @@ module.exports = {
          */
         isActivePlan(plan) {
             return this.activeSubscription &&
-                   this.activeSubscription.provider_plan == plan.id;
+                   this.activeSubscription.provider_plan === plan.id;
         }
     },
 
@@ -65,7 +65,7 @@ module.exports = {
         activePlan() {
             if (this.activeSubscription) {
                 return _.find(this.plans, (plan) => {
-                    return plan.id == this.activeSubscription.provider_plan;
+                    return plan.id === this.activeSubscription.provider_plan;
                 });
             }
         },
@@ -75,7 +75,7 @@ module.exports = {
          * Determine if the active plan is a monthly plan.
          */
         activePlanIsMonthly() {
-            return this.activePlan && this.activePlan.interval == 'monthly';
+            return this.activePlan && this.activePlan.interval === 'monthly';
         },
 
 
@@ -89,7 +89,7 @@ module.exports = {
 
             const subscription = _.find(
                 this.billable.subscriptions,
-                subscription => subscription.name == 'default'
+                subscription => subscription.name === 'default'
             );
 
             if (typeof subscription !== 'undefined') {

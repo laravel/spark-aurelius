@@ -27,7 +27,7 @@ module.exports = {
         var self = this;
 
         Bus.$on('sparkHashChanged', function (hash, parameters) {
-            if (hash == 'metrics' && self.yearlyRecurringRevenue === 0) {
+            if (hash === 'metrics' && self.yearlyRecurringRevenue === 0) {
                 self.getRevenue();
                 self.getPlans();
                 self.getTrialUsers();

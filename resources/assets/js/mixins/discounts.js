@@ -21,7 +21,7 @@ module.exports = {
 
             axios.get(`/coupon/user/${user.id}`)
                 .then(response => {
-                    if (response.status == 200) {
+                    if (response.status === 200) {
                         this.currentDiscount = response.data;
                     }
 
@@ -40,7 +40,7 @@ module.exports = {
 
             axios.get(`/settings/${Spark.teamsPrefix}/coupon/${team.id}`)
                 .then(response => {
-                    if (response.status == 200) {
+                    if (response.status === 200) {
                         this.currentDiscount = response.data;
                     }
 

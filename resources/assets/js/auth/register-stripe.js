@@ -74,8 +74,8 @@ module.exports = {
          * Watch the team name for changes.
          */
         'registerForm.team': function (val, oldVal) {
-            if (this.registerForm.team_slug == '' ||
-                this.registerForm.team_slug == oldVal.toLowerCase().replace(/[\s\W-]+/g, '-')
+            if (this.registerForm.team_slug === '' ||
+                this.registerForm.team_slug === oldVal.toLowerCase().replace(/[\s\W-]+/g, '-')
             ) {
                 this.registerForm.team_slug = val.toLowerCase().replace(/[\s\W-]+/g, '-');
             }
@@ -86,7 +86,7 @@ module.exports = {
          * Watch for changes on the selected plan.
          */
         selectedPlan(val){
-            if (!val || val.price == 0) {
+            if (!val || val.price === 0) {
                 this.cardElement = null;
                 return;
             }
@@ -164,7 +164,7 @@ module.exports = {
             this.registerForm.busy = true;
             this.registerForm.errors.forget();
 
-            if ( ! Spark.cardUpFront || this.registerForm.invitation || this.selectedPlan.price == 0) {
+            if ( ! Spark.cardUpFront || this.registerForm.invitation || this.selectedPlan.price === 0) {
                 return this.sendRegistration();
             }
 

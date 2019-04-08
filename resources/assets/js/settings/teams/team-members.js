@@ -126,11 +126,11 @@ module.exports = {
          * Get the displayable role for the given team member.
          */
         teamMemberRole(member) {
-            if (this.roles.length == 0) {
+            if (this.roles.length === 0) {
                 return '';
             }
 
-            if (member.pivot.role == 'owner') {
+            if (member.pivot.role === 'owner') {
                 return 'Owner';
             }
 

@@ -86,7 +86,7 @@ module.exports = {
          */
         selectPlanById(id) {
             _.each(this.plans, plan => {
-                if (plan.id == id) {
+                if (plan.id === id) {
                     this.selectPlan(plan);
                 }
             });
@@ -100,7 +100,7 @@ module.exports = {
          */
         selectPlanByName(name) {
             _.each(this.plans, plan => {
-                if (plan.name == name) {
+                if (plan.name === name) {
                     this.selectPlan(plan);
                 }
             });
@@ -113,7 +113,7 @@ module.exports = {
          * Determine if the given plan is selected.
          */
         isSelected(plan) {
-            return this.selectedPlan && plan.id == this.selectedPlan.id;
+            return this.selectedPlan && plan.id === this.selectedPlan.id;
         },
 
 
@@ -131,8 +131,8 @@ module.exports = {
          * Determine if we should show the yearly plans.
          */
         shouldShowYearlyPlans(){
-            return (this.monthlyPlans.length == 0 && this.yearlyPlans.length > 0) ||
-                this.selectedPlan.interval == 'yearly'
+            return (this.monthlyPlans.length === 0 && this.yearlyPlans.length > 0) ||
+                this.selectedPlan.interval === 'yearly'
         }
     }
 };

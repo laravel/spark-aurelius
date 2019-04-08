@@ -21,7 +21,7 @@ module.exports = {
      */
     created() {
         Bus.$on('sparkHashChanged', function (hash, parameters) {
-            if (hash == 'users') {
+            if (hash === 'users') {
                 setTimeout(() => {
                     $('#kiosk-users-search').focus();
                 }, 150);

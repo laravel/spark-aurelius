@@ -74,7 +74,7 @@ module.exports = {
                 var activeSubscription = this.activeSubscription(billable);
 
                 return _.find(this.plans, (plan) => {
-                    return plan.id == activeSubscription.provider_plan;
+                    return plan.id === activeSubscription.provider_plan;
                 });
             }
         },
@@ -106,7 +106,7 @@ module.exports = {
 
             const subscription = _.find(
                 billable.subscriptions,
-                subscription => subscription.name == 'default'
+                subscription => subscription.name === 'default'
             );
 
             if (typeof subscription !== 'undefined') {
@@ -126,7 +126,7 @@ module.exports = {
             if (this.spark.usesStripe) {
                 return 'https://dashboard.stripe.com/customers/' + billable.stripe_id;
             } else {
-                var domain = Spark.env == 'production' ? '' : 'sandbox.';
+                var domain = Spark.env === 'production' ? '' : 'sandbox.';
 
                 return 'https://' + domain + 'braintreegateway.com/merchants/' +
                         Spark.braintreeMerchantId +

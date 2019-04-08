@@ -61,7 +61,7 @@ module.exports = {
          */
         plansForActiveInterval() {
             return _.filter(this.plans, plan => {
-                return plan.active && (plan.price == 0 || plan.interval == this.activeInterval);
+                return plan.active && (plan.price === 0 || plan.interval === this.activeInterval);
             });
         },
 
@@ -106,14 +106,14 @@ module.exports = {
          * Determine if only yearly plans are available.
          */
         onlyHasYearlyPlans() {
-            return this.monthlyPlans.length == 0 && this.yearlyPlans.length > 0;
+            return this.monthlyPlans.length === 0 && this.yearlyPlans.length > 0;
         },
 
         /**
          * Determine if both monthly and yearly plans are available.
          */
         onlyHasYearlyPaidPlans() {
-            return _.filter(this.paidPlans, {interval: 'monthly'}).length == 0 &&
+            return _.filter(this.paidPlans, {interval: 'monthly'}).length === 0 &&
                    _.filter(this.paidPlans, {interval: 'yearly'}).length > 0;
         },
 
@@ -123,7 +123,7 @@ module.exports = {
          */
         monthlyPlans() {
             return _.filter(this.plans, plan => {
-                return plan.active && plan.interval == 'monthly';
+                return plan.active && plan.interval === 'monthly';
             });
         },
 
@@ -133,7 +133,7 @@ module.exports = {
          */
         yearlyPlans() {
             return _.filter(this.plans, plan => {
-                return plan.active && plan.interval == 'yearly';
+                return plan.active && plan.interval === 'yearly';
             });
         }
     }

@@ -29,7 +29,7 @@ module.exports = {
 
             const subscription = _.find(
                 this.billable.subscriptions,
-                subscription => subscription.name == 'default'
+                subscription => subscription.name === 'default'
             );
             
             if (typeof subscription !== 'undefined') {
@@ -44,7 +44,7 @@ module.exports = {
         activePlan() {
             if (this.activeSubscription) {
                 return _.find(this.plans, (plan) => {
-                    return plan.id == this.activeSubscription.provider_plan;
+                    return plan.id === this.activeSubscription.provider_plan;
                 });
             }
         },
