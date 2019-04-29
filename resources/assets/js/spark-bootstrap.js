@@ -74,6 +74,10 @@ window.axios.defaults.headers.common = {
 window.axios.interceptors.response.use(function (response) {
     return response;
 }, function (error) {
+    if (error.response === undefined) {
+        return Promise.reject(error);
+    }
+
     switch (error.response.status) {
         case 401:
             window.axios.get('/logout');
