@@ -18,7 +18,7 @@ class UserRepository implements UserRepositoryContract
     public function current()
     {
         if (Auth::check()) {
-            return $this->find(Auth::user()->getKey())->shouldHaveSelfVisibility();
+            return $this->find(Auth::id())->shouldHaveSelfVisibility();
         }
     }
 
