@@ -27,7 +27,7 @@ class UserRepository implements UserRepositoryContract
      */
     public function find($id)
     {
-        $user = Spark::user()->where('id', $id)->first();
+        $user = Spark::user()->find($id);
 
         return $user ? $this->loadUserRelationships($user) : null;
     }
@@ -62,7 +62,7 @@ class UserRepository implements UserRepositoryContract
         // ID from the list. Typically we don't want to show the current user in the
         // search results and only want to display the other users from the query.
         if ($excludeUser) {
-            $search->where('id', '<>', $excludeUser->id);
+            $search->where(Spark::user()->getKey(), '<>', $excludeUser->id);
         }
 
         return $search->where(function ($search) use ($query) {
