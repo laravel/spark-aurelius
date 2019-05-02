@@ -5,6 +5,7 @@ namespace Laravel\Spark\Interactions\Settings\Teams;
 use Laravel\Spark\Spark;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Spark\Events\Teams\TeamCreated;
+use Laravel\Spark\Events\Teams\TeamOwnerAdded;
 use Laravel\Spark\Contracts\Repositories\TeamRepository;
 use Laravel\Spark\Contracts\Interactions\Settings\Teams\CreateTeam as Contract;
 use Laravel\Spark\Contracts\Interactions\Settings\Teams\AddTeamMember as AddTeamMemberContract;
@@ -77,6 +78,8 @@ class CreateTeam implements Contract
         Spark::interact(AddTeamMemberContract::class, [
             $team, $user, 'owner'
         ]);
+        
+        event(new TeamOwnerAdded($team, $user);
 
         return $team;
     }
