@@ -3,8 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\Auth;
 use Laravel\Spark\Spark;
+use Illuminate\Support\Facades\Auth;
 
 class RedirectIfAuthenticated
 {
