@@ -5,17 +5,11 @@ namespace Laravel\Spark\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\VerifiesEmails;
 use Laravel\Spark\Http\Controllers\Controller;
+use Laravel\Spark\Spark;
 
 class VerificationController extends Controller
 {
     use VerifiesEmails;
-
-    /**
-     * Where to redirect users after verification.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -27,6 +21,8 @@ class VerificationController extends Controller
         $this->middleware('auth');
         $this->middleware('signed')->only('verify');
         $this->middleware('throttle:6,1')->only('verify', 'resend');
+
+        $this->redirectTo = Spark::afterLoginRedirect();
     }
 
     /**
