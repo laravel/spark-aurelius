@@ -62,7 +62,7 @@ class UserRepository implements UserRepositoryContract
         // ID from the list. Typically we don't want to show the current user in the
         // search results and only want to display the other users from the query.
         if ($excludeUser) {
-            $search->where(Spark::user()->getKey(), '<>', $excludeUser->id);
+            $search->where(Spark::user()->getKeyName(), '<>', $excludeUser->id);
         }
 
         return $search->where(function ($search) use ($query) {
