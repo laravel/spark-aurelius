@@ -24,6 +24,8 @@ class EmergencyLoginController extends Controller
         $this->middleware('guest');
 
         $this->middleware('throttle:3,1')->only('login');
+
+        $this->redirectTo = Spark::afterLoginRedirect();
     }
 
     /**
