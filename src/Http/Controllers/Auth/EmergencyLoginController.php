@@ -15,6 +15,13 @@ class EmergencyLoginController extends Controller
     use RedirectsUsers;
 
     /**
+     * Where to redirect users after log in.
+     *
+     * @var string
+     */
+    protected $redirectTo = '/home';
+
+    /**
      * Create a new emergency login controller instance.
      *
      * @return void
