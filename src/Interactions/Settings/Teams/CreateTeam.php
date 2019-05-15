@@ -79,7 +79,7 @@ class CreateTeam implements Contract
             $team, $user, 'owner'
         ]);
         
-        event(new TeamOwnerAdded($team, $user);
+        event(new TeamOwnerAdded($team, $user));
 
         return $team;
     }
