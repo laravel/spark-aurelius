@@ -26,7 +26,7 @@ class UpdateStripePaymentMethod implements UpdatePaymentMethod
         }
 
         if (! $billable->stripe_id) {
-            $billable->createAsStripeCustomer();
+            $billable->createAsStripeCustomer($data['stripe_token']);
         }
 
         $billable->updateCard($data['stripe_token']);
