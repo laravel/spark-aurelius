@@ -16,7 +16,7 @@
                     @endif
 
                     <form role="form" method="POST" action="{{ url('/password/email') }}">
-                        {!! csrf_field() !!}
+                        @csrf
 
                         <!-- E-Mail Address -->
                         <div class="form-group row">
