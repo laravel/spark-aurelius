@@ -221,8 +221,8 @@ module.exports = {
             swal({
                 title: __('Got It!'),
                 text: __('We have received your message and will respond soon!'),
-                icon: 'success',
-                buttons: false,
+                type: 'success',
+                showConfirmButton: false,
                 timer: 2000
             });
         }
