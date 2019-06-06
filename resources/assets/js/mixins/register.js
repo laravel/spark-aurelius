@@ -24,7 +24,7 @@ module.exports = {
 
             axios.get('/spark/plans')
                 .then(response => {
-                    var plans = response.data;
+                    let plans = response.data;
 
                     this.plans = _.filter(plans, {type: "user"}).length > 0
                                     ? _.filter(plans, {type: "user"})

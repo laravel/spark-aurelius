@@ -25,7 +25,7 @@ module.exports = {
      * The component has been created by Vue.
      */
     created() {
-        var self = this;
+        let self = this;
 
         this.$on('updateDiscount', function(){
             self.getCurrentDiscountForBillable(self.billableType, self.billable);

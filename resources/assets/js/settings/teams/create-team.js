@@ -63,7 +63,7 @@ module.exports = {
          * Get the remaining teams in the active plan.
          */
         remainingTeams() {
-            var ownedTeams = _.filter(this.$parent.teams, {owner_id: this.$parent.billable.id});
+            let ownedTeams = _.filter(this.$parent.teams, {owner_id: this.$parent.billable.id});
 
             return this.activePlan
                     ? this.activePlan.attributes.teams - ownedTeams.length

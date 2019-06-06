@@ -49,19 +49,19 @@ Vue.filter('currency', value => {
         return '';
     }
 
-    var stringified = Math.abs(value).toFixed(2);
+    let stringified = Math.abs(value).toFixed(2);
 
-    var _int = stringified.slice(0, -1 - 2);
+    let _int = stringified.slice(0, -1 - 2);
 
-    var i = _int.length % 3;
+    let i = _int.length % 3;
 
-    var head = i > 0
+    let head = i > 0
         ? (_int.slice(0, i) + (_int.length > 3 ? ',' : ''))
         : '';
 
-    var _float = stringified.slice(-1 - 2);
+    let _float = stringified.slice(-1 - 2);
 
-    var sign = value < 0 ? '-' : '';
+    let sign = value < 0 ? '-' : '';
 
     return sign + window.Spark.currencySymbol + head +
         _int.slice(i).replace(/(\d{3})(?=\d)/g, '$1,') +

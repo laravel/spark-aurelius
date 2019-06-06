@@ -17,7 +17,7 @@ module.exports = {
      * The component has been created by Vue.
      */
     created() {
-        var self = this;
+        let self = this;
 
         this.$parent.$on('showUserProfile', function(id) {
             self.getUserProfile(id);
@@ -71,7 +71,7 @@ module.exports = {
          */
         activePlan(billable) {
             if (this.activeSubscription(billable)) {
-                var activeSubscription = this.activeSubscription(billable);
+                let activeSubscription = this.activeSubscription(billable);
 
                 return _.find(this.plans, (plan) => {
                     return plan.id === activeSubscription.provider_plan;
@@ -84,7 +84,7 @@ module.exports = {
          * Get the active, valid subscription for the user.
          */
         activeSubscription(billable) {
-            var subscription = this.subscription(billable);
+            let subscription = this.subscription(billable);
 
             if ( ! subscription ||
                     (subscription.ends_at &&
@@ -126,7 +126,7 @@ module.exports = {
             if (this.spark.usesStripe) {
                 return 'https://dashboard.stripe.com/customers/' + billable.stripe_id;
             } else {
-                var domain = Spark.env === 'production' ? '' : 'sandbox.';
+                let domain = Spark.env === 'production' ? '' : 'sandbox.';
 
                 return 'https://' + domain + 'braintreegateway.com/merchants/' +
                         Spark.braintreeMerchantId +

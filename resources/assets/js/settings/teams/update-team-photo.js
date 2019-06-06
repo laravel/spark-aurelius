@@ -22,7 +22,7 @@ module.exports = {
                 return;
             }
 
-            var self = this;
+            let self = this;
 
             this.form.startProcessing();
 

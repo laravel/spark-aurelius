@@ -19,12 +19,12 @@ module.exports = {
         };
     },
 
-    
+
     /**
      * The component has been created by Vue.
      */
     created() {
-        var self = this;
+        let self = this;
 
         Bus.$on('sparkHashChanged', function (hash, parameters) {
             if (hash === 'metrics' && self.yearlyRecurringRevenue === 0) {
@@ -155,19 +155,19 @@ module.exports = {
          * Draw a chart with the given parameters.
          */
         drawChart(id, days, dataGatherer, scaleLabelFormatter) {
-            var dataset = JSON.parse(JSON.stringify(this.baseChartDataSet));
+            let dataset = JSON.parse(JSON.stringify(this.baseChartDataSet));
 
             dataset.data = _.map(_.takeRight(this.indicators, days), dataGatherer);
 
              // Here we will build out the dataset for the chart. This will contain the dates and data
              // points for the chart. Each chart on the Kiosk only gets one dataset so we only need
              // to add it a single element to this array here. But, charts could have more later.
-            var data = {
+            let data = {
                 labels: _.takeRight(this.availableChartDates, days),
                 datasets: [dataset]
             };
 
-            var options = { responsive: true };
+            let options = { responsive: true };
 
              // If a scale label formatter was passed, we will hand that to this chart library to fill
              // out the Y-Axis labels. This is particularly useful when we want to format them as a
@@ -175,8 +175,8 @@ module.exports = {
             if (arguments.length === 4) {
                 options.scaleLabel = scaleLabelFormatter;
             }
-            
-            var chart = new Chart(document.getElementById(id).getContext('2d'), {
+
+            let chart = new Chart(document.getElementById(id).getContext('2d'), {
                 type: 'line',
                 data: data,
                 options: options
@@ -188,7 +188,7 @@ module.exports = {
          * Calculate the percent change between two numbers.
          */
         percentChange(current, previous) {
-            var change = Math.round(((current - previous) / previous) * 100);
+            let change = Math.round(((current - previous) / previous) * 100);
 
             return change > 0 ? '+' + change.toFixed(0) : change.toFixed(0);
         }

@@ -18,7 +18,7 @@ module.exports = {
                 throw "Invalid Stripe Key/Secret";
             }
 
-            var card = this.stripe.elements().create('card', {
+            let card = this.stripe.elements().create('card', {
                 hideIcon: true,
                 hidePostalCode: true,
                 style: {

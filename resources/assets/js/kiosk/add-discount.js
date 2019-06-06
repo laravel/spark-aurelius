@@ -29,7 +29,7 @@ module.exports = {
      * The component has been created by Vue.
      */
     created() {
-        var self = this;
+        let self = this;
 
         Bus.$on('addDiscount', function (user) {
             self.form = new SparkForm(kioskAddDiscountForm());

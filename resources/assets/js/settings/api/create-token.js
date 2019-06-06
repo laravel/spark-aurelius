@@ -42,7 +42,7 @@ module.exports = {
          * Assign all of the default abilities.
          */
         assignDefaultAbilities() {
-            var defaults = _.filter(this.availableAbilities, a => a.default);
+            let defaults = _.filter(this.availableAbilities, a => a.default);
 
             this.form.abilities = _.map(defaults, 'value');
         },

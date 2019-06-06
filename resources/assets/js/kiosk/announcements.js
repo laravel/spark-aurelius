@@ -1,4 +1,4 @@
-var announcementsCreateForm = function () {
+let announcementsCreateForm = function () {
     return {
         body: '',
         action_text: '',
@@ -23,12 +23,12 @@ module.exports = {
         };
     },
 
-    
+
     /**
      * The component has been created by Vue.
      */
     created() {
-        var self = this;
+        let self = this;
 
         Bus.$on('sparkHashChanged', function (hash, parameters) {
             if (hash === 'announcements' && self.announcements.length === 0) {

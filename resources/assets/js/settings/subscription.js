@@ -24,7 +24,7 @@ module.exports = {
      * Prepare the component.
      */
     mounted() {
-        var self = this;
+        let self = this;
 
         this.getPlans();
 

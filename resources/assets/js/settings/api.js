@@ -23,7 +23,7 @@ module.exports = {
      * The component has been created by Vue.
      */
     created() {
-        var self = this;
+        let self = this;
 
         this.$on('updateTokens', function(){
             self.getTokens();

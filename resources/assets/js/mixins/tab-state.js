@@ -43,9 +43,9 @@ module.exports = {
          * Activate the tab for the current hash in the URL.
          */
         activateTabForCurrentHash() {
-            var hash = window.location.hash.substring(2);
+            let hash = window.location.hash.substring(2);
 
-            var parameters = hash.split('/');
+            let parameters = hash.split('/');
 
             hash = parameters.shift();
 

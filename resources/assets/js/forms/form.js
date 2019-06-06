@@ -2,7 +2,7 @@
  * SparkForm helper class. Used to set common properties on all forms.
  */
 window.SparkForm = function (data) {
-    var form = this;
+    let form = this;
 
     $.extend(this, data);
 
