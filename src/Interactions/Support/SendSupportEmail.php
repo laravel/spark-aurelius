@@ -31,7 +31,7 @@ class SendSupportEmail implements Contract
     public function handle(array $data)
     {
         if (! Spark::hasSupportAddress()) {
-            throw new RuntimeException(__("No customer support request recipient is defined."));
+            throw new RuntimeException(__('No customer support request recipient is defined.'));
         }
 
         Mail::raw($data['message'], function ($m) use ($data) {

@@ -55,7 +55,7 @@ class LoginController extends Controller
 
         $user = Spark::user()->where('email', $request->email)->first();
 
-        if (Spark::usesTwoFactorAuth() && $user && $user->uses_two_factor_auth) {
+        if ($user && $user->uses_two_factor_auth && Spark::usesTwoFactorAuth()) {
             $request->merge(['remember' => '']);
         }
 
@@ -71,7 +71,7 @@ class LoginController extends Controller
      */
     public function authenticated(Request $request, $user)
     {
-        if (Spark::usesTwoFactorAuth() && $user->uses_two_factor_auth) {
+        if ($user->uses_two_factor_auth && Spark::usesTwoFactorAuth()) {
             return $this->redirectForTwoFactorAuth($request, $user);
         }
 
@@ -141,9 +141,9 @@ class LoginController extends Controller
             ));
 
             return redirect()->intended($this->redirectPath());
-        } else {
-            return back();
         }
+
+        return back();
     }
 
     /**

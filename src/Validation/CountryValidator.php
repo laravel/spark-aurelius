@@ -34,6 +34,6 @@ class CountryValidator
      */
     public function validate($attribute, $value, $parameters)
     {
-        return in_array($value, array_keys($this->countries->all()));
+        return array_key_exists($value, $this->countries->all());
     }
 }

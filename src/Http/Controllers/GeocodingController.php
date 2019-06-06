@@ -22,7 +22,7 @@ class GeocodingController extends Controller
 
             $body = (string) $response->getBody();
 
-            if ($body[0] === '1') {
+            if (strpos($body, '1') === 0) {
                 return explode(';', $body)[1];
             }
         } catch (Exception $e) {

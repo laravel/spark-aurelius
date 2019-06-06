@@ -16,7 +16,7 @@ trait InteractsWithSparkConfiguration
     protected function readToken()
     {
         if (! $this->configExists()) {
-            throw new Exception("Spark configuration file not found. Please register a token.");
+            throw new Exception('Spark configuration file not found. Please register a token.');
         }
 
         return json_decode(

@@ -37,10 +37,10 @@ trait CallsInteractions
     public static function interact($interaction, array $parameters = [])
     {
         if (! Str::contains($interaction, '@')) {
-            $interaction = $interaction.'@handle';
+            $interaction .= '@handle';
         }
 
-        list($class, $method) = explode('@', $interaction);
+        [$class, $method] = explode('@', $interaction);
 
         if (isset(static::$interactions[$interaction])) {
             return static::callSwappedInteraction($interaction, $parameters, $class);

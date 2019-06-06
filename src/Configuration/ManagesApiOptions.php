@@ -64,12 +64,12 @@ trait ManagesApiOptions
     {
         if (is_null($abilities)) {
             return static::$tokensCan;
-        } else {
-            static::$tokensCan = $abilities;
+        }
 
-            if (class_exists('Laravel\Passport\Passport')) {
-                Passport::tokensCan($abilities);
-            }
+        static::$tokensCan = $abilities;
+
+        if (class_exists('Laravel\Passport\Passport')) {
+            Passport::tokensCan($abilities);
         }
     }
 

@@ -108,7 +108,9 @@ trait CanJoinTeams
             $this->switchToTeam($this->teams->first());
 
             return $this->currentTeam();
-        } elseif (! is_null($this->current_team_id)) {
+        }
+
+        if ( ! is_null($this->current_team_id)) {
             $currentTeam = $this->teams->find($this->current_team_id);
 
             return $currentTeam ?: $this->refreshCurrentTeam();
@@ -144,7 +146,7 @@ trait CanJoinTeams
     public function switchToTeam($team)
     {
         if (! $this->onTeam($team)) {
-            throw new InvalidArgumentException(__("teams.user_doesnt_belong_to_team"));
+            throw new InvalidArgumentException(__('teams.user_doesnt_belong_to_team'));
         }
 
         $this->current_team_id = $team->id;

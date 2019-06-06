@@ -159,7 +159,7 @@ class SparkServiceProvider extends ServiceProvider
     public function register()
     {
         if (! defined('SPARK_PATH')) {
-            define('SPARK_PATH', realpath(__DIR__.'/../../'));
+            define('SPARK_PATH', dirname(__DIR__.'/../../'));
         }
 
         if (! class_exists('Spark')) {

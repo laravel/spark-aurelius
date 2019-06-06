@@ -392,7 +392,7 @@ trait ManagesBillingProviders
     public static function collectBillingAddress($value = true)
     {
         if ($value && static::billsUsingBraintree()) {
-            throw new Exception("Collecting billing addresses is only supported when using Stripe.");
+            throw new Exception('Collecting billing addresses is only supported when using Stripe.');
         }
 
         static::$collectsBillingAddress = $value;
