@@ -34,7 +34,7 @@
                             </span>
 
                             <span v-else>
-                                {{__('Update')}}
+                                <i class="fa fa-btn fa-check-circle"></i> {{__('Update')}}
                             </span>
                         </button>
                     </div>

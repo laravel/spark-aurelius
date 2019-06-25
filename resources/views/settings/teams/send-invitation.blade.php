@@ -50,7 +50,7 @@
                             </span>
 
                             <span v-else>
-                                {{__('Send Invitation')}}
+                                <i class="fa fa-btn fa-check-circle"></i> {{__('Send Invitation')}}
                             </span>
                         </button>
                     </div>

@@ -46,7 +46,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{__('Login')}}
+                                    <i class="fa fa-sign-in"></i> {{__('Login')}}
                                 </button>
 
                                 <a class="btn btn-link" href="{{ url('/password/reset') }}">{{__('Forgot Your Password?')}}</a>

@@ -47,7 +47,7 @@
                                 @click.prevent="create"
                                 :disabled="form.busy">
 
-                            {{__('Create')}}
+                            <i class="fa fa-check-circle"></i> {{__('Create')}}
                         </button>
                     </div>
                 </div>

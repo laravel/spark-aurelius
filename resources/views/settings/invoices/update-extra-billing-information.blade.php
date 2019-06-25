@@ -29,7 +29,7 @@
                 <div class="form-group row mb-0">
                     <div class="offset-md-4 col-md-8 text-right">
                         <button type="submit" class="btn btn-primary" @click.prevent="update" :disabled="form.busy">
-                            {{__('Update')}}
+                            <i class="fa fa-check-circle"></i> {{__('Update')}}
                         </button>
                     </div>
                 </div>

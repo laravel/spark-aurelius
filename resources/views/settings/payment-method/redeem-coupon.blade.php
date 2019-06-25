@@ -33,7 +33,7 @@
                             </span>
 
                             <span v-else>
-                                {{__('Redeem')}}
+                                <i class="fa fa-btn fa-check-circle"></i> {{__('Redeem')}}
                             </span>
                         </button>
                     </div>

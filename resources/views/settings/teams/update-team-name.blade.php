@@ -31,7 +31,7 @@
                                 @click.prevent="update"
                                 :disabled="form.busy">
 
-                            {{__('Update')}}
+                            <i class="fa fa-btn fa-check-circle"></i> {{__('Update')}}
                         </button>
                     </div>
                 </div>
