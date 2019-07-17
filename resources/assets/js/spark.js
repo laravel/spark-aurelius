@@ -218,7 +218,7 @@ module.exports = {
          * Show an alert informing the user their support request was sent.
          */
         showSupportRequestSuccessMessage() {
-            swal({
+            Swal.fire({
                 title: __('Got It!'),
                 text: __('We have received your message and will respond soon!'),
                 type: 'success',
