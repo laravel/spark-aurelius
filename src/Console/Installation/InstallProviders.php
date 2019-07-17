@@ -54,9 +54,7 @@ class InstallProviders
      */
     protected function getEventProvider()
     {
-        return $this->command->option('braintree')
-                        ? SPARK_STUB_PATH.'/app/Providers/BraintreeEventServiceProvider.php'
-                        : SPARK_STUB_PATH.'/app/Providers/EventServiceProvider.php';
+        return SPARK_STUB_PATH.'/app/Providers/EventServiceProvider.php';
     }
 
     /**
@@ -66,24 +64,8 @@ class InstallProviders
      */
     protected function getSparkProvider()
     {
-        if ($this->command->option('braintree')) {
-            return $this->getBraintreeSparkProvider();
-        }
-
         return $this->command->option('team-billing')
                         ? SPARK_STUB_PATH.'/app/Providers/SparkTeamBillingServiceProvider.php'
                         : SPARK_STUB_PATH.'/app/Providers/SparkServiceProvider.php';
-    }
-
-    /**
-     * Get the path to the proper Braintree Spark service provider.
-     *
-     * @return string
-     */
-    protected function getBraintreeSparkProvider()
-    {
-        return $this->command->option('team-billing')
-                        ? SPARK_STUB_PATH.'/app/Providers/SparkBraintreeTeamBillingServiceProvider.php'
-                        : SPARK_STUB_PATH.'/app/Providers/SparkBraintreeServiceProvider.php';
     }
 }

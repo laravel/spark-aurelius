@@ -1,11 +1,7 @@
 @extends('spark::layouts.app')
 
 @push('scripts')
-    @if (Spark::billsUsingStripe())
-        <script src="https://js.stripe.com/v3/"></script>
-    @else
-        <script src="https://js.braintreegateway.com/v2/braintree.js"></script>
-    @endif
+    <script src="https://js.stripe.com/v3/"></script>
 @endpush
 
 @section('content')

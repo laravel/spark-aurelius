@@ -16,7 +16,7 @@ trait Billable
      */
     public function hasBillingProvider()
     {
-        return $this->stripe_id || $this->braintree_id;
+        return $this->stripe_id;
     }
 
     /**

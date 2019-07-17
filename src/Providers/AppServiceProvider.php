@@ -3,7 +3,6 @@
 namespace Laravel\Spark\Providers;
 
 use Laravel\Spark\Spark;
-use Braintree_Configuration;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -96,10 +95,6 @@ class AppServiceProvider extends ServiceProvider
         Spark::byDefaultTokensCan($this->byDefaultTokensCan);
 
         $this->booted();
-
-        if (Spark::billsUsingBraintree()) {
-            $this->configureBraintree();
-        }
     }
 
     /**
@@ -110,18 +105,5 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
-    }
-
-    /**
-     * Configure the Braintree SDK.
-     *
-     * @return void
-     */
-    protected function configureBraintree()
-    {
-        Braintree_Configuration::environment(config('services.braintree.env'));
-        Braintree_Configuration::merchantId(config('services.braintree.merchant_id'));
-        Braintree_Configuration::publicKey(config('services.braintree.key'));
-        Braintree_Configuration::privateKey(config('services.braintree.secret'));
     }
 }

@@ -6,7 +6,6 @@ use Laravel\Spark\Spark;
 use Laravel\Cashier\Cashier;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Spark\Contracts\InitialFrontendState;
-use Braintree\ClientToken as BraintreeClientToken;
 
 trait ProvidesScriptVariables
 {
@@ -19,8 +18,6 @@ trait ProvidesScriptVariables
     {
         return [
             'translations' => static::getTranslations() + ['teams.team' => trans('teams.team'), 'teams.member' => trans('teams.member')],
-            'braintreeMerchantId' => config('services.braintree.merchant_id'),
-            'braintreeToken' => Spark::needsBraintreeToken(request()) && Spark::billsUsingBraintree() ? BraintreeClientToken::generate() : null,
             'cardUpFront' => Spark::needsCardUpFront(),
             'collectsBillingAddress' => Spark::collectsBillingAddress(),
             'collectsEuropeanVat' => Spark::collectsEuropeanVat(),
@@ -35,7 +32,6 @@ trait ProvidesScriptVariables
             'teamsIdentifiedByPath' => Spark::teamsIdentifiedByPath(),
             'userId' => Auth::id(),
             'usesApi' => Spark::usesApi(),
-            'usesBraintree' => Spark::billsUsingBraintree(),
             'usesTeams' => Spark::usesTeams(),
             'usesStripe' => Spark::billsUsingStripe(),
             'chargesUsersPerSeat' => Spark::chargesUsersPerSeat(),

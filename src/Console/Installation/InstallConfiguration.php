@@ -43,6 +43,6 @@ class InstallConfiguration
      */
     protected function servicesFile()
     {
-        return $this->command->option('braintree') ? 'services-braintree' : 'services-stripe';
+        return 'services-stripe';
     }
 }

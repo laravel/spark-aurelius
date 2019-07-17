@@ -31,7 +31,7 @@ class RegisterRequest extends FormRequest
         $validator = $this->baseValidator();
 
         // If a paid plan is selected, we will validate the given required fields which
-        // are typically the Stripe / Braintree tokens. If the selected plan is free
+        // are typically the Stripe tokens. If the selected plan is free
         // of course we will not need to validate that these fields are available.
         $validator->sometimes($paymentAttributes, 'required', function ($input) {
             return $this->plan() && $this->plan()->price > 0;

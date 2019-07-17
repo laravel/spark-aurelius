@@ -43,7 +43,6 @@ class TeamSubscription extends CashierSubscription
      */
     public function getProviderPlanAttribute()
     {
-        return Spark::billsUsingStripe()
-                        ? $this->stripe_plan : $this->braintree_plan;
+        return $this->stripe_plan;
     }
 }

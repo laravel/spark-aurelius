@@ -63,7 +63,7 @@ class InstallMigrations
     protected function formatName($migration)
     {
         return str_replace(
-            ['migrations/braintree/', 'migrations/'], '', $migration
+            ['migrations/'], '', $migration
         );
     }
 
@@ -74,9 +74,7 @@ class InstallMigrations
      */
     protected function getMigrations()
     {
-        return $this->command->option('braintree')
-                        ? $this->getBraintreeMigrations()
-                        : $this->getStripeMigrations();
+        return $this->getStripeMigrations();
     }
 
     /**
@@ -96,28 +94,6 @@ class InstallMigrations
             'migrations/create_invoices_table',
             'migrations/create_notifications_table',
             'migrations/create_teams_table',
-            'migrations/create_team_users_table',
-            'migrations/create_invitations_table',
-        ];
-    }
-
-    /**
-     * Get the Braintree migration files.
-     *
-     * @return array
-     */
-    protected function getBraintreeMigrations()
-    {
-        return [
-            'migrations/create_performance_indicators_table',
-            'migrations/create_announcements_table',
-            'migrations/braintree/create_users_table',
-            'migrations/create_password_resets_table',
-            'migrations/create_api_tokens_table',
-            'migrations/braintree/create_subscriptions_table',
-            'migrations/create_invoices_table',
-            'migrations/create_notifications_table',
-            'migrations/braintree/create_teams_table',
             'migrations/create_team_users_table',
             'migrations/create_invitations_table',
         ];

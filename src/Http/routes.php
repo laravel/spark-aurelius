@@ -200,4 +200,3 @@ $router->get('/geocode/states/{country}', 'GeocodingController@states');
 
 // Webhooks...
 $router->post('/webhook/stripe', 'Settings\Billing\StripeWebhookController@handleWebhook');
-$router->post('/webhook/braintree', 'Settings\Billing\BraintreeWebhookController@handleWebhook');

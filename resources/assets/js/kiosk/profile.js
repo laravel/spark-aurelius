@@ -123,16 +123,7 @@ module.exports = {
                 return;
             }
 
-            if (this.spark.usesStripe) {
-                return 'https://dashboard.stripe.com/customers/' + billable.stripe_id;
-            } else {
-                var domain = Spark.env === 'production' ? '' : 'sandbox.';
-
-                return 'https://' + domain + 'braintreegateway.com/merchants/' +
-                        Spark.braintreeMerchantId +
-                        '/customers/' +
-                        billable.braintree_id;
-            }
+            return 'https://dashboard.stripe.com/customers/' + billable.stripe_id;
         },
 
 
