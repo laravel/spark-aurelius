@@ -5,6 +5,7 @@ namespace Laravel\Spark\Http\Controllers\Settings\Subscription;
 use Laravel\Spark\Spark;
 use Illuminate\Http\Request;
 use Laravel\Spark\Http\Controllers\Controller;
+use Laravel\Cashier\Exceptions\IncompletePayment;
 use Laravel\Spark\Contracts\Interactions\Subscribe;
 use Laravel\Spark\Events\Subscription\SubscriptionUpdated;
 use Laravel\Spark\Events\Subscription\SubscriptionCancelled;
@@ -33,9 +34,15 @@ class PlanController extends Controller
     {
         $plan = Spark::plans()->where('id', $request->plan)->first();
 
-        Spark::interact(Subscribe::class, [
-            $request->user(), $plan, false, $request->all()
-        ]);
+        try{
+            Spark::interact(Subscribe::class, [
+                $request->user(), $plan, false, $request->all()
+            ]);
+        } catch (IncompletePayment $e) {
+            return response()->json([
+                'paymentId' => $e->payment->id
+            ], 400);
+        }
     }
 
     /**
@@ -62,10 +69,12 @@ class PlanController extends Controller
                 ])->save();
             }
 
-            if (Spark::prorates()) {
-                $subscription->swap($request->plan);
-            } else {
-                $subscription->noProrate()->swap($request->plan);
+            try {
+                $this->swapPlans($request->plan, $subscription);
+            } catch (IncompletePayment $e) {
+                return response()->json([
+                    'paymentId' => $e->payment->id
+                ], 400);
             }
         }
 
@@ -85,5 +94,21 @@ class PlanController extends Controller
         $request->user()->subscription()->cancel();
 
         event(new SubscriptionCancelled($request->user()->fresh()));
+    }
+
+    /**
+     * Update the subscription to the given plan.
+     *
+     * @param  string  $plan
+     * @param  \Laravel\Spark\Subscription $subscription
+     * @return void
+     */
+    protected function swapPlans($plan, $subscription)
+    {
+        if (Spark::prorates()) {
+            $subscription->swap($plan);
+        } else {
+            $subscription->noProrate()->swap($plan);
+        }
     }
 }

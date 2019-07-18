@@ -6,6 +6,7 @@ use Laravel\Spark\Team;
 use Laravel\Spark\Spark;
 use Illuminate\Http\Request;
 use Laravel\Spark\Http\Controllers\Controller;
+use Laravel\Cashier\Exceptions\IncompletePayment;
 use Laravel\Spark\Contracts\Interactions\SubscribeTeam;
 use Laravel\Spark\Events\Teams\Subscription\SubscriptionUpdated;
 use Laravel\Spark\Events\Teams\Subscription\SubscriptionCancelled;
@@ -33,9 +34,15 @@ class PlanController extends Controller
      */
     public function store(CreateSubscriptionRequest $request, Team $team)
     {
-        Spark::interact(SubscribeTeam::class, [
-            $team, $request->plan(), false, $request->all()
-        ]);
+        try{
+            Spark::interact(SubscribeTeam::class, [
+                $team, $request->plan(), false, $request->all()
+            ]);
+        } catch (IncompletePayment $e) {
+            return response()->json([
+                'paymentId' => $e->payment->id
+            ], 400);
+        }
     }
 
     /**

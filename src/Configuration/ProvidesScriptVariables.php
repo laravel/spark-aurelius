@@ -29,6 +29,7 @@ trait ProvidesScriptVariables
             'roles' => Spark::roles(),
             'state' => Spark::call(InitialFrontendState::class.'@forUser', [Auth::user()]),
             'stripeKey' => config('cashier.key'),
+            'cashierPath' => config('cashier.path'),
             'teamsPrefix' => Spark::teamsPrefix(),
             'teamsIdentifiedByPath' => Spark::teamsIdentifiedByPath(),
             'userId' => Auth::id(),

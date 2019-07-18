@@ -143,10 +143,16 @@ module.exports = {
         createSubscription(token) {
             this.form.stripe_token = token;
 
-            Spark.post(this.urlForNewSubscription, this.form)
+            axios.post(this.urlForNewSubscription, this.form)
                 .then(response => {
                     Bus.$emit('updateUser');
                     Bus.$emit('updateTeam');
+                }).catch(errors => {
+                    if (errors.response.status == 400) {
+                        window.location = '/' + Spark.cashierPath + '/payment/' + errors.response.data.paymentId + '?redirect=' + this.urlForPlanRedirect;
+                    } else {
+                        this.form.setErrors({form: ['Something went wrong.']});
+                    }
                 });
         },
 
@@ -202,6 +208,16 @@ module.exports = {
             return this.billingUser
                             ? '/settings/subscription'
                             : `/settings/${Spark.teamsPrefix}/${this.team.id}/subscription`;
+        },
+
+
+        /**
+         * Get the URL tor edirect to after confirmation.
+         */
+        urlForPlanRedirect() {
+            return this.billingUser
+                            ? '/settings%23/subscription'
+                            : `/settings/${Spark.teamsPrefix}/${this.team.id}%23/subscription`;
         },
 
 

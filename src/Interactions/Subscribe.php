@@ -15,6 +15,12 @@ class Subscribe implements Contract
      */
     public function handle($user, $plan, $fromRegistration, array $data)
     {
+        $user->subscriptions()->whereStatus('incomplete')->each(function ($subscription) {
+            $subscription->cancel();
+
+            $subscription->delete();
+        });
+
         $subscription = $user->newSubscription('default', $plan->id);
 
         // Here we will check if we need to skip trial or set trial days on the subscription

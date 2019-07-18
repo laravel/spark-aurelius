@@ -36,7 +36,9 @@ module.exports = {
                     Bus.$emit('updateTeam');
                 })
                 .catch(errors => {
-                    if (errors.response.status === 422) {
+                    if (errors.response.status == 400) {
+                        window.location = '/' + Spark.cashierPath + '/payment/' + errors.response.data.paymentId + '?redirect=' + this.urlForPlanRedirect;
+                    } else if (errors.response.status === 422) {
                         this.planForm.errors.set(errors.response.data.errors);
                     } else {
                         this.planForm.errors.set({plan: [__("We were unable to update your subscription. Please contact customer support.")]});
@@ -89,7 +91,7 @@ module.exports = {
 
             const subscription = _.find(
                 this.billable.subscriptions,
-                subscription => subscription.name === 'default'
+                subscription => subscription.name === 'default' && subscription.status == 'active'
             );
 
             if (typeof subscription !== 'undefined') {
@@ -174,6 +176,16 @@ module.exports = {
             return this.billingUser
                             ? '/settings/subscription'
                             : `/settings/${Spark.teamsPrefix}/${this.team.id}/subscription`;
+        },
+
+
+        /**
+         * Get the URL tor edirect to after confirmation.
+         */
+        urlForPlanRedirect() {
+            return this.billingUser
+                            ? '/settings%23/subscription'
+                            : `/settings/${Spark.teamsPrefix}/${this.team.id}%23/subscription`;
         }
     }
 };
