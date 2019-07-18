@@ -63,7 +63,7 @@ class InstallMigrations
     protected function formatName($migration)
     {
         return str_replace(
-            ['migrations/'], '', $migration
+            'migrations/', '', $migration
         );
     }
 
@@ -74,23 +74,13 @@ class InstallMigrations
      */
     protected function getMigrations()
     {
-        return $this->getStripeMigrations();
-    }
-
-    /**
-     * Get the Stripe migration files.
-     *
-     * @return array
-     */
-    protected function getStripeMigrations()
-    {
         return [
             'migrations/create_performance_indicators_table',
             'migrations/create_announcements_table',
             'migrations/create_users_table',
             'migrations/create_password_resets_table',
             'migrations/create_api_tokens_table',
-            'migrations/create_subscriptions_table',
+            'migrations/create_spark_subscriptions_table',
             'migrations/create_invoices_table',
             'migrations/create_notifications_table',
             'migrations/create_teams_table',

@@ -33,7 +33,7 @@ class StripeCouponRepository implements CouponRepository
     {
         try {
             $coupon = StripeCoupon::retrieve(
-                $code, ['api_key' => config('services.stripe.secret')]
+                $code, ['api_key' => config('cashier.secret')]
             );
 
             if ($coupon && $coupon->valid) {

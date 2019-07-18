@@ -32,17 +32,5 @@ class InstallConfiguration
     public function install()
     {
         copy(SPARK_STUB_PATH.'/config/auth.php', config_path('auth.php'));
-
-        copy(SPARK_STUB_PATH.'/config/'.$this->servicesFile().'.php', config_path('services.php'));
-    }
-
-    /**
-     * Get the file name for the services configuration file.
-     *
-     * @return string
-     */
-    protected function servicesFile()
-    {
-        return 'services-stripe';
     }
 }

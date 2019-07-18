@@ -58,7 +58,7 @@
 
                                     <!-- Total Revenue -->
                                     <p>
-                                        <strong>{{__('Total Revenue')}}:</strong> @{{ revenue | currency(spark.currencySymbol) }}
+                                        <strong>{{__('Total Revenue')}}:</strong> @{{ revenue | currency }}
                                     </p>
                                 </div>
                             </div>

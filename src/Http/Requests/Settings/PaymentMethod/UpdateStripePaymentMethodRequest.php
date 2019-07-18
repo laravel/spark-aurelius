@@ -30,7 +30,7 @@ class UpdateStripePaymentMethodRequest extends FormRequest implements UpdatePaym
     public function validator()
     {
         $validator = Validator::make($this->all(), [
-            'stripe_token' => 'required',
+            'stripe_payment_method' => 'required',
         ]);
 
         if (Spark::collectsBillingAddress()) {

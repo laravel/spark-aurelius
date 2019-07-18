@@ -2,7 +2,7 @@
 
 namespace Laravel\Spark\Services;
 
-use Stripe\Token as StripeToken;
+use Stripe\PaymentMethod as StripePaymentMethod;
 
 class Stripe
 {
@@ -14,8 +14,8 @@ class Stripe
      */
     public function countryForToken($token)
     {
-        return StripeToken::retrieve(
-            $token, config('services.stripe.secret')
+        return StripePaymentMethod::retrieve(
+            $token, config('cashier.secret')
         )->card->country;
     }
 

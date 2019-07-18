@@ -39,31 +39,12 @@ Vue.filter('capitalize', value => {
 
 /**
  * Format the given money value.
- *
- * Source: https://github.com/vuejs/vue/blob/1.0/src/filters/index.js#L70
  */
 Vue.filter('currency', value => {
-    value = parseFloat(value);
+    const Dinero = require('dinero.js').default
 
-    if (! isFinite(value) || (! value && value !== 0)){
-        return '';
-    }
-
-    var stringified = Math.abs(value).toFixed(2);
-
-    var _int = stringified.slice(0, -1 - 2);
-
-    var i = _int.length % 3;
-
-    var head = i > 0
-        ? (_int.slice(0, i) + (_int.length > 3 ? ',' : ''))
-        : '';
-
-    var _float = stringified.slice(-1 - 2);
-
-    var sign = value < 0 ? '-' : '';
-
-    return sign + window.Spark.currencySymbol + head +
-        _int.slice(i).replace(/(\d{3})(?=\d)/g, '$1,') +
-        _float;
+    return Dinero({
+        amount: value * 100,
+        currency: window.Spark.currency
+    }).setLocale(window.Spark.currencyLocale).toFormat('$0,0.00');
 });

@@ -43,6 +43,7 @@
 
                     <div class="col-md-6">
                         <div id="payment-card-element"></div>
+                        <input type="hidden" class="form-control" :class="{'is-invalid': cardForm.errors.has('card')}">
                         <span class="invalid-feedback" v-show="cardForm.errors.has('card')">
                             @{{ cardForm.errors.get('card') }}
                         </span>
@@ -63,6 +64,7 @@
                     </div>
                 </div>
 
+                <input type="hidden" ref="clientSecret" value="{{$clientSecret}}">
                 <!-- Update Button -->
                 <div class="form-group row mb-0">
                     <div class="col-md-6 offset-md-4">

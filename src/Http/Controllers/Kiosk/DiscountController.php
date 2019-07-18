@@ -46,7 +46,7 @@ class DiscountController extends Controller
             'duration' => $request->duration,
             'duration_in_months' => $request->months,
             'max_redemptions' => 1,
-        ], config('services.stripe.secret'));
+        ], config('cashier.secret'));
 
         $user->applyCoupon($coupon->id);
     }

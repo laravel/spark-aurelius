@@ -37,12 +37,12 @@ trait ValidatesBillingAddresses
      */
     protected function mergeCardCountryIntoRequest()
     {
-        if (! $this->stripe_token) {
+        if (! $this->stripe_payment_method) {
             return;
         }
 
         $this->merge(['card_country' => app(StripeService::class)->countryForToken(
-            $this->stripe_token
+            $this->stripe_payment_method
         )]);
     }
 
@@ -55,7 +55,7 @@ trait ValidatesBillingAddresses
     protected function validateLocation($validator)
     {
         if ($this->stripe_token &&
-            ! app(StripeService::class)->tokenIsForCountry($this->stripe_token, $this->country)) {
+            ! app(StripeService::class)->tokenIsForCountry($this->stripe_payment_method, $this->country)) {
             $validator->errors()->add(
                 'country', __('This country does not match the origin country of your card.')
             );
