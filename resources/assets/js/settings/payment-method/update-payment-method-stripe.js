@@ -112,7 +112,7 @@ module.exports = {
             this.form.stripe_payment_method = paymentMethod;
 
             Spark.put(this.urlForUpdate, this.form)
-                .then(() => {
+                .then((response) => {
                     Bus.$emit('updateUser');
                     Bus.$emit('updateTeam');
 
@@ -125,6 +125,8 @@ module.exports = {
                     if ( ! Spark.collectsBillingAddress) {
                         this.form.zip = '';
                     }
+
+                    this.$refs.clientSecret.value = response.clientSecret;
                 });
         }
     },
