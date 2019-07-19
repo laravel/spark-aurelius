@@ -2,7 +2,7 @@
     <div>
         <div v-if="plans.length > 0">
             <!-- Trial Expiration Notice -->
-            @include('spark::settings.subscription.trial-expiration-notice')
+            @include('spark::settings.subscription.subscription-notice')
 
             <!-- New Subscription -->
             <div v-if="needsSubscription">
