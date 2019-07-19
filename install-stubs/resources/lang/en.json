@@ -84,6 +84,7 @@
     "Hi :name": "Hi :name",
     "Hi!": "Hi!",
     "I Accept :linkOpen The Terms Of Service :linkClose": "I Accept :linkOpen The Terms Of Service :linkClose",
+    "Please :linkOpen confirm your payment :linkClose to activate your subscription!": "Please :linkOpen confirm your payment :linkClose to activate your subscription!",
     "If you do not already have an account, you may click the following link to get started:": "If you do not already have an account, you may click the following link to get started:",
     "If you lose your two-factor authentication device, you may use this emergency reset token to disable two-factor authentication on your account.": "If you lose your two-factor authentication device, you may use this emergency reset token to disable two-factor authentication on your account.",
     "Impersonate": "Impersonate",

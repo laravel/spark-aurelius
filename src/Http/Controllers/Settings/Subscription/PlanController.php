@@ -36,9 +36,11 @@ class PlanController extends Controller
         $plan = Spark::plans()->where('id', $request->plan)->first();
 
         try{
-            Spark::interact(UpdatePaymentMethod::class, [
-                $request->user(), $request->all(),
-            ]);
+            if ($request->stripe_payment_method) {
+                Spark::interact(UpdatePaymentMethod::class, [
+                    $request->user(), $request->all(),
+                ]);
+            }
 
             Spark::interact(Subscribe::class, [
                 $request->user(), $plan, false, $request->all()

@@ -35,6 +35,18 @@
 
         <!-- Main Content -->
         <main class="py-4">
+            @if(auth()->user()->subscription()->status == 'incomplete')
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-12">
+                            <div class="alert alert-warning">
+                                {!! __('Please :linkOpen confirm your payment :linkClose to activate your subscription!', ['linkOpen' => '<a href="/'.config('cashier.path').'/payment/'.auth()->user()->subscription()->latestPayment()->id.'">', 'linkClose' => '</a>']) !!}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
             @yield('content')
         </main>
 

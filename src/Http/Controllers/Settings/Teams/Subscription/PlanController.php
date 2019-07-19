@@ -36,9 +36,11 @@ class PlanController extends Controller
     public function store(CreateSubscriptionRequest $request, Team $team)
     {
         try{
-            Spark::interact(UpdatePaymentMethod::class, [
-                $request->user(), $request->all(),
-            ]);
+            if ($request->stripe_payment_method) {
+                Spark::interact(UpdatePaymentMethod::class, [
+                    $request->user(), $request->all(),
+                ]);
+            }
 
             Spark::interact(SubscribeTeam::class, [
                 $team, $request->plan(), false, $request->all()
