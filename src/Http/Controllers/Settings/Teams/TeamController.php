@@ -33,8 +33,12 @@ class TeamController extends Controller
             abort(404);
         }
 
-        $this->interaction($request, CreateTeam::class, [
+        list($team, $paymentId) = $this->interaction($request, CreateTeam::class, [
             $request->user(), $request->all()
+        ]);
+
+        return response()->json([
+            'pendingPayment' => $paymentId
         ]);
     }
 
@@ -56,5 +60,11 @@ class TeamController extends Controller
         $team->detachUsersAndDestroy();
 
         event(new TeamDeleted($team));
+
+        if(Spark::chargesUsersPerTeam() && $team->owner->subscription() &&
+            $team->owner->subscription()->quantity > 1
+        ){
+            $team->owner->removeSeat();
+        }
     }
 }

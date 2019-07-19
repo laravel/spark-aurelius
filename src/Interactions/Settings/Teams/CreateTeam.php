@@ -6,6 +6,7 @@ use Laravel\Spark\Spark;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Spark\Events\Teams\TeamCreated;
 use Laravel\Spark\Events\Teams\TeamOwnerAdded;
+use Laravel\Cashier\Exceptions\IncompletePayment;
 use Laravel\Spark\Contracts\Repositories\TeamRepository;
 use Laravel\Spark\Contracts\Interactions\Settings\Teams\CreateTeam as Contract;
 use Laravel\Spark\Contracts\Interactions\Settings\Teams\AddTeamMember as AddTeamMemberContract;
@@ -81,6 +82,16 @@ class CreateTeam implements Contract
         
         event(new TeamOwnerAdded($team, $user));
 
-        return $team;
+        try {
+            if (Spark::chargesUsersPerTeam() && $user->subscription() &&
+                $user->ownedTeams()->count() > 1
+            ) {
+                $user->addSeat();
+            }
+        } catch (IncompletePayment $e) {
+            return [$team, $e->payment->id];
+        }
+
+        return [$team, null];
     }
 }

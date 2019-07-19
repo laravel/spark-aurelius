@@ -18,7 +18,7 @@ interface CreateTeam
      *
      * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
      * @param  array  $data
-     * @return \Laravel\Spark\Team
+     * @return array
      */
     public function handle($user, array $data);
 }

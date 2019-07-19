@@ -112,12 +112,16 @@ module.exports = {
          */
         create() {
             Spark.post('/settings/'+Spark.teamsPrefix, this.form)
-                .then(() => {
+                .then(response => {
                     this.form.name = '';
                     this.form.slug = '';
-
-                    Bus.$emit('updateUser');
-                    Bus.$emit('updateTeams');
+                    
+                    if (response.pendingPayment) {
+                        window.location = '/' + Spark.cashierPath + '/payment/' + response.pendingPayment + '?redirect=/settings%23/subscription';
+                    } else {
+                        Bus.$emit('updateUser');
+                        Bus.$emit('updateTeams');
+                    }
                 });
         },
 

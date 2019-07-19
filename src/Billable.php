@@ -90,9 +90,9 @@ trait Billable
         }
 
         if (Spark::prorates()) {
-            $subscription->incrementQuantity($count);
+            $subscription->incrementAndInvoice($count);
         } else {
-            $subscription->noProrate()->incrementQuantity($count);
+            $subscription->noProrate()->incrementAndInvoice($count);
         }
     }
 
@@ -145,10 +145,14 @@ trait Billable
             return;
         }
 
-        if (Spark::prorates()) {
-            $subscription->updateQuantity($count);
-        } else {
-            $subscription->noProrate()->updateQuantity($count);
+        if (! Spark::prorates()) {
+            $subscription = $subscription->noProrate();
+        }
+
+        if ($count > $subscription->quantity) {
+            $subscription->incrementAndInvoice($count - $subscription->quantity);
+        } else if($count < $subscription->quantity) {
+            $subscription->decrementQuantity($subscription->quantity - $count);
         }
     }
 
