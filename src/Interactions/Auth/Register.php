@@ -5,6 +5,7 @@ namespace Laravel\Spark\Interactions\Auth;
 use Laravel\Spark\Spark;
 use Laravel\Spark\TeamPlan;
 use Illuminate\Support\Facades\DB;
+use Laravel\Cashier\Exceptions\IncompletePayment;
 use Laravel\Spark\Contracts\Interactions\Subscribe;
 use Laravel\Spark\Contracts\Interactions\SubscribeTeam;
 use Laravel\Spark\Contracts\Http\Requests\Auth\RegisterRequest;
@@ -28,9 +29,15 @@ class Register implements Contract
      */
     public function handle(RegisterRequest $request)
     {
-        return DB::transaction(function () use ($request) {
-            return $this->subscribe($request, $this->createUser($request));
-        });
+        $user = $this->createUser($request);
+
+        try{
+            $this->subscribe($request, $user);
+        } catch (IncompletePayment $e) {
+            return [$user, $e->payment->id];
+        }
+
+        return [$user, null];
     }
 
     /**

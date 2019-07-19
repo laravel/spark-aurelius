@@ -63,9 +63,11 @@ class RegisterController extends Controller
      */
     public function register(RegisterRequest $request)
     {
-        Auth::login($user = Spark::interact(
+        list($user, $paymentId) = Spark::interact(
             Register::class, [$request]
-        ));
+        );
+
+        Auth::login($user);
 
         event(new UserRegistered($user));
 
@@ -74,7 +76,9 @@ class RegisterController extends Controller
         }
 
         return response()->json([
-            'redirect' => $this->redirectPath()
+            'redirect' => $paymentId ?
+                '/'.config('cashier.path').'/payment/'.$paymentId.'?redirect='.$this->redirectPath()
+                : $this->redirectPath(),
         ]);
     }
 }

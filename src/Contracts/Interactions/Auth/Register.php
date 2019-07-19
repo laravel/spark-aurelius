@@ -10,7 +10,7 @@ interface Register
      * Register a new user with the application.
      *
      * @param  \Laravel\Spark\Http\Requests\Auth\RegisterRequest  $request
-     * @return \Illuminate\Contracts\Auth\Authenticatable
+     * @return array
      */
     public function handle(RegisterRequest $request);
 }
