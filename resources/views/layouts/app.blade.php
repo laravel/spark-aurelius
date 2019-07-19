@@ -35,7 +35,7 @@
 
         <!-- Main Content -->
         <main class="py-4">
-            @if(auth()->user()->subscription()->status == 'incomplete')
+            @if(auth()->user() && auth()->user()->subscription()->status == 'incomplete')
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-md-12">
