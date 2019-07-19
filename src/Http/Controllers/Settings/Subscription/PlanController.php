@@ -10,6 +10,7 @@ use Laravel\Spark\Contracts\Interactions\Subscribe;
 use Laravel\Spark\Events\Subscription\SubscriptionUpdated;
 use Laravel\Spark\Events\Subscription\SubscriptionCancelled;
 use Laravel\Spark\Http\Requests\Settings\Subscription\UpdateSubscriptionRequest;
+use Laravel\Spark\Contracts\Interactions\Settings\PaymentMethod\UpdatePaymentMethod;
 use Laravel\Spark\Contracts\Http\Requests\Settings\Subscription\CreateSubscriptionRequest;
 
 class PlanController extends Controller
@@ -35,6 +36,10 @@ class PlanController extends Controller
         $plan = Spark::plans()->where('id', $request->plan)->first();
 
         try{
+            Spark::interact(UpdatePaymentMethod::class, [
+                $request->user(), $request->all(),
+            ]);
+
             Spark::interact(Subscribe::class, [
                 $request->user(), $plan, false, $request->all()
             ]);
