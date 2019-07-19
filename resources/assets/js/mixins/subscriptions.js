@@ -91,7 +91,7 @@ module.exports = {
 
             const subscription = _.find(
                 this.billable.subscriptions,
-                subscription => subscription.name === 'default' && subscription.status == 'active'
+                subscription => subscription.name === 'default' && subscription.stripe_status == 'active'
             );
 
             if (typeof subscription !== 'undefined') {

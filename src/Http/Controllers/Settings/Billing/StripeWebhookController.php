@@ -84,9 +84,9 @@ class StripeWebhookController extends WebhookController
             // Status...
             if (isset($data['status'])) {
                 if (in_array($data['status'], ['incomplete', 'incomplete_expired'])) {
-                    $subscription->status = 'incomplete';
+                    $subscription->stripe_status = 'incomplete';
                 } else {
-                    $subscription->status = 'active';
+                    $subscription->stripe_status = 'active';
                 }
             }
 
