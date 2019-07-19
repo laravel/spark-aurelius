@@ -38,7 +38,7 @@ class PlanController extends Controller
         try{
             if ($request->stripe_payment_method) {
                 Spark::interact(UpdatePaymentMethod::class, [
-                    $request->user(), $request->all(),
+                    $team, $request->all(),
                 ]);
             }
 
@@ -77,10 +77,12 @@ class PlanController extends Controller
                 ])->save();
             }
 
-            if (Spark::prorates()) {
-                $subscription->swap($request->plan);
-            } else {
-                $subscription->noProrate()->swap($request->plan);
+            try {
+                $this->swapPlans($request->plan, $subscription);
+            } catch (IncompletePayment $e) {
+                return response()->json([
+                    'paymentId' => $e->payment->id
+                ], 400);
             }
         }
 
@@ -103,5 +105,21 @@ class PlanController extends Controller
         $team->subscription()->cancel();
 
         event(new SubscriptionCancelled($team->fresh()));
+    }
+
+    /**
+     * Update the subscription to the given plan.
+     *
+     * @param  string  $plan
+     * @param  \Laravel\Spark\Subscription $subscription
+     * @return void
+     */
+    protected function swapPlans($plan, $subscription)
+    {
+        if (Spark::prorates()) {
+            $subscription->swap($plan);
+        } else {
+            $subscription->noProrate()->swap($plan);
+        }
     }
 }
