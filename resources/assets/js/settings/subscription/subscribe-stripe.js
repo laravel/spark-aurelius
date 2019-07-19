@@ -212,7 +212,7 @@ module.exports = {
 
 
         /**
-         * Get the URL tor edirect to after confirmation.
+         * Get the URL to redirect to after confirmation.
          */
         urlForPlanRedirect() {
             return this.billingUser

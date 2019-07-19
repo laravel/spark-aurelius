@@ -25,10 +25,6 @@ class DashboardController extends Controller
      */
     public function show(Request $request)
     {
-        $setupIntent = $request->user()->createSetupIntent();
-
-        return view('spark::settings', [
-            'clientSecret' => $setupIntent->client_secret
-        ]);
+        return view('spark::settings');
     }
 }

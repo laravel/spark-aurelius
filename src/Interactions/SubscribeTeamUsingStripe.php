@@ -9,5 +9,5 @@ class SubscribeTeamUsingStripe extends SubscribeTeam
      *
      * @var string
      */
-    protected $token = 'stripe_token';
+    protected $token = 'stripe_payment_method';
 }

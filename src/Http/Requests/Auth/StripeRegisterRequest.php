@@ -17,7 +17,7 @@ class StripeRegisterRequest extends RegisterRequest implements Contract
      */
     public function validator()
     {
-        $validator = $this->registerValidator(['stripe_token']);
+        $validator = $this->registerValidator(['stripe_payment_method']);
 
         if (Spark::collectsBillingAddress() && $this->hasPaidPlan()) {
             $this->validateBillingAddress($validator);

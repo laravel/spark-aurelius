@@ -30,11 +30,5 @@ class PaymentMethodController extends Controller
         Spark::interact(UpdatePaymentMethod::class, [
             $request->user(), $request->all(),
         ]);
-
-        $setupIntent = $request->user()->createSetupIntent();
-
-        return [
-            'clientSecret' => $setupIntent->client_secret
-        ];
     }
 }

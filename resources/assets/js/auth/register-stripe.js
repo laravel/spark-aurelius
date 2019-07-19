@@ -26,7 +26,7 @@ module.exports = {
             taxRate: 0,
 
             registerForm: $.extend(true, new SparkForm({
-                stripe_token: '',
+                stripe_payment_method: '',
                 plan: '',
                 team: '',
                 team_slug: '',
@@ -168,38 +168,44 @@ module.exports = {
                 return this.sendRegistration();
             }
 
-            // Here we will build out the payload to send to Stripe to obtain a card token so
-            // we can create the actual subscription. We will build out this data that has
-            // this credit card number, CVC, etc. and exchange it for a secure token ID.
             const payload = {
                 name: this.cardForm.name,
-                address_line1: this.registerForm.address || '',
-                address_line2: this.registerForm.address_line_2 || '',
-                address_city: this.registerForm.city || '',
-                address_state: this.registerForm.state || '',
-                address_zip: this.registerForm.zip || '',
-                address_country: this.registerForm.country || '',
+                address: {
+                    line1: this.registerForm.address || '',
+                    line2: this.registerForm.address_line_2 || '',
+                    city: this.registerForm.city || '',
+                    state: this.registerForm.state || '',
+                    postal_code: this.registerForm.zip || '',
+                    country: this.registerForm.country || '',
+                }
             };
 
-            this.stripe.createToken(this.cardElement, payload).then(response => {
-                if (response.error) {
-                    this.cardForm.errors.set({card: [
-                        response.error.message
-                    ]});
+            this.generateToken(secret => {
+                this.stripe.handleCardSetup(secret, this.cardElement, {
+                    payment_method_data: {
+                        billing_details: payload
+                    }
+                }).then(response => {
+                    if (response.error) {
+                        this.cardForm.errors.set({card: [
+                                response.error.message
+                            ]});
 
-                    this.registerForm.busy = false;
-                } else {
-                    this.registerForm.stripe_token = response.token.id;
-
-                    this.sendRegistration();
-                }
+                        this.registerForm.busy = false;
+                    } else {
+                        this.sendRegistration(response.setupIntent.payment_method);
+                    }
+                });
             });
         },
+
 
         /*
          * After obtaining the Stripe token, send the registration to Spark.
          */
-        sendRegistration() {
+        sendRegistration(paymentMethod) {
+            this.registerForm.stripe_payment_method = paymentMethod;
+
             Spark.post('/register', this.registerForm)
                 .then(response => {
                     window.location = response.redirect;

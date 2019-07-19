@@ -36,6 +36,11 @@ module.exports = {
             card.mount(container);
 
             return card;
+        },
+
+
+        generateToken(callback){
+            return axios.get('/stripe/token').then(response => callback(response.data.clientSecret));
         }
     },
 };

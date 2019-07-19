@@ -123,6 +123,9 @@ $router->group(['middleware' => 'web'], function ($router) {
     // API Token Refresh...
     $router->put('/spark/token', 'TokenController@refresh');
 
+    // Stripe Token...
+    $router->get('/stripe/token', 'StripeTokenController@store');
+
     // Terms Of Service...
     $router->get('/terms', 'TermsController@show')->name('terms');
 

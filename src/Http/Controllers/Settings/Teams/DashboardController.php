@@ -28,11 +28,8 @@ class DashboardController extends Controller
     {
         abort_unless($request->user()->onTeam($team), 404);
 
-        $setupIntent = $team->createSetupIntent();
-
         return view('spark::settings.teams.team-settings', [
-            'team' => $team,
-            'clientSecret' => $setupIntent->client_secret
+            'team' => $team
         ]);
     }
 }

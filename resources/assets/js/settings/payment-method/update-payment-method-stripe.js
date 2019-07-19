@@ -69,9 +69,6 @@ module.exports = {
             this.form.successful = false;
             this.cardForm.errors.forget();
 
-            // Here we will build out the payload to send to Stripe to obtain a card token so
-            // we can create the actual subscription. We will build out this data that has
-            // this credit card number, CVC, etc. and exchange it for a secure token ID.
             const payload = {
                 name: this.cardForm.name,
                 address: {
@@ -84,23 +81,22 @@ module.exports = {
                 }
             };
 
-            // Once we have the Stripe payload we'll send it off to Stripe and obtain a token
-            // which we will send to the server to update this payment method. If there is
-            // an error we will display that back out to the user for their information.
-            this.stripe.handleCardSetup(this.$refs.clientSecret.value, this.cardElement, {
-                payment_method_data: {
-                    billing_details: payload
-                }
-            }).then(response => {
-                if (response.error) {
-                    this.cardForm.errors.set({card: [
-                        response.error.message
-                    ]});
+            this.generateToken(secret => {
+                this.stripe.handleCardSetup(secret, this.cardElement, {
+                    payment_method_data: {
+                        billing_details: payload
+                    }
+                }).then(response => {
+                    if (response.error) {
+                        this.cardForm.errors.set({card: [
+                                response.error.message
+                            ]});
 
-                    this.form.busy = false;
-                } else {
-                    this.sendUpdateToServer(response.setupIntent.payment_method);
-                }
+                        this.form.busy = false;
+                    } else {
+                        this.sendUpdateToServer(response.setupIntent.payment_method);
+                    }
+                });
             });
         },
 
@@ -125,8 +121,6 @@ module.exports = {
                     if ( ! Spark.collectsBillingAddress) {
                         this.form.zip = '';
                     }
-
-                    this.$refs.clientSecret.value = response.clientSecret;
                 });
         }
     },

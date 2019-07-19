@@ -12,6 +12,7 @@ use Laravel\Spark\Contracts\Interactions\Settings\Teams\CreateTeam;
 use Laravel\Spark\Contracts\Interactions\Auth\Register as Contract;
 use Laravel\Spark\Contracts\Interactions\Settings\Teams\AddTeamMember;
 use Laravel\Spark\Contracts\Interactions\Auth\CreateUser as CreateUserContract;
+use Laravel\Spark\Contracts\Interactions\Settings\PaymentMethod\UpdatePaymentMethod;
 
 class Register implements Contract
 {
@@ -87,10 +88,18 @@ class Register implements Contract
         }
 
         if ($request->plan() instanceof TeamPlan) {
+            Spark::interact(UpdatePaymentMethod::class, [
+                self::$team, $request->all(),
+            ]);
+
             Spark::interact(SubscribeTeam::class, [
                 self::$team, $request->plan(), true, $request->all()
             ]);
         } else {
+            Spark::interact(UpdatePaymentMethod::class, [
+                $user, $request->all(),
+            ]);
+
             Spark::interact(Subscribe::class, [
                 $user, $request->plan(), true, $request->all()
             ]);
