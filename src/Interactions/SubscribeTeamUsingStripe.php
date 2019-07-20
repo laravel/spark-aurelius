@@ -16,7 +16,7 @@ class SubscribeTeamUsingStripe implements Contract
     public function handle($team, $plan, $fromRegistration, array $data)
     {
         $team->subscriptions()->whereIn('stripe_status', ['incomplete', 'past_due'])->each(function ($subscription) {
-            $subscription->cancel();
+            $subscription->cancelNow();
 
             $subscription->delete();
         });
