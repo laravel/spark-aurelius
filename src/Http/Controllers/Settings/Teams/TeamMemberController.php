@@ -2,6 +2,7 @@
 
 namespace Laravel\Spark\Http\Controllers\Settings\Teams;
 
+use Laravel\Spark\Spark;
 use Illuminate\Http\Request;
 use Laravel\Spark\Http\Controllers\Controller;
 use Laravel\Spark\Events\Teams\TeamMemberRemoved;
@@ -50,5 +51,11 @@ class TeamMemberController extends Controller
         $team->users()->detach($member->id);
 
         event(new TeamMemberRemoved($team, $member));
+
+        if (Spark::chargesTeamsPerMember() && $team->subscription() &&
+            $team->subscription()->quantity > 1
+        ) {
+            $team->removeSeat();
+        }
     }
 }

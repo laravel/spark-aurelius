@@ -39,14 +39,6 @@ class EventServiceProvider extends ServiceProvider
         ],
 
         // Team Related Events...
-        'Laravel\Spark\Events\Teams\TeamMemberAdded' => [
-            'Laravel\Spark\Listeners\Teams\UpdateTeamSubscriptionQuantity',
-        ],
-
-        'Laravel\Spark\Events\Teams\TeamMemberRemoved' => [
-            'Laravel\Spark\Listeners\Teams\UpdateTeamSubscriptionQuantity',
-        ],
-
         'Laravel\Spark\Events\Teams\Subscription\TeamSubscribed' => [
             'Laravel\Spark\Listeners\Teams\Subscription\UpdateActiveSubscription',
             'Laravel\Spark\Listeners\Teams\Subscription\UpdateTrialEndingDate',
