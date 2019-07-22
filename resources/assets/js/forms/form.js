@@ -3,6 +3,7 @@
  */
 window.SparkForm = function (data) {
     var form = this;
+    const initData = data;
 
     $.extend(this, data);
 
@@ -29,6 +30,14 @@ window.SparkForm = function (data) {
     this.finishProcessing = function () {
         form.busy = false;
         form.successful = true;
+    };
+
+    /**
+     * Reset form.
+     */
+    this.reset = function() {
+        $.extend(form, initData);
+        form.resetStatus();
     };
 
     /**
