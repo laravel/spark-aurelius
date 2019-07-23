@@ -3,7 +3,7 @@
  */
 window.SparkForm = function (data) {
     var form = this;
-    const initData = data;
+    const initialData = data;
 
     $.extend(this, data);
 
@@ -33,10 +33,10 @@ window.SparkForm = function (data) {
     };
 
     /**
-     * Reset form.
+     * Reset the form to its original state.
      */
     this.reset = function() {
-        $.extend(form, initData);
+        $.extend(form, initialData);
         form.resetStatus();
     };
 
