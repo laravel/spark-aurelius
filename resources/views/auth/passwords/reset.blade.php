@@ -18,7 +18,7 @@
                             <label class="col-md-4 col-form-label text-md-right">{{__('E-Mail Address')}}</label>
 
                             <div class="col-md-6">
-                                <input type="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $email ?? old('email') }}" autofocus>
+                                <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $email ?? old('email') }}" autofocus>
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback">
@@ -29,11 +29,11 @@
                         </div>
 
                         <!-- Password -->
-                        <div class="form-group row{{ $errors->has('password') ? ' is-invalid' : '' }}">
+                        <div class="form-group row">
                             <label class="col-md-4 col-form-label text-md-right">{{__('Password')}}</label>
 
                             <div class="col-md-6">
-                                <input type="password" class="form-control" name="password">
+                                <input type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password">
 
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback">
@@ -44,10 +44,10 @@
                         </div>
 
                         <!-- Password Confirmation -->
-                        <div class="form-group row{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}">
+                        <div class="form-group row">
                             <label class="col-md-4 col-form-label text-md-right">{{__('Confirm Password')}}</label>
                             <div class="col-md-6">
-                                <input type="password" class="form-control" name="password_confirmation">
+                                <input type="password" class="form-control{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}" name="password_confirmation">
 
                                 @if ($errors->has('password_confirmation'))
                                     <span class="invalid-feedback">
