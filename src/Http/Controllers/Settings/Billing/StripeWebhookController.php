@@ -4,11 +4,16 @@ namespace Laravel\Spark\Http\Controllers\Settings\Billing;
 
 use Laravel\Spark\Spark;
 use Illuminate\Http\Response;
+use Illuminate\Support\Carbon;
+use Laravel\Spark\TeamSubscription;
+use Laravel\Spark\Events\Subscription\UserSubscribed;
 use Laravel\Cashier\Http\Controllers\WebhookController;
+use Laravel\Spark\Events\Subscription\SubscriptionUpdated;
+use Laravel\Spark\Events\Teams\Subscription\TeamSubscribed;
 use Laravel\Spark\Events\Subscription\SubscriptionCancelled;
 use Laravel\Spark\Contracts\Repositories\LocalInvoiceRepository;
+use Laravel\Spark\Events\Teams\Subscription\SubscriptionUpdated as TeamSubscriptionUpdated;
 use Laravel\Spark\Events\Teams\Subscription\SubscriptionCancelled as TeamSubscriptionCancelled;
-use Laravel\Spark\TeamSubscription;
 
 class StripeWebhookController extends WebhookController
 {
@@ -27,14 +32,81 @@ class StripeWebhookController extends WebhookController
         );
 
         if (is_null($user)) {
-            return $this->handleTeamSubscriptionUpdated($payload);
+            return $this->handleTeamSubscriptionUpdated($user, $payload);
         }
 
-        return parent::handleCustomerSubscriptionUpdated($payload);
+        return $this->handleUserSubscriptionUpdated($payload);
     }
 
     /**
-     * Handle customer subscription updated.
+     * Handle user subscription updated.
+     *
+     * @param  \Laravel\Cashier\Billable $user
+     * @param  array $payload
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    protected function handleUserSubscriptionUpdated($user, array $payload)
+    {
+        $data = $payload['data']['object'];
+
+        $user->subscriptions->filter(function (Subscription $subscription) use ($data) {
+            return $subscription->stripe_id === $data['id'];
+        })->each(function (Subscription $subscription) use ($data, $user) {
+            if (isset($data['status']) && $data['status'] === 'incomplete_expired') {
+                $subscription->delete();
+
+                return;
+            }
+
+            // Quantity...
+            if (isset($data['quantity'])) {
+                $subscription->quantity = $data['quantity'];
+            }
+
+            // Plan...
+            if (isset($data['plan']['id'])) {
+                $subscription->stripe_plan = $data['plan']['id'];
+            }
+
+            // Trial ending date...
+            if (isset($data['trial_end'])) {
+                $trial_ends = Carbon::createFromTimestamp($data['trial_end']);
+
+                if (! $subscription->trial_ends_at || $subscription->trial_ends_at->ne($trial_ends)) {
+                    $subscription->trial_ends_at = $trial_ends;
+                }
+            }
+
+            // Cancellation date...
+            if (isset($data['cancel_at_period_end'])) {
+                if ($data['cancel_at_period_end']) {
+                    $subscription->ends_at = $subscription->onTrial()
+                        ? $subscription->trial_ends_at
+                        : Carbon::createFromTimestamp($data['current_period_end']);
+                } else {
+                    $subscription->ends_at = null;
+                }
+            }
+
+            // Status...
+            if (isset($data['status'])) {
+                $subscription->stripe_status = $data['status'];
+            }
+
+            $subscription->save();
+
+            if (! $user->current_billing_plan) {
+                event(new UserSubscribed(
+                    $user, Spark::plans()->where('id', $subscription->stripe_plan)->first(), false
+                ));
+            } else {
+                event(new SubscriptionUpdated($user));
+            }
+        });
+    }
+
+    /**
+     * Handle team subscription updated.
      *
      * @param  array $payload
      * @return \Symfony\Component\HttpFoundation\Response
@@ -49,7 +121,7 @@ class StripeWebhookController extends WebhookController
 
         $team->subscriptions->filter(function (TeamSubscription $subscription) use ($data) {
             return $subscription->stripe_id === $data['id'];
-        })->each(function (TeamSubscription $subscription) use ($data) {
+        })->each(function (TeamSubscription $subscription) use ($data, $team) {
 
             // Quantity...
             if (isset($data['quantity'])) {
@@ -91,6 +163,14 @@ class StripeWebhookController extends WebhookController
             }
 
             $subscription->save();
+
+            if (! $team->current_billing_plan) {
+                event(new TeamSubscribed(
+                    $team, Spark::teamPlans()->where('id', $subscription->stripe_plan)->first()
+                ));
+            } else {
+                event(new TeamSubscriptionUpdated($team));
+            }
         });
     }
 
