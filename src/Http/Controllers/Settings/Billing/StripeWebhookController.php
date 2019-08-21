@@ -5,6 +5,7 @@ namespace Laravel\Spark\Http\Controllers\Settings\Billing;
 use Laravel\Spark\Spark;
 use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
+use Laravel\Spark\Subscription;
 use Laravel\Spark\TeamSubscription;
 use Laravel\Spark\Events\Subscription\UserSubscribed;
 use Laravel\Cashier\Http\Controllers\WebhookController;
@@ -32,10 +33,10 @@ class StripeWebhookController extends WebhookController
         );
 
         if (is_null($user)) {
-            return $this->handleTeamSubscriptionUpdated($user, $payload);
+            return $this->handleTeamSubscriptionUpdated($payload);
         }
 
-        return $this->handleUserSubscriptionUpdated($payload);
+        return $this->handleUserSubscriptionUpdated($user, $payload);
     }
 
     /**
