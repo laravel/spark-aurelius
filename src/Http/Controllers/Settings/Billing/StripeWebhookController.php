@@ -100,7 +100,7 @@ class StripeWebhookController extends WebhookController
                 event(new UserSubscribed(
                     $user, Spark::plans()->where('id', $subscription->stripe_plan)->first(), false
                 ));
-            } else {
+            } elseif(isset($payload['data']['previous_attributes']['items'])) {
                 event(new SubscriptionUpdated($user));
             }
         });
@@ -122,7 +122,7 @@ class StripeWebhookController extends WebhookController
 
         $team->subscriptions->filter(function (TeamSubscription $subscription) use ($data) {
             return $subscription->stripe_id === $data['id'];
-        })->each(function (TeamSubscription $subscription) use ($data, $team) {
+        })->each(function (TeamSubscription $subscription) use ($payload, $data, $team) {
 
             // Quantity...
             if (isset($data['quantity'])) {
@@ -169,7 +169,7 @@ class StripeWebhookController extends WebhookController
                 event(new TeamSubscribed(
                     $team, Spark::teamPlans()->where('id', $subscription->stripe_plan)->first()
                 ));
-            } else {
+            } elseif(isset($payload['data']['previous_attributes']['items'])) {
                 event(new TeamSubscriptionUpdated($team));
             }
         });

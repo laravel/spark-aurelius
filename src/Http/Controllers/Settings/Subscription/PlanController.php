@@ -84,10 +84,6 @@ class PlanController extends Controller
                 ], 400);
             }
         }
-
-        event(new SubscriptionUpdated(
-            $request->user()->fresh()
-        ));
     }
 
     /**

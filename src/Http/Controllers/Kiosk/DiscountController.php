@@ -3,7 +3,6 @@
 namespace Laravel\Spark\Http\Controllers\Kiosk;
 
 use Laravel\Spark\Spark;
-use Laravel\Cashier\Cashier;
 use Illuminate\Http\Request;
 use Stripe\Coupon as StripeCoupon;
 use Laravel\Spark\Http\Controllers\Controller;
@@ -40,7 +39,7 @@ class DiscountController extends Controller
         ]);
 
         $coupon = StripeCoupon::create([
-            'currency' => Cashier::usesCurrency(),
+            'currency' => config('cashier.currency'),
             'amount_off' => $request->type === 'amount' ? $request->value * 100 : null,
             'percent_off' => $request->type === 'percent' ? $request->value : null,
             'duration' => $request->duration,
