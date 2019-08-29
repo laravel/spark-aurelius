@@ -13,8 +13,8 @@ class CreateSparkSubscriptionsTable extends Migration
     public function up()
     {
         Schema::create('subscriptions', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('user_id');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
             $table->string('name');
             $table->string('stripe_id');
             $table->string('stripe_plan');
@@ -26,8 +26,8 @@ class CreateSparkSubscriptionsTable extends Migration
         });
 
         Schema::create('team_subscriptions', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('team_id');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('team_id');
             $table->string('name');
             $table->string('stripe_id');
             $table->string('stripe_plan');

@@ -13,7 +13,7 @@ class CreatePerformanceIndicatorsTable extends Migration
     public function up()
     {
         Schema::create('performance_indicators', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->decimal('monthly_recurring_revenue');
             $table->decimal('yearly_recurring_revenue');
             $table->decimal('daily_volume');
