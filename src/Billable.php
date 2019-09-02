@@ -2,6 +2,7 @@
 
 namespace Laravel\Spark;
 
+use Illuminate\Support\Facades\Cache;
 use Mpociot\VatCalculator\VatCalculator;
 use Laravel\Cashier\Billable as CashierBillable;
 
@@ -151,7 +152,7 @@ trait Billable
 
         if ($count > $subscription->quantity) {
             $subscription->incrementAndInvoice($count - $subscription->quantity);
-        } else if($count < $subscription->quantity) {
+        } elseif ($count < $subscription->quantity) {
             $subscription->decrementQuantity($subscription->quantity - $count);
         }
     }
@@ -185,18 +186,20 @@ trait Billable
             return 0;
         }
 
-        $vatCalculator = new VatCalculator;
+        return Cache::remember($this->vat_id.$this->billing_country.Spark::homeCountry().$this->billing_zip, 604800, function () {
+            $vatCalculator = new VatCalculator;
 
-        $vatCalculator->setBusinessCountryCode(Spark::homeCountry());
+            $vatCalculator->setBusinessCountryCode(Spark::homeCountry());
 
-        try {
-            $isValidVAT = ! empty($this->vat_id) && $vatCalculator->isValidVATNumber($this->vat_id);
-        } catch (VatCalculator\Exceptions\VATCheckUnavailableException $e) {
-            $isValidVAT = false;
-        }
+            try {
+                $isValidVAT = ! empty($this->vat_id) && $vatCalculator->isValidVATNumber($this->vat_id);
+            } catch (VatCalculator\Exceptions\VATCheckUnavailableException $e) {
+                $isValidVAT = false;
+            }
 
-        return $vatCalculator->getTaxRateForLocation(
-            $this->billing_country, $this->billing_zip, $isValidVAT
-        ) * 100;
+            return $vatCalculator->getTaxRateForLocation(
+                    $this->billing_country, $this->billing_zip, $isValidVAT
+                ) * 100;
+        });
     }
 }
