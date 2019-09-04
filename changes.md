@@ -1,5 +1,10 @@
 # Change Log
 
+### Version 9.0.0
+
+- Provide compatibility with Laravel 6.0 and Cashier 10.0.
+- Remove Braintree support.
+
 ### Version 8.0.0
 
 - Provide compatibility with Laravel 5.8 and Cashier 9.0.
