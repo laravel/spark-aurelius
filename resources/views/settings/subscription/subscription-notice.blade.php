@@ -2,9 +2,9 @@
     <div class="alert alert-warning  mb-4">
         {!! __('Please :linkOpen confirm your payment :linkClose to activate your subscription!', ['linkOpen' => '<a href="/'.config('cashier.path').'/payment/'.auth()->user()->subscription()->latestPayment()->id.'?redirect=/home">', 'linkClose' => '</a>']) !!}
     </div>
-@elseif(auth()->user()->currentteam() && auth()->user()->currentteam()->subscription() && in_array(auth()->user()->currentteam()->subscription()->stripe_status, ['incomplete' , 'past_due']))
+@elseif(auth()->user()->currentTeam() && auth()->user()->currentTeam()->subscription() && in_array(auth()->user()->currentTeam()->subscription()->stripe_status, ['incomplete' , 'past_due']))
     <div class="alert alert-warning  mb-4">
-        {!! __('Please :linkOpen confirm your payment :linkClose to activate your subscription!', ['linkOpen' => '<a href="/'.config('cashier.path').'/payment/'.auth()->user()->currentteam()->subscription()->latestPayment()->id.'?redirect=/home">', 'linkClose' => '</a>']) !!}
+        {!! __('Please :linkOpen confirm your payment :linkClose to activate your subscription!', ['linkOpen' => '<a href="/'.config('cashier.path').'/payment/'.auth()->user()->currentTeam()->subscription()->latestPayment()->id.'?redirect=/home">', 'linkClose' => '</a>']) !!}
     </div>
 @else
     <div class="alert alert-warning mb-4" v-if="subscriptionIsOnTrial">
