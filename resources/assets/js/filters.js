@@ -44,7 +44,7 @@ Vue.filter('currency', value => {
     const Dinero = require('dinero.js').default
 
     return Dinero({
-        amount: value * 100,
+        amount: Math.round(value * 100),
         currency: window.Spark.currency
     }).setLocale(window.Spark.currencyLocale).toFormat('$0,0.00');
 });
