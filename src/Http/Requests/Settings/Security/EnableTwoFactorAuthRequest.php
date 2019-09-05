@@ -34,7 +34,7 @@ class EnableTwoFactorAuthRequest extends FormRequest
      *
      * @return array
      */
-    protected function validationData()
+    public function validationData()
     {
         if ($this->phone) {
             $this->merge(['phone' => preg_replace('/[^0-9]/', '', $this->phone)]);
