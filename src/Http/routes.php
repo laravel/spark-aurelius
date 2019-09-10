@@ -147,9 +147,10 @@ $router->group(['middleware' => 'web'], function ($router) {
     $router->post('/register', 'Auth\RegisterController@register');
 
     // Password Reset...
-    $router->get('/password/reset/{token?}', 'Auth\PasswordController@showResetForm')->name('password.reset');
-    $router->post('/password/email', 'Auth\PasswordController@sendResetLinkEmail');
-    $router->post('/password/reset', 'Auth\PasswordController@reset');
+    $router->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+    $router->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+    $router->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+    $router->post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
 
     // Email Verification...
     $router->get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
