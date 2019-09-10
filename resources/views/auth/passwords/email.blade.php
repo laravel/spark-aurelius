@@ -1,43 +1,40 @@
 @extends('spark::layouts.app')
 
-<!-- Main Content -->
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-8">
-            <div class="card card-default">
-                <div class="card-header">{{__('Reset Password')}}</div>
+            <div class="card">
+                <div class="card-header">{{ __('Reset Password') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
-                        <div class="alert alert-success">
+                        <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif
 
-                    <form role="form" method="POST" action="{{ url('/password/email') }}">
+                    <form method="POST" action="{{ route('password.email') }}">
                         @csrf
 
-                        <!-- E-Mail Address -->
                         <div class="form-group row">
-                            <label class="col-md-4 col-form-label text-md-right">{{__('E-Mail Address')}}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
-                                <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" autofocus>
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback">
-                                        {{ $errors->first('email') }}
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        {{ $message }}
                                     </span>
-                                @endif
+                                @enderror
                             </div>
                         </div>
 
-                        <!-- Send Password Reset Link Button -->
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-envelope"></i> {{__('Send Password Reset Link')}}
+                                    <i class="fa fa-btn fa-envelope"></i> {{ __('Send Password Reset Link') }}
                                 </button>
                             </div>
                         </div>
