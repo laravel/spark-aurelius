@@ -153,7 +153,7 @@ module.exports = {
                     if (errors.response.status == 400) {
                         window.location = '/' + Spark.cashierPath + '/payment/' + errors.response.data.paymentId + '?redirect=' + this.urlForPlanRedirect;
                     } else {
-                        this.form.setErrors({form: ['Something went wrong.']});
+                        this.form.setErrors(errors.response.data.errors);
                     }
                 });
         },
