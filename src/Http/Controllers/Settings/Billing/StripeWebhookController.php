@@ -344,10 +344,10 @@ class StripeWebhookController extends WebhookController
             return $this->successMethod();
         }
 
-        $user = $this->getUserByStripeId($payload['data']['object']['id']);
+        $user = $this->getUserByStripeId($payload['data']['object']['customer']);
 
         if (! $user) {
-            $user = Spark::team()->where('stripe_id', $payload['data']['object']['id'])->first();
+            $user = Spark::team()->where('stripe_id', $payload['data']['object']['customer'])->first();
         }
 
         if ($user) {
