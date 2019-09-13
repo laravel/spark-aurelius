@@ -280,4 +280,87 @@ class StripeWebhookController extends WebhookController
 
         return new Response('Webhook Handled', 200);
     }
+
+    /**
+     * Handle customer updated.
+     *
+     * @param  array  $payload
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    protected function handleCustomerUpdated(array $payload)
+    {
+        $user = $this->getUserByStripeId($payload['data']['object']['id']);
+
+        if (! $user) {
+            $user = Spark::team()->where('stripe_id', $payload['data']['object']['id'])->first();
+        }
+
+        if ($user) {
+            $user->updateDefaultPaymentMethodFromStripe();
+        }
+
+        return $this->successMethod();
+    }
+
+    /**
+     * Handle deleted customer.
+     *
+     * @param  array  $payload
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    protected function handleCustomerDeleted(array $payload)
+    {
+        $user = $this->getUserByStripeId($payload['data']['object']['id']);
+
+        if (! $user) {
+            $user = Spark::team()->where('stripe_id', $payload['data']['object']['id'])->first();
+        }
+
+        if ($user) {
+            $user->subscriptions->each(function (Subscription $subscription) {
+                $subscription->skipTrial()->markAsCancelled();
+            });
+
+            $user->forceFill([
+                'stripe_id' => null,
+                'trial_ends_at' => null,
+                'card_brand' => null,
+                'card_last_four' => null,
+            ])->save();
+        }
+
+        return $this->successMethod();
+    }
+
+    /**
+     * Handle payment action required for invoice.
+     *
+     * @param  array  $payload
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    protected function handleInvoicePaymentActionRequired(array $payload)
+    {
+        if (is_null($notification = config('cashier.payment_notification'))) {
+            return $this->successMethod();
+        }
+
+        $user = $this->getUserByStripeId($payload['data']['object']['id']);
+
+        if (! $user) {
+            $user = Spark::team()->where('stripe_id', $payload['data']['object']['id'])->first();
+        }
+
+        if ($user) {
+            if (in_array(Notifiable::class, class_uses_recursive($user))) {
+                $payment = new Payment(StripePaymentIntent::retrieve(
+                    $payload['data']['object']['payment_intent'],
+                    $user->stripeOptions()
+                ));
+
+                $user->notify(new $notification($payment));
+            }
+        }
+
+        return $this->successMethod();
+    }
 }
