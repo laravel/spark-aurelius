@@ -289,14 +289,12 @@ class StripeWebhookController extends WebhookController
      */
     protected function handleCustomerUpdated(array $payload)
     {
-        $user = $this->getUserByStripeId($payload['data']['object']['id']);
-
-        if (! $user) {
-            $user = Spark::team()->where('stripe_id', $payload['data']['object']['id'])->first();
+        if (! $billable = $this->getUserByStripeId($payload['data']['object']['id'])) {
+            $billable = Spark::team()->where('stripe_id', $payload['data']['object']['id'])->first();
         }
 
-        if ($user) {
-            $user->updateDefaultPaymentMethodFromStripe();
+        if ($billable) {
+            $billable->updateDefaultPaymentMethodFromStripe();
         }
 
         return $this->successMethod();
@@ -310,18 +308,16 @@ class StripeWebhookController extends WebhookController
      */
     protected function handleCustomerDeleted(array $payload)
     {
-        $user = $this->getUserByStripeId($payload['data']['object']['id']);
-
-        if (! $user) {
-            $user = Spark::team()->where('stripe_id', $payload['data']['object']['id'])->first();
+        if (! $billable = $this->getUserByStripeId($payload['data']['object']['id'])) {
+            $billable = Spark::team()->where('stripe_id', $payload['data']['object']['id'])->first();
         }
 
-        if ($user) {
-            $user->subscriptions->each(function (Subscription $subscription) {
+        if ($billable) {
+            $billable->subscriptions->each(function (Subscription $subscription) {
                 $subscription->skipTrial()->markAsCancelled();
             });
 
-            $user->forceFill([
+            $billable->forceFill([
                 'stripe_id' => null,
                 'trial_ends_at' => null,
                 'card_brand' => null,
@@ -344,20 +340,24 @@ class StripeWebhookController extends WebhookController
             return $this->successMethod();
         }
 
-        $user = $this->getUserByStripeId($payload['data']['object']['customer']);
+        $billable = $this->getUserByStripeId($payload['data']['object']['customer']);
 
-        if (! $user) {
-            $user = Spark::team()->where('stripe_id', $payload['data']['object']['customer'])->first();
+        if (! $billable) {
+            $billable = Spark::team()->where('stripe_id', $payload['data']['object']['customer'])->first();
         }
 
-        if ($user) {
-            if (in_array(Notifiable::class, class_uses_recursive($user))) {
+        if ($billable) {
+            $model = config('cashier.model');
+
+            $notifiable = $billable instanceof $model ? $billable : $billable->owner;
+
+            if (in_array(Notifiable::class, class_uses_recursive($notifiable))) {
                 $payment = new Payment(StripePaymentIntent::retrieve(
                     $payload['data']['object']['payment_intent'],
-                    $user->stripeOptions()
+                    $billable->stripeOptions()
                 ));
 
-                $user->notify(new $notification($payment));
+                $notifiable->notify(new $notification($payment));
             }
         }
 
