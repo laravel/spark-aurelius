@@ -52,7 +52,7 @@ class StripeWebhookController extends WebhookController
 
         $user->subscriptions->filter(function (Subscription $subscription) use ($data) {
             return $subscription->stripe_id === $data['id'];
-        })->each(function (Subscription $subscription) use ($data, $user) {
+        })->each(function (Subscription $subscription) use ($data, $user, $payload) {
             if (isset($data['status']) && $data['status'] === 'incomplete_expired') {
                 $subscription->delete();
 
