@@ -3,10 +3,15 @@
 namespace Laravel\Spark\Http\Controllers\Settings\Billing;
 
 use Laravel\Spark\Spark;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Laravel\Cashier\Payment;
 use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
 use Laravel\Spark\Subscription;
 use Laravel\Spark\TeamSubscription;
+use Illuminate\Notifications\Notifiable;
+use Stripe\PaymentIntent as StripePaymentIntent;
 use Laravel\Spark\Events\Subscription\UserSubscribed;
 use Laravel\Cashier\Http\Controllers\WebhookController;
 use Laravel\Spark\Events\Subscription\SubscriptionUpdated;
