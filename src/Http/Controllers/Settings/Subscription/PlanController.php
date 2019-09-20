@@ -109,9 +109,9 @@ class PlanController extends Controller
     protected function swapPlans($plan, $subscription)
     {
         if (Spark::prorates()) {
-            $subscription->swap($plan);
+            $subscription->swapAndInvoice($plan);
         } else {
-            $subscription->noProrate()->swap($plan);
+            $subscription->noProrate()->swapAndInvoice($plan);
         }
     }
 }
