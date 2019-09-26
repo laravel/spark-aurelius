@@ -128,6 +128,11 @@ class StripeWebhookController extends WebhookController
         $team->subscriptions->filter(function (TeamSubscription $subscription) use ($data) {
             return $subscription->stripe_id === $data['id'];
         })->each(function (TeamSubscription $subscription) use ($payload, $data, $team) {
+            if (isset($data['status']) && $data['status'] === 'incomplete_expired') {
+                $subscription->delete();
+
+                return;
+            }
 
             // Quantity...
             if (isset($data['quantity'])) {
@@ -161,11 +166,7 @@ class StripeWebhookController extends WebhookController
 
             // Status...
             if (isset($data['status'])) {
-                if (in_array($data['status'], ['incomplete', 'incomplete_expired'])) {
-                    $subscription->stripe_status = 'incomplete';
-                } else {
-                    $subscription->stripe_status = 'active';
-                }
+                $subscription->stripe_status = $data['status'];
             }
 
             $subscription->save();
