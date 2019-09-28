@@ -39,7 +39,7 @@
 
                 <!-- Card Details -->
                 <div class="form-group row">
-                    <label for="name" class="col-md-4 col-form-label text-md-right">{{__('Card')}}</label>
+                    <label for="payment-card-element" class="col-md-4 col-form-label text-md-right">{{__('Card')}}</label>
 
                     <div class="col-md-6">
                         <div id="payment-card-element"></div>
