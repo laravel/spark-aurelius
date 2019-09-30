@@ -39,7 +39,7 @@
 
                     <!-- Card Details -->
                     <div class="form-group row" v-show="form.use_existing_payment_method != '1'">
-                        <label for="name" class="col-md-4 col-form-label text-md-right">{{__('Card')}}</label>
+                        <label for="subscription-card-element" class="col-md-4 col-form-label text-md-right">{{__('Card')}}</label>
 
                         <div class="col-md-6">
                             <div id="subscription-card-element"></div>
