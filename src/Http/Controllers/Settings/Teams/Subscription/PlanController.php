@@ -69,16 +69,19 @@ class PlanController extends Controller
         if ($plan->price === 0) {
             return $this->destroy($request, $team);
         } else {
-            $subscription = $team->subscription();
-
-            if (Spark::chargesTeamsPerMember() || Spark::chargesTeamsPerSeat()) {
-                $subscription->forceFill([
-                    'quantity' => Spark::teamSeatsCount($team)
-                ])->save();
-            }
-
             try {
+                $subscription = $team->subscription();
+
                 $this->swapPlans($request->plan, $subscription);
+
+                event(new SubscriptionUpdated($request->user()));
+
+                if (Spark::chargesTeamsPerMember() || Spark::chargesTeamsPerSeat()) {
+                    $subscription->forceFill([
+                        'quantity' => Spark::teamSeatsCount($team)
+                    ])->save();
+                }
+
             } catch (IncompletePayment $e) {
                 return response()->json([
                     'paymentId' => $e->payment->id
