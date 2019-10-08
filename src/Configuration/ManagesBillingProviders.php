@@ -232,22 +232,24 @@ trait ManagesBillingProviders
      * The number of seats the user occupies.
      *
      * @param  \Laravel\Spark\User  $user
+     * @param  string $plan
      * @return mixed
      */
-    public static function seatsCount($user)
+    public static function seatsCount($user, $plan)
     {
-        return call_user_func(static::$seatsCountCallback, $user);
+        return call_user_func(static::$seatsCountCallback, $user, $plan);
     }
 
     /**
      * The number of seats the team occupies.
      *
      * @param  \Laravel\Spark\Team  $team
+     * @param  string $plan
      * @return mixed
      */
-    public static function teamSeatsCount($team)
+    public static function teamSeatsCount($team, $plan)
     {
-        return call_user_func(static::$teamSeatsCountCallback, $team);
+        return call_user_func(static::$teamSeatsCountCallback, $team, $plan);
     }
 
     /**

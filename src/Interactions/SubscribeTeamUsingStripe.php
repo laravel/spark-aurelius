@@ -57,7 +57,7 @@ class SubscribeTeamUsingStripe implements Contract
         }
 
         if (Spark::chargesTeamsPerMember() || Spark::chargesTeamsPerSeat()) {
-            $subscription->quantity(Spark::teamSeatsCount($team));
+            $subscription->quantity(Spark::teamSeatsCount($team, $plan->id));
         }
 
         // Here we will create the actual subscription on the service and fire off the event
