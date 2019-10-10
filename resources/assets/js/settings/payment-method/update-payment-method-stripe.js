@@ -154,17 +154,17 @@ module.exports = {
             }
 
             switch (this.billable.card_brand) {
-                case 'American Express':
+                case 'amex':
                     return 'fa-cc-amex';
-                case 'Diners Club':
+                case 'diners':
                     return 'fa-cc-diners-club';
-                case 'Discover':
+                case 'discover':
                     return 'fa-cc-discover';
-                case 'JCB':
+                case 'jcb':
                     return 'fa-cc-jcb';
-                case 'MasterCard':
+                case 'mastercard':
                     return 'fa-cc-mastercard';
-                case 'Visa':
+                case 'visa':
                     return 'fa-cc-visa';
                 default:
                     return 'fa-cc-stripe';
