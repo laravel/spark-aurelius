@@ -36,6 +36,15 @@ class Invitation extends Model
     protected $hidden = [];
 
     /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'user_id' => 'integer',
+    ];
+
+    /**
      * Get the team that owns the invitation.
      */
     public function team()
