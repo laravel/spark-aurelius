@@ -154,7 +154,7 @@ $router->group(['middleware' => 'web'], function ($router) {
     // Email Verification...
     $router->get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
     $router->get('email/verify/{id}/{hash}', 'Auth\VerificationController@verify')->name('verification.verify');
-    $router->post('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
+    $router->get('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
 
     // Coupons
     $router->get('/coupon/{code}', 'CouponController@show');
