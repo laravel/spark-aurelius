@@ -221,7 +221,7 @@ module.exports = {
             Swal.fire({
                 title: __('Got It!'),
                 text: __('We have received your message and will respond soon!'),
-                type: 'success',
+                icon: 'success',
                 showConfirmButton: false,
                 timer: 2000
             });
