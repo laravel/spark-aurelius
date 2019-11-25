@@ -86,7 +86,7 @@
 
         <div class="flex-fill flex-center">
             <h1 class="text-center">
-                <img src="/img/color-logo.png" alt="{{__('Logo')}}" />
+                <img src="{{ asset('/img/color-logo.png') }}" alt="{{ __('Logo') }}" />
             </h1>
         </div>
     </div>
