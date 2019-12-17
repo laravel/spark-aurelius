@@ -41,7 +41,7 @@ class PasswordController extends Controller
         }
 
         $request->user()->forceFill([
-            'password' => bcrypt($request->password)
+            'password' => Hash::make($request->password)
         ])->save();
     }
 }
