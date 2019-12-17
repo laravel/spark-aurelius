@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Laravel\Spark\Spark;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Spark\Events\PaymentMethod\VatIdUpdated;
 use Laravel\Spark\Events\PaymentMethod\BillingAddressUpdated;
 use Laravel\Spark\Contracts\Repositories\UserRepository as UserRepositoryContract;
@@ -81,7 +82,7 @@ class UserRepository implements UserRepositoryContract
         $user->forceFill([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+            'password' => Hash::make($data['password']),
             'last_read_announcements_at' => Carbon::now(),
             'trial_ends_at' => Spark::onlyTeamPlans() ? null : Carbon::now()->addDays(Spark::trialDays()),
         ])->save();
