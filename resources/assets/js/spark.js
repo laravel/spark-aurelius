@@ -135,7 +135,7 @@ module.exports = {
         getUser() {
             axios.get('/user/current')
                 .then(response => {
-                    this.user = response.data;
+                    this.$set(this, 'user', response.data);
                 });
         },
 
@@ -146,7 +146,7 @@ module.exports = {
         getTeams() {
             axios.get('/settings/'+Spark.teamsPrefix)
                 .then(response => {
-                    this.teams = response.data;
+                    this.$set(this, 'teams', response.data);
                 });
         },
 
@@ -157,7 +157,7 @@ module.exports = {
         getCurrentTeam() {
             axios.get(`/settings/${Spark.teamsPrefix}/current`)
                 .then(response => {
-                    this.currentTeam = response.data;
+                    this.$set(this, 'currentTeam', response.data);
                 })
                 .catch(response => {
                     //
@@ -173,7 +173,7 @@ module.exports = {
 
             axios.get('/notifications/recent')
                 .then(response => {
-                    this.notifications = response.data;
+                    this.$set(this, 'notifications', response.data);
 
                     this.loadingNotifications = false;
                 });
