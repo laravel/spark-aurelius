@@ -43,9 +43,9 @@
 
                         <div class="col-md-6">
                             <div id="subscription-card-element"></div>
-                            <span class="invalid-feedback" v-show="cardForm.errors.has('card')">
+                            <p class="alert alert-danger mt-3 mb-0" v-show="cardForm.errors.has('card')">
                                 @{{ cardForm.errors.get('card') }}
-                            </span>
+                            </p>
                         </div>
                     </div>
 
@@ -70,9 +70,9 @@
                         <div class="col-md-6">
                             <input type="text" class="form-control" v-model="form.coupon" :class="{'is-invalid': form.errors.has('coupon')}">
 
-                            <span class="invalid-feedback" v-show="form.errors.has('coupon')">
-                            @{{ form.errors.get('coupon') }}
-                        </span>
+                            <p class="alert alert-danger mt-3 mb-0" v-show="form.errors.has('coupon')">
+                                @{{ form.errors.get('coupon') }}
+                            </p>
                         </div>
                     </div>
 
