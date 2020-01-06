@@ -39,6 +39,7 @@
 
                                         <div class="col-md-6">
                                             <div id="card-element"></div>
+                                            <input type="hidden" class="form-control" :class="{'is-invalid': cardForm.errors.has('card')}">
                                             <span class="invalid-feedback" v-show="cardForm.errors.has('card')">
                                             @{{ cardForm.errors.get('card') }}
                                         </span>
