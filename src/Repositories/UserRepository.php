@@ -67,8 +67,8 @@ class UserRepository implements UserRepositoryContract
         }
 
         return $search->where(function ($search) use ($query) {
-            $search->where('email', 'like', $query)
-                   ->orWhere('name', 'like', $query);
+            $search->where('email', 'ilike', $query)
+                   ->orWhere('name', 'ilike', $query);
         })->get();
     }
 
