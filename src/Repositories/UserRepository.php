@@ -66,9 +66,10 @@ class UserRepository implements UserRepositoryContract
             $search->where(Spark::user()->getKeyName(), '<>', $excludeUser->id);
         }
 
+        $query = strtolower($query);
         return $search->where(function ($search) use ($query) {
-            $search->where('email', 'ilike', $query)
-                   ->orWhere('name', 'ilike', $query);
+            $search->whereRaw('lower(email) like (?)', ["%{$query}%"])
+                ->orWhereRaw('lower(name) like (?)', ["%{$query}%"]);
         })->get();
     }
 
