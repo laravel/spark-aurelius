@@ -94,6 +94,7 @@
                     <label class="form-check-label" for="terms">
                         {!! __('I Accept :linkOpen The Terms Of Service :linkClose', ['linkOpen' => '<a href="/terms" target="_blank">', 'linkClose' => '</a>']) !!}
                     </label>
+                    <input type="hidden" class="form-control" :class="{'is-invalid': registerForm.errors.has('terms')}">
                     <div class="invalid-feedback" v-show="registerForm.errors.has('terms')">
                         <strong>@{{ registerForm.errors.get('terms') }}</strong>
                     </div>
