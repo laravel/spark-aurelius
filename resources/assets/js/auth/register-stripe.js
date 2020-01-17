@@ -131,7 +131,7 @@ module.exports = {
         guessCountry() {
             axios.get('/geocode/country')
                 .then(response => {
-                    if (response.data != 'ZZ') {
+                    if (response.data != 'ZZ' && response.data != '') {
                         this.registerForm.country = response.data;
                     }
                 })
