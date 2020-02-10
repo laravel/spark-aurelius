@@ -3,12 +3,12 @@
 namespace Laravel\Spark;
 
 use Illuminate\Support\Str;
-use Illuminate\Notifications\RoutesNotifications;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Billable, HasApiTokens, RoutesNotifications;
+    use Billable, HasApiTokens, Notifiable;
 
     /**
      * Get the profile photo URL attribute.
