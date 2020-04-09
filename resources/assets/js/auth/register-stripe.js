@@ -77,7 +77,7 @@ module.exports = {
             if (this.registerForm.team_slug === '' ||
                 this.registerForm.team_slug === this.slugify(oldVal)
             ) {
-                this.registerForm.team_slug = this.form.slug = this.slugify(val);
+                this.registerForm.team_slug = this.slugify(val);
             }
         },
 
