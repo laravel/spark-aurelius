@@ -97,16 +97,20 @@ module.exports = {
          * Watch the team name for changes.
          */
         'form.name': function (val, oldVal) {
-            if (this.form.slug === '' ||
-                this.form.slug === oldVal.toLowerCase().replace(/[\s\W-]+/g, '-')
-            ) {
-                this.form.slug = val.toLowerCase().replace(/[\s\W-]+/g, '-');
+            if (this.form.slug === '' || this.form.slug === this.slugify(oldVal)) {
+                this.form.slug = this.slugify(val);
             }
         }
     },
 
 
     methods: {
+        /**
+         * Make slug
+         */
+        slugify(val){
+            return val.toLowerCase().replace(/[\s\W-]+/g, '-');
+        },
         /**
          * Create a new team.
          */

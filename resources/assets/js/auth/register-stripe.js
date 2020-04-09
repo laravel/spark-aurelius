@@ -75,9 +75,9 @@ module.exports = {
          */
         'registerForm.team': function (val, oldVal) {
             if (this.registerForm.team_slug === '' ||
-                this.registerForm.team_slug === oldVal.toLowerCase().replace(/[\s\W-]+/g, '-')
+                this.registerForm.team_slug === this.slugify(oldVal)
             ) {
-                this.registerForm.team_slug = val.toLowerCase().replace(/[\s\W-]+/g, '-');
+                this.registerForm.team_slug = this.form.slug = this.slugify(val);
             }
         },
 
@@ -125,6 +125,12 @@ module.exports = {
 
 
     methods: {
+        /**
+         * Make slug
+         */
+        slugify(val){
+            return val.toLowerCase().replace(/[\s\W-]+/g, '-');
+        },
         /**
          * Attempt to guess the user's country.
          */
