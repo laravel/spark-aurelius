@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Laravel\Spark\Invitation;
 use Illuminate\Support\Facades\Mail;
 use Laravel\Spark\Events\Teams\UserInvitedToTeam;
+use Laravel\Spark\Events\Teams\GuestInvitedToTeam;
 use Laravel\Spark\Contracts\Interactions\Settings\Teams\SendInvitation as Contract;
 
 class SendInvitation implements Contract
@@ -27,6 +28,8 @@ class SendInvitation implements Contract
 
         if ($invitedUser) {
             event(new UserInvitedToTeam($team, $invitedUser));
+        } else {
+            event(new GuestInvitedToTeam($team, $invitation));
         }
 
         return $invitation;
