@@ -59,6 +59,7 @@ class StripeWebhookController extends WebhookController
             return $subscription->stripe_id === $data['id'];
         })->each(function (Subscription $subscription) use ($data, $user, $payload) {
             if (isset($data['status']) && $data['status'] === 'incomplete_expired') {
+                $subscription->items()->delete();
                 $subscription->delete();
 
                 return;
@@ -70,9 +71,7 @@ class StripeWebhookController extends WebhookController
             }
 
             // Plan...
-            if (isset($data['plan']['id'])) {
-                $subscription->stripe_plan = $data['plan']['id'];
-            }
+            $subscription->stripe_plan = $data['plan']['id'] ?? null;
 
             // Trial ending date...
             if (isset($data['trial_end'])) {
@@ -100,6 +99,25 @@ class StripeWebhookController extends WebhookController
             }
 
             $subscription->save();
+
+            // Update subscription items...
+            if (isset($data['items'])) {
+                $plans = [];
+
+                foreach ($data['items']['data'] as $item) {
+                    $plans[] = $item['plan']['id'];
+
+                    $subscription->items()->updateOrCreate([
+                        'stripe_id' => $item['id'],
+                    ], [
+                        'stripe_plan' => $item['plan']['id'],
+                        'quantity' => $item['quantity'],
+                    ]);
+                }
+
+                // Delete items that aren't attached to the subscription anymore...
+                $subscription->items()->whereNotIn('stripe_plan', $plans)->delete();
+            }
 
             if (! $user->current_billing_plan) {
                 event(new UserSubscribed(
@@ -129,6 +147,7 @@ class StripeWebhookController extends WebhookController
             return $subscription->stripe_id === $data['id'];
         })->each(function (TeamSubscription $subscription) use ($payload, $data, $team) {
             if (isset($data['status']) && $data['status'] === 'incomplete_expired') {
+                $subscription->items()->delete();
                 $subscription->delete();
 
                 return;
@@ -140,9 +159,7 @@ class StripeWebhookController extends WebhookController
             }
 
             // Plan...
-            if (isset($data['plan']['id'])) {
-                $subscription->stripe_plan = $data['plan']['id'];
-            }
+            $subscription->stripe_plan = $data['plan']['id'] ?? null;
 
             // Trial ending date...
             if (isset($data['trial_end'])) {
@@ -170,6 +187,25 @@ class StripeWebhookController extends WebhookController
             }
 
             $subscription->save();
+
+            // Update subscription items...
+            if (isset($data['items'])) {
+                $plans = [];
+
+                foreach ($data['items']['data'] as $item) {
+                    $plans[] = $item['plan']['id'];
+
+                    $subscription->items()->updateOrCreate([
+                        'stripe_id' => $item['id'],
+                    ], [
+                        'stripe_plan' => $item['plan']['id'],
+                        'quantity' => $item['quantity'],
+                    ]);
+                }
+
+                // Delete items that aren't attached to the subscription anymore...
+                $subscription->items()->whereNotIn('stripe_plan', $plans)->delete();
+            }
 
             if (! $team->current_billing_plan) {
                 event(new TeamSubscribed(
