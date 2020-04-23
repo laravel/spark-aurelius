@@ -5,7 +5,6 @@ namespace Laravel\Spark;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Cashier\Concerns\Prorates;
 use Laravel\Cashier\Exceptions\SubscriptionUpdateFailure;
-use Laravel\Spark\TeamSubscription;
 use Stripe\SubscriptionItem as StripeSubscriptionItem;
 
 /**
