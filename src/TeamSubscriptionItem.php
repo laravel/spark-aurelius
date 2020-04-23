@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Cashier;
+namespace Laravel\Spark;
 
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Cashier\Concerns\Prorates;

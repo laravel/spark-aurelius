@@ -3,8 +3,6 @@
 namespace Laravel\Spark;
 
 use Laravel\Cashier\Subscription as CashierSubscription;
-use Laravel\Cashier\SubscriptionItem;
-use Laravel\Cashier\TeamSubscriptionItem;
 
 class TeamSubscription extends CashierSubscription
 {
