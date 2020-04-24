@@ -18,7 +18,7 @@
         "guzzlehttp/guzzle": "~6.0",
         "ramsey/uuid": "^3.1",
         "intervention/image": "^2.3",
-        "laravel/cashier": "~11.0"
+        "laravel/cashier": "^11.0"
     },
     "require-dev": {
         "mockery/mockery": "^1.0",
