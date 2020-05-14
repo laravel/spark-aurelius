@@ -74,7 +74,7 @@ window.axios.defaults.headers.common = {
 window.axios.interceptors.response.use(function (response) {
     return response;
 }, function (error) {
-    if (error.response === undefined) {
+    if (error.response === undefined || ! error.request.responseURL.startsWith(window.location.origin)) {
         return Promise.reject(error);
     }
 
