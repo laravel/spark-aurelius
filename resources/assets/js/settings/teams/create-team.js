@@ -113,6 +113,7 @@ module.exports = {
         create() {
             Spark.post('/settings/'+Spark.teamsPrefix, this.form)
                 .then(response => {
+                    Bus.$emit('createTeam');
                     this.form.name = '';
                     this.form.slug = '';
                     
