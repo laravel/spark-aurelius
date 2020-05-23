@@ -70,5 +70,7 @@ class CreateSparkSubscriptionsTable extends Migration
     {
         Schema::drop('subscriptions');
         Schema::drop('team_subscriptions');
+        Schema::drop('subscription_items');
+        Schema::drop('team_subscription_items');
     }
 }
