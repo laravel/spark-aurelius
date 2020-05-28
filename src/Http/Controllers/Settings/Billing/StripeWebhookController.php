@@ -351,7 +351,11 @@ class StripeWebhookController extends WebhookController
     protected function handleCustomerDeleted(array $payload)
     {
         if (! $billable = $this->getUserByStripeId($payload['data']['object']['id'])) {
+            event(new TeamSubscriptionCancelled($billable));
+
             $billable = Spark::team()->where('stripe_id', $payload['data']['object']['id'])->first();
+        }else{
+            event(new SubscriptionCancelled($billable));
         }
 
         if ($billable) {
