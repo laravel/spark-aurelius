@@ -2,6 +2,7 @@
 
 namespace Laravel\Spark\Http\Controllers\Kiosk;
 
+use Laravel\Cashier\Cashier;
 use Laravel\Spark\Spark;
 use Illuminate\Http\Request;
 use Stripe\Coupon as StripeCoupon;
@@ -45,7 +46,7 @@ class DiscountController extends Controller
             'duration' => $request->duration,
             'duration_in_months' => $request->months,
             'max_redemptions' => 1,
-        ], config('cashier.secret'));
+        ], Cashier::stripeOptions());
 
         $user->applyCoupon($coupon->id);
     }
