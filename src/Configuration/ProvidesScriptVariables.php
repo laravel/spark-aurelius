@@ -28,6 +28,7 @@ trait ProvidesScriptVariables
             'env' => config('app.env'),
             'roles' => Spark::roles(),
             'state' => Spark::call(InitialFrontendState::class.'@forUser', [Auth::user()]),
+            'stripeApiVersion' => Cashier::STRIPE_VERSION,
             'stripeKey' => config('cashier.key'),
             'cashierPath' => config('cashier.path'),
             'teamsPrefix' => Spark::teamsPrefix(),
