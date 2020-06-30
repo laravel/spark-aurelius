@@ -46,6 +46,7 @@ module.exports = {
 
         Bus.$on('updateUser', function () {
             self.getUser();
+            self.getCurrentTeam();
         });
 
         Bus.$on('updateUserData', function() {
