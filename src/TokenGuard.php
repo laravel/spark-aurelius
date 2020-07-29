@@ -181,8 +181,8 @@ class TokenGuard
     protected function decryptXsrfHeader($request)
     {
         try {
-            return decrypt(
-                CookieValuePrefix::remove($request->header('X-XSRF-TOKEN'), Spark::$unserializesCookies)
+            return CookieValuePrefix::remove(
+                decrypt($request->header('X-XSRF-TOKEN'), Spark::$unserializesCookies)
             );
         } catch (Exception $e) {
         }
