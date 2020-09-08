@@ -94,8 +94,6 @@ class AppServiceProvider extends ServiceProvider
         Spark::tokensCan($this->tokensCan);
 
         Spark::byDefaultTokensCan($this->byDefaultTokensCan);
-
-        $this->booted();
     }
 
     /**
