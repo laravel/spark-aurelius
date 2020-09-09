@@ -66,7 +66,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => env('SPARK_USER_MODEL', App\User::class),
         ],
 
         // 'users' => [
