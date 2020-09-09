@@ -31,9 +31,9 @@ class InstallModels
      */
     public function install()
     {
-        copy($this->getUserModel(), app_path('User.php'));
+        copy($this->getUserModel(), app_path('Models/User.php'));
 
-        copy(SPARK_STUB_PATH.'/app/Team.php', app_path('Team.php'));
+        copy(SPARK_STUB_PATH.'/app/Models/Team.php', app_path('Models/Team.php'));
     }
 
     /**
@@ -44,7 +44,7 @@ class InstallModels
     protected function getUserModel()
     {
         return $this->command->option('team-billing')
-                            ? SPARK_STUB_PATH.'/app/TeamUser.php'
-                            : SPARK_STUB_PATH.'/app/User.php';
+                            ? SPARK_STUB_PATH.'/app/Models/TeamUser.php'
+                            : SPARK_STUB_PATH.'/app/Models/User.php';
     }
 }

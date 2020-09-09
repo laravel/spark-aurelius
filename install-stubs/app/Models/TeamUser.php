@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Laravel\Spark\CanJoinTeams;
 use Laravel\Spark\User as SparkUser;
