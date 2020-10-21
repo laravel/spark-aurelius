@@ -16,18 +16,18 @@ class TeamMemberRemoved
      *
      * @var mixed
      */
-    public $member;
+    public $user;
 
     /**
      * Create a new event instance.
      *
      * @param  \Laravel\Spark\Team  $team
-     * @param  mixed  $member
+     * @param  mixed  $user
      * @return void
      */
-    public function __construct($team, $member)
+    public function __construct($team, $user)
     {
         $this->team = $team;
-        $this->member = $member;
+        $this->user = $user;
     }
 }
