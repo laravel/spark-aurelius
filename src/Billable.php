@@ -90,7 +90,11 @@ trait Billable
             return;
         }
 
-        if (Spark::prorates()) {
+        if (! is_null(Spark::prorationBehaviour())) {
+            $subscription->setProrationBehavior(
+                Spark::prorationBehaviour()
+            )->incrementQuantity($count);
+        } elseif (Spark::prorates()) {
             $subscription->incrementAndInvoice($count);
         } else {
             $subscription->noProrate()->incrementQuantity($count);
@@ -118,7 +122,11 @@ trait Billable
             return;
         }
 
-        if (Spark::prorates()) {
+        if (! is_null(Spark::prorationBehaviour())) {
+            $subscription->setProrationBehavior(
+                Spark::prorationBehaviour()
+            )->decrementQuantity($count);
+        } elseif (Spark::prorates()) {
             $subscription->decrementQuantity($count);
         } else {
             $subscription->noProrate()->decrementQuantity($count);
@@ -147,13 +155,21 @@ trait Billable
         }
 
         if ($count > $subscription->quantity) {
-            if (Spark::prorates()) {
+            if (! is_null(Spark::prorationBehaviour())) {
+                $subscription->setProrationBehavior(
+                    Spark::prorationBehaviour()
+                )->incrementQuantity($count - $subscription->quantity);
+            } elseif (Spark::prorates()) {
                 $subscription->incrementAndInvoice($count - $subscription->quantity);
             } else {
                 $subscription->noProrate()->incrementQuantity($count - $subscription->quantity);
             }
         } elseif ($count < $subscription->quantity) {
-            if (Spark::prorates()) {
+            if (! is_null(Spark::prorationBehaviour())) {
+                $subscription->setProrationBehavior(
+                    Spark::prorationBehaviour()
+                )->decrementQuantity($subscription->quantity - $count);
+            } elseif (Spark::prorates()) {
                 $subscription->decrementQuantity($subscription->quantity - $count);
             } else {
                 $subscription->noProrate()->decrementQuantity($subscription->quantity - $count);
