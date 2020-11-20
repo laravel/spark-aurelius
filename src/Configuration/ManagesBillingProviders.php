@@ -80,6 +80,13 @@ trait ManagesBillingProviders
     public static $prorate = true;
 
     /**
+     * The proration behaviour to be used.
+     *
+     * @var string|null
+     */
+    public static $prorationBehaviour = null;
+
+    /**
      * Indicates the service the application uses for billing.
      *
      * @var bool
@@ -283,6 +290,16 @@ trait ManagesBillingProviders
     }
 
     /**
+     * Determine the prorating behavior when updating the subscription.
+     *
+     * @return string
+     */
+    public static function prorationBehaviour()
+    {
+        return static::$prorationBehaviour;
+    }
+
+    /**
      * Indicate that plan changes should not be prorated.
      *
      * @return static
@@ -290,6 +307,19 @@ trait ManagesBillingProviders
     public static function noProrate()
     {
         static::$prorate = false;
+
+        return new static;
+    }
+
+    /**
+     * Set the prorating behavior.
+     *
+     * @param  string  $prorationBehavior
+     * @return static
+     */
+    public static function setProrationBehavior($prorationBehavior)
+    {
+        static::$prorationBehaviour = $prorationBehavior;
 
         return new static;
     }
