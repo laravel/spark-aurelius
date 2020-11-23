@@ -119,7 +119,7 @@ class StripeWebhookController extends WebhookController
                 $subscription->items()->whereNotIn('stripe_plan', $plans)->delete();
             }
 
-            if (! $user->current_billing_plan) {
+            if (! $user->current_billing_plan && ! $subscription->cancelled()) {
                 event(new UserSubscribed(
                     $user, Spark::plans()->where('id', $subscription->stripe_plan)->first(), false
                 ));
@@ -207,7 +207,7 @@ class StripeWebhookController extends WebhookController
                 $subscription->items()->whereNotIn('stripe_plan', $plans)->delete();
             }
 
-            if (! $team->current_billing_plan) {
+            if (! $team->current_billing_plan && ! $subscription->cancelled()) {
                 event(new TeamSubscribed(
                     $team, Spark::teamPlans()->where('id', $subscription->stripe_plan)->first()
                 ));
