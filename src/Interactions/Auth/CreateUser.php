@@ -29,6 +29,12 @@ class CreateUser implements Contract
                    ! isset($input['invitation']);
         });
 
+        $validator->after(function ($validator) use ($request) {
+            if (in_array($request->email, Spark::$developers)) {
+                $validator->errors()->add('email', __('Email address is reserved.'));
+            }
+        });
+
         return $validator;
     }
 
