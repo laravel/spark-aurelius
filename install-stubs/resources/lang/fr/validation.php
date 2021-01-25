@@ -84,7 +84,7 @@ return [
     'mimes'                => 'L\'attribut ":attribute" doit être un fichier de type: :values.',
     'mimetypes'            => 'L\'attribut ":attribute" doit être un fichier de type: :values.',
     'min'                  => [
-        'numeric' => 'L\'attribut ":attribute" doit être plus petit que :min.',
+        'numeric' => 'L\'attribut ":attribute" doit être plus grand que :min.',
         'file'    => 'L\'attribut ":attribute" doit peser au moins :min kilo-octets.',
         'string'  => 'L\'attribut ":attribute" doit faire au moins :min caractères.',
         'array'   => 'L\'attribut ":attribute" doit avoir au moins :min éléments.',
