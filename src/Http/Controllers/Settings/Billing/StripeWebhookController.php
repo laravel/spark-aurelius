@@ -28,7 +28,7 @@ class StripeWebhookController extends WebhookController
     /**
      * Handle customer subscription updated.
      *
-     * @param  array $payload
+     * @param  array  $payload
      * @return \Symfony\Component\HttpFoundation\Response
      */
     protected function handleCustomerSubscriptionUpdated(array $payload)
@@ -47,8 +47,8 @@ class StripeWebhookController extends WebhookController
     /**
      * Handle user subscription updated.
      *
-     * @param  \Laravel\Cashier\Billable $user
-     * @param  array $payload
+     * @param  \Laravel\Cashier\Billable  $user
+     * @param  array  $payload
      * @return \Symfony\Component\HttpFoundation\Response
      */
     protected function handleUserSubscriptionUpdated($user, array $payload)
@@ -132,7 +132,7 @@ class StripeWebhookController extends WebhookController
     /**
      * Handle team subscription updated.
      *
-     * @param  array $payload
+     * @param  array  $payload
      * @return \Symfony\Component\HttpFoundation\Response
      */
     protected function handleTeamSubscriptionUpdated(array $payload)
