@@ -43,6 +43,7 @@ trait ProvidesScriptVariables
             'teamSeatName' => Spark::teamSeatName(),
             'chargesUsersPerTeam' => Spark::chargesUsersPerTeam(),
             'chargesTeamsPerMember' => Spark::chargesTeamsPerMember(),
+            'host' => url()
         ];
     }
 
