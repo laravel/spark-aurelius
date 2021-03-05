@@ -218,8 +218,8 @@ module.exports = {
          */
         urlForPlanRedirect() {
             return this.billingUser
-                            ? `${Spark.host}/settings%23/subscription`
-                            : `${Spark.host}/settings/${Spark.teamsPrefix}/${this.team.id}%23/subscription`;
+                            ? `/settings%23/subscription`
+                            : `/settings/${Spark.teamsPrefix}/${this.team.id}%23/subscription`;
         },
 
 

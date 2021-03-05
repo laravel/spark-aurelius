@@ -117,7 +117,7 @@ module.exports = {
                     this.form.slug = '';
                     
                     if (response.pendingPayment) {
-                        window.location = '/' + Spark.cashierPath + '/payment/' + response.pendingPayment + '?redirect='+Spark.host+'/settings%23/subscription';
+                        window.location = '/' + Spark.cashierPath + '/payment/' + response.pendingPayment + '?redirect=/settings%23/subscription';
                     } else {
                         Bus.$emit('updateUser');
                         Bus.$emit('updateTeams');
