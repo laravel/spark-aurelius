@@ -49,7 +49,7 @@ trait SendsInvoiceNotifications
         $invoiceData['id'] = $localInvoice->id;
 
         $message->to($billable->email, $billable->name)
-                ->subject($invoiceData['product'].' Invoice')
+                ->subject($invoiceData['product'].' '.trans('Invoice'))
                 ->attachData($invoice->pdf($invoiceData), 'invoice.pdf');
     }
 }
