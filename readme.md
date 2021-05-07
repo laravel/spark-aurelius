@@ -1,3 +1,3 @@
 # Laravel Spark
 
-https://spark.laravel.com
+https://spark-classic.laravel.com/
