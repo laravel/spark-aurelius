@@ -33,9 +33,7 @@ class StripeCouponRepository implements CouponRepository
     public function find($code)
     {
         try {
-            $coupon = StripeCoupon::retrieve(
-                $code, Cashier::stripeOptions()
-            );
+            $coupon = Cashier::stripe()->coupons->retrieve($code);
 
             if ($coupon && $coupon->valid) {
                 return $this->toCoupon($coupon);

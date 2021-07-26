@@ -3,6 +3,7 @@
 namespace Laravel\Spark;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Cashier\Cashier;
 use Laravel\Cashier\Concerns\Prorates;
 use Laravel\Cashier\Exceptions\SubscriptionUpdateFailure;
 use Stripe\SubscriptionItem as StripeSubscriptionItem;
@@ -66,23 +67,19 @@ class TeamSubscriptionItem extends Model
             'plan' => $plan,
             'quantity' => $this->quantity,
             'proration_behavior' => $this->prorateBehavior(),
-            'tax_rates' => $this->subscription->getPlanTaxRatesForPayload($plan),
+            'tax_rates' => $this->subscription->getPriceTaxRatesForPayload($plan),
         ], $options);
 
-        $item = StripeSubscriptionItem::update(
-            $this->stripe_id,
-            $options,
-            $this->subscription->owner->stripeOptions()
-        );
+        $item = Cashier::stripe()->subscriptionItems->update($this->stripe_id, $options);
 
         $this->fill([
-            'stripe_plan' => $plan,
+            'stripe_price' => $plan,
             'quantity' => $item->quantity,
         ])->save();
 
-        if ($this->subscription->hasSinglePlan()) {
+        if ($this->subscription->hasSinglePrice()) {
             $this->subscription->fill([
-                'stripe_plan' => $plan,
+                'stripe_price' => $plan,
                 'quantity' => $item->quantity,
             ])->save();
         }
@@ -116,9 +113,6 @@ class TeamSubscriptionItem extends Model
      */
     public function asStripeSubscriptionItem()
     {
-        return StripeSubscriptionItem::retrieve(
-            $this->stripe_id,
-            $this->subscription->owner->stripeOptions()
-        );
+        return Cashier::stripe()->subscriptionItems->retrieve($this->stripe_id);
     }
 }

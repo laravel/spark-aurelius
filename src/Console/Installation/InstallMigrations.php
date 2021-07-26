@@ -86,6 +86,7 @@ class InstallMigrations
             'migrations/create_teams_table',
             'migrations/create_team_users_table',
             'migrations/create_invitations_table',
+            'migrations/create_tax_rates_table',
         ];
     }
 }

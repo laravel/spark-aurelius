@@ -15,9 +15,7 @@ class Stripe
      */
     public function countryForToken($token)
     {
-        return StripePaymentMethod::retrieve(
-            $token, Cashier::stripeOptions()
-        )->card->country;
+        return Cashier::stripe()->paymentMethods->retrieve($token)->card->country;
     }
 
     /**

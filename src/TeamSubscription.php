@@ -55,6 +55,6 @@ class TeamSubscription extends CashierSubscription
      */
     public function getProviderPlanAttribute()
     {
-        return $this->stripe_plan;
+        return $this->stripe_price;
     }
 }

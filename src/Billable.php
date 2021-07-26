@@ -3,6 +3,7 @@
 namespace Laravel\Spark;
 
 use Illuminate\Support\Facades\Cache;
+use Laravel\Cashier\Cashier;
 use Mpociot\VatCalculator\VatCalculator;
 use Laravel\Cashier\Billable as CashierBillable;
 
@@ -221,5 +222,34 @@ trait Billable
                     $this->billing_country, $this->billing_zip, $isValidVAT
                 ) * 100;
         });
+    }
+
+    /**
+     * Get the tax rates to apply to the subscription.
+     *
+     * @return array
+     */
+    public function taxRates()
+    {
+        if (! $rate = $this->taxPercentage()) {
+            return null;
+        }
+
+        if ($existing = TaxRate::where('percentage', $rate)->first()) {
+            return [$existing->stripe_id];
+        }
+
+        $stripeTaxRate = Cashier::stripe()->taxRates->create([
+            'display_name' => 'VAT',
+            'inclusive' => false,
+            'percentage' => $rate,
+        ]);
+
+        TaxRate::create([
+            'stripe_id' => $stripeTaxRate->id,
+            'percentage' => $rate,
+        ]);
+
+        return [$stripeTaxRate->id];
     }
 }

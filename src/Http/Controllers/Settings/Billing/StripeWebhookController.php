@@ -2,6 +2,7 @@
 
 namespace Laravel\Spark\Http\Controllers\Settings\Billing;
 
+use Laravel\Cashier\Cashier;
 use Laravel\Spark\Spark;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -71,7 +72,7 @@ class StripeWebhookController extends WebhookController
             }
 
             // Plan...
-            $subscription->stripe_plan = $data['plan']['id'] ?? null;
+            $subscription->stripe_price = $data['plan']['id'] ?? null;
 
             // Trial ending date...
             if (isset($data['trial_end'])) {
@@ -110,18 +111,18 @@ class StripeWebhookController extends WebhookController
                     $subscription->items()->updateOrCreate([
                         'stripe_id' => $item['id'],
                     ], [
-                        'stripe_plan' => $item['plan']['id'],
+                        'stripe_price' => $item['plan']['id'],
                         'quantity' => $item['quantity'],
                     ]);
                 }
 
                 // Delete items that aren't attached to the subscription anymore...
-                $subscription->items()->whereNotIn('stripe_plan', $plans)->delete();
+                $subscription->items()->whereNotIn('stripe_price', $plans)->delete();
             }
 
             if (! $user->current_billing_plan && ! $subscription->cancelled()) {
                 event(new UserSubscribed(
-                    $user, Spark::plans()->where('id', $subscription->stripe_plan)->first(), false
+                    $user, Spark::plans()->where('id', $subscription->stripe_price)->first(), false
                 ));
             } elseif(isset($payload['data']['previous_attributes']['items'])) {
                 event(new SubscriptionUpdated($user));
@@ -159,7 +160,7 @@ class StripeWebhookController extends WebhookController
             }
 
             // Plan...
-            $subscription->stripe_plan = $data['plan']['id'] ?? null;
+            $subscription->stripe_price = $data['plan']['id'] ?? null;
 
             // Trial ending date...
             if (isset($data['trial_end'])) {
@@ -198,18 +199,18 @@ class StripeWebhookController extends WebhookController
                     $subscription->items()->updateOrCreate([
                         'stripe_id' => $item['id'],
                     ], [
-                        'stripe_plan' => $item['plan']['id'],
+                        'stripe_price' => $item['plan']['id'],
                         'quantity' => $item['quantity'],
                     ]);
                 }
 
                 // Delete items that aren't attached to the subscription anymore...
-                $subscription->items()->whereNotIn('stripe_plan', $plans)->delete();
+                $subscription->items()->whereNotIn('stripe_price', $plans)->delete();
             }
 
             if (! $team->current_billing_plan && ! $subscription->cancelled()) {
                 event(new TeamSubscribed(
-                    $team, Spark::teamPlans()->where('id', $subscription->stripe_plan)->first()
+                    $team, Spark::teamPlans()->where('id', $subscription->stripe_price)->first()
                 ));
             } elseif(isset($payload['data']['previous_attributes']['items'])) {
                 event(new TeamSubscriptionUpdated($team));
@@ -366,8 +367,8 @@ class StripeWebhookController extends WebhookController
             $billable->forceFill([
                 'stripe_id' => null,
                 'trial_ends_at' => null,
-                'card_brand' => null,
-                'card_last_four' => null,
+                'pm_type' => null,
+                'pm_last_four' => null,
             ])->save();
         }
 
@@ -396,10 +397,7 @@ class StripeWebhookController extends WebhookController
             $notifiable = $billable instanceof $model ? $billable : $billable->owner;
 
             if (in_array(Notifiable::class, class_uses_recursive($notifiable))) {
-                $payment = new Payment(StripePaymentIntent::retrieve(
-                    $payload['data']['object']['payment_intent'],
-                    $billable->stripeOptions()
-                ));
+                $payment = Cashier::stripe()->paymentIntents->retrieve($payload['data']['object']['payment_intent']);
 
                 $notifiable->notify(new $notification($payment));
             }

@@ -29,8 +29,8 @@ class Team extends Model
      * @var array
      */
     protected $hidden = [
-        'card_brand',
-        'card_last_four',
+        'pm_type',
+        'pm_last_four',
         'card_country',
         'billing_address',
         'billing_address_line_2',
@@ -138,8 +138,8 @@ class Team extends Model
     public function shouldHaveOwnerVisibility()
     {
         $this->makeVisible([
-            'card_brand',
-            'card_last_four',
+            'pm_type',
+            'pm_last_four',
             'card_country',
             'billing_address',
             'billing_address_line_2',

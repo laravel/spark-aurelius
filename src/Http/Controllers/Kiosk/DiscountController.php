@@ -39,14 +39,14 @@ class DiscountController extends Controller
             'months' => 'required_if:duration,repeating',
         ]);
 
-        $coupon = StripeCoupon::create([
+        $coupon = Cashier::stripe()->coupons->create([
             'currency' => config('cashier.currency'),
             'amount_off' => $request->type === 'amount' ? $request->value * 100 : null,
             'percent_off' => $request->type === 'percent' ? $request->value : null,
             'duration' => $request->duration,
             'duration_in_months' => $request->months,
             'max_redemptions' => 1,
-        ], Cashier::stripeOptions());
+        ]);
 
         $user->applyCoupon($coupon->id);
     }

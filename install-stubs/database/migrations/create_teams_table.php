@@ -20,8 +20,8 @@ class CreateTeamsTable extends Migration
             $table->text('photo_url')->nullable();
             $table->string('stripe_id')->nullable();
             $table->string('current_billing_plan')->nullable();
-            $table->string('card_brand')->nullable();
-            $table->string('card_last_four')->nullable();
+            $table->string('pm_type')->nullable();
+            $table->string('pm_last_four')->nullable();
             $table->string('card_country')->nullable();
             $table->string('billing_address')->nullable();
             $table->string('billing_address_line_2')->nullable();
