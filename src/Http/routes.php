@@ -192,7 +192,9 @@ $router->group(['middleware' => 'web'], function ($router) {
 $router->get('/spark/plans', 'PlanController@all');
 
 // Invitation
-$router->get('/invitations/{invitation}', 'InvitationController@show');
+$router->group(['middleware' => 'throttle:60,1'], function ($router) {
+    $router->get('/invitations/{invitation}', 'InvitationController@show');
+});
 
 // Tax Rates...
 $router->post('/tax-rate', 'TaxRateController@calculate');
