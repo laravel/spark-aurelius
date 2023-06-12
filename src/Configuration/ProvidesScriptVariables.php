@@ -53,10 +53,10 @@ trait ProvidesScriptVariables
      */
     private static function getTranslations()
     {
-        $translationFile = resource_path('lang/'.app()->getLocale().'.json');
+        $translationFile = lang_path(app()->getLocale().'.json');
 
         if (! is_readable($translationFile)) {
-            $translationFile = resource_path('lang/'.app('translator')->getFallback().'.json');
+            $translationFile = lang_path(app('translator')->getFallback().'.json');
         }
 
         return json_decode(file_get_contents($translationFile), true);
